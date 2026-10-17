@@ -402,8 +402,11 @@ input{font-family:'JetBrains Mono',monospace}
     <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 16px">Faisceau</span><span style="font-size: 13px; color: #9AA1AC">Angle, distance et diamètre de tache</span></span>
     <span style="color: #7CC4FF; font-size: 20px">›</span>
   </button>
-  <div style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC; margin-top: 8px">À VENIR</div>
-  <div style="border-radius: 14px; background: #17191D; border: 1px solid #2C3038; padding: 14px; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">Loi d'Ohm et puissance</span><span style="font-size: 13px; color: #9AA1AC">P, U, I, R en un écran</span></div>
+  <button type="button" onClick="{{goOhm}}" style="border-radius: 14px; background: #17191D; border: 1px solid #2C3038; color: #EEF0F3; padding: 12px 14px; display: flex; align-items: center; gap: 12px; text-align: left; flex-shrink: 0">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7CC4FF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20h4v-3a6 6 0 1 1 6 0v3h4"></path></svg>
+    <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 16px">Loi d’Ohm et puissance</span><span style="font-size: 13px; color: #9AA1AC">U, I, R, P · mono et tri</span></span>
+    <span style="color: #7CC4FF; font-size: 20px">›</span>
+  </button>
 </div>
 </sc-if>
 
@@ -621,6 +624,39 @@ input{font-family:'JetBrains Mono',monospace}
       <button type="button" onClick="{{mt.addExtra}}" style="height: 44px; padding: 0 12px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #7CC4FF; font-size: 14px; font-weight: 600">Ajouter</button>
     </div>
   </section>
+</div>
+</sc-if>
+
+
+<sc-if value="{{isOhm}}" hint-placeholder-val="{{ false }}">
+<div class="scroll" style="flex-grow: 1; overflow-y: auto; padding: 14px 16px 32px; display: flex; flex-direction: column; gap: 16px">
+  <section style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">JE CONNAIS</span><div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px"><sc-for list="{{oh.modes}}" as="om" hint-placeholder-count="6"><button type="button" onClick="{{om.pick}}" aria-pressed="{{om.on}}" style="min-height: 40px; border-radius: 10px; padding: 6px 8px; font-size: 13px; font-weight: 600; text-align: center; line-height: 1.2; {{om.style}}">{{om.label}}</button></sc-for></div></section>
+  <section style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+    <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">{{oh.in0.label}}</span>
+      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{oh.in0.minus}}" aria-label="Moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="decimal" aria-label="{{oh.in0.label}}" value="{{oh.in0.txt}}" onChange="{{oh.in0.set}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box"><button type="button" onClick="{{oh.in0.plus}}" aria-label="Plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">{{oh.in1.label}}</span>
+      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{oh.in1.minus}}" aria-label="Moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="decimal" aria-label="{{oh.in1.label}}" value="{{oh.in1.txt}}" onChange="{{oh.in1.set}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box"><button type="button" onClick="{{oh.in1.plus}}" aria-label="Plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
+    </div>
+  </section>
+  <section style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+    <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">RÉSEAU</span><div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px"><sc-for list="{{oh.sysChips}}" as="osy" hint-placeholder-count="2"><button type="button" onClick="{{osy.pick}}" aria-pressed="{{osy.on}}" style="min-height: 40px; border-radius: 10px; padding: 6px 8px; font-size: 13px; font-weight: 600; text-align: center; line-height: 1.2; {{osy.style}}">{{osy.label}}</button></sc-for></div></div>
+    <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">COS φ</span><div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px"><sc-for list="{{oh.pfChips}}" as="opf" hint-placeholder-count="4"><button type="button" onClick="{{opf.pick}}" aria-pressed="{{opf.on}}" style="min-height: 40px; border-radius: 10px; padding: 6px 8px; font-size: 13px; font-weight: 600; text-align: center; line-height: 1.2; {{opf.style}}">{{opf.label}}</button></sc-for></div></div>
+  </section>
+  <sc-if value="{{oh.ok}}" hint-placeholder-val="{{ true }}">
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+      <sc-for list="{{oh.cells}}" as="oc" hint-placeholder-count="4">
+        <div style="border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 2px; min-width: 0; {{oc.style}}"><span style="font-size: 11.5px; color: #9AA1AC">{{oc.k}}</span><span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 24px; overflow-wrap: anywhere; color: {{oc.color}}">{{oc.v}}<span style="font-size: 14px; color: #9AA1AC"> {{oc.u}}</span></span><span style="font-size: 11.5px; color: #9AA1AC">{{oc.f}}</span></div>
+      </sc-for>
+    </div>
+    <div style="font-size: 12px; color: #9AA1AC; line-height: 1.45">{{oh.extra}}</div>
+  </sc-if>
+  <sc-if value="{{oh.bad}}" hint-placeholder-val="{{ false }}"><div style="font-size: 13px; color: #FF8A8E">Saisis deux valeurs supérieures à zéro.</div></sc-if>
+  <section style="display: flex; flex-direction: column; gap: 6px">
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">RAPPEL</span>
+    <div style="border-radius: 12px; background: #17191D; border: 1px solid #2C3038; padding: 10px 12px; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.7; color: #C5CAD2; white-space: pre-line">{{oh.memo}}</div>
+  </section>
+  <div style="font-size: 12px; color: #9AA1AC; line-height: 1.45">En alternatif, R devient l’impédance Z = U / I. Le cos φ ne joue que sur la puissance active P (W) ; la puissance apparente S (VA) vaut U × I. En tri équilibré, U est la tension entre phases (400 V) et I le courant par phase.</div>
 </div>
 </sc-if>
 
@@ -1666,6 +1702,7 @@ class Component extends DCLogic {
       ipc: { ip: '2.0.0.10', pre: 8, ip2: '' },
       vd: { I: 16, iTxt: '16', L: 25, lTxt: '25', S: 2.5, sys: 'mono', pf: 0.85, pick: null },
       beam: { mode: 'diam', d: 10, dTxt: '10', a: 25, aTxt: '25', w: 4, wTxt: '4', lmTxt: '' },
+      ohm: { mode: 'PU', sys: 'mono', pf: 1, v: { U: 230, I: 10, R: 23, P: 1000 }, t: { U: '230', I: '10', R: '23', P: '1000' } },
       mat: { from: 'auto', adj: {}, chk: {}, extra: [], exName: '', exQty: '1' },
       net: netLoad(), evs: evLoad(), evSheet: false, evArm: null, evMsg: '', evEdit: false, patchPrint: false, netZone: 'all', netView: 'zone', netType: 'all', netEdit: null, swEdit: null, netPrint: false, printMsg: '', netSaved: null, netConfirm: false
     };
@@ -2586,8 +2623,47 @@ class Component extends DCLogic {
       download: function () { exportFile('mat-pdf', matPayload()); }
     };
 
-    var titles = { power: 'POWER', dmx: 'DMX', rigg: 'RIGG', autre: 'AUTRE', base: 'BASE', cot: 'COTATION', net: 'RÉSEAU', univ: 'UNIVERS', ipc: 'CALCUL IP', vd: 'CHUTE DE TENSION', beam: 'FAISCEAU', mat: 'MATÉRIEL' };
-    var sub = ['base', 'univ', 'ipc', 'vd', 'beam', 'mat'].indexOf(s.screen) >= 0;
+
+    /* ---------- LOI D'OHM ET PUISSANCE ---------- */
+    var OH = s.ohm, setOh = updKey('ohm');
+    var QD = { U: { label: 'TENSION U (V)', step: 10, u: 'V' }, I: { label: 'COURANT I (A)', step: 1, u: 'A' }, R: { label: 'RÉSISTANCE R (Ω)', step: 1, u: 'Ω' }, P: { label: 'PUISSANCE P (W)', step: 100, u: 'W' } };
+    var OMODES = [['U', 'I'], ['U', 'R'], ['I', 'R'], ['P', 'U'], ['P', 'I'], ['P', 'R']];
+    var tri = OH.sys === 'tri', kf = OH.pf, r3 = tri ? Math.sqrt(3) : 1;
+    var omode = OMODES.find(function (m) { return m.join('') === OH.mode; }) || OMODES[3];
+    if (tri && (omode[0] === 'R' || omode[1] === 'R')) omode = ['P', 'U'];
+    var V = { U: null, I: null, R: null, P: null }; V[omode[0]] = OH.v[omode[0]]; V[omode[1]] = OH.v[omode[1]];
+    var okOh = V[omode[0]] > 0 && V[omode[1]] > 0, key = omode.join('');
+    if (okOh) {
+      if (key === 'UI') { V.P = r3 * V.U * V.I * kf; }
+      else if (key === 'UR') { V.I = V.U / V.R; V.P = V.U * V.I * kf; }
+      else if (key === 'IR') { V.U = V.R * V.I; V.P = V.U * V.I * kf; }
+      else if (key === 'PU') { V.I = V.P / (r3 * V.U * kf); }
+      else if (key === 'PI') { V.U = V.P / (r3 * V.I * kf); }
+      else if (key === 'PR') { V.I = Math.sqrt(V.P / (V.R * kf)); V.U = V.R * V.I; }
+      if (!tri && V.R === null) V.R = V.U / V.I;
+    }
+    var nfmt = function (x) { if (x === null || !isFinite(x)) return '—'; var a = Math.abs(x), d = a >= 1000 ? 0 : (a >= 100 ? 1 : (a >= 10 ? 2 : 3)); var t = x.toFixed(d); if (t.indexOf('.') >= 0) t = t.replace(/0+$/, '').replace(/\.$/, ''); return t.replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ' '); };
+    var FOR = { U: tri ? 'P / (√3 × I × cos φ)' : (key === 'IR' || key === 'PR' ? 'R × I' : 'P / (I × cos φ)'), I: tri ? 'P / (√3 × U × cos φ)' : (key === 'UR' ? 'U / R' : (key === 'PR' ? '√(P / (R × cos φ))' : 'P / (U × cos φ)')), R: 'U / I', P: tri ? '√3 × U × I × cos φ' : 'U × I × cos φ' };
+    var ohIn = function (q) { return { label: QD[q].label, txt: OH.t[q],
+      set: function (e) { var t = e.target.value, v = num(t), o = self.state.ohm, nv = Object.assign({}, o.v), nt = Object.assign({}, o.t); nt[q] = t; if (v !== null && v > 0) nv[q] = v; setOh({ v: nv, t: nt }); },
+      plus: function () { var o = self.state.ohm, nv = Object.assign({}, o.v), nt = Object.assign({}, o.t); nv[q] = Math.round(((nv[q] || 0) + QD[q].step) * 100) / 100; nt[q] = String(nv[q]).replace('.', ','); setOh({ v: nv, t: nt }); },
+      minus: function () { var o = self.state.ohm, nv = Object.assign({}, o.v), nt = Object.assign({}, o.t); var x = Math.round(((nv[q] || 0) - QD[q].step) * 100) / 100; if (x <= 0) return; nv[q] = x; nt[q] = String(x).replace('.', ','); setOh({ v: nv, t: nt }); } }; };
+    var Sva = okOh ? r3 * V.U * V.I : null;
+    var oh = {
+      modes: OMODES.filter(function (m) { return !(tri && (m[0] === 'R' || m[1] === 'R')); }).map(function (m) { var on = m.join('') === key; return { label: m[0] + ' et ' + m[1], on: on, style: chipStyle(on), pick: function () { setOh({ mode: m.join('') }); } }; }),
+      in0: ohIn(omode[0]), in1: ohIn(omode[1]),
+      sysChips: [{ id: 'mono', label: 'Mono' }, { id: 'tri', label: 'Tri √3' }].map(function (x) { var on = OH.sys === x.id; return { label: x.label, on: on, style: chipStyle(on), pick: function () { var o = self.state.ohm, nv = Object.assign({}, o.v), nt = Object.assign({}, o.t); if (x.id === 'tri' && nv.U === 230) { nv.U = 400; nt.U = '400'; } if (x.id === 'mono' && nv.U === 400) { nv.U = 230; nt.U = '230'; } setOh({ sys: x.id, v: nv, t: nt }); } }; }),
+      pfChips: [1, 0.85, 0.9, 0.95].map(function (x) { var on = Math.abs(kf - x) < 1e-6; return { label: String(x).replace('.', ','), on: on, style: chipStyle(on), pick: function () { setOh({ pf: x }); } }; }),
+      ok: okOh, bad: !okOh,
+      cells: (tri ? ['U', 'I', 'P'] : ['U', 'I', 'R', 'P']).map(function (q) { var given = omode.indexOf(q) >= 0;
+        return { k: { U: 'Tension', I: 'Courant', R: kf < 1 ? 'Impédance Z' : 'Résistance', P: 'Puissance active' }[q] + (given ? ' (saisie)' : ''), v: nfmt(V[q]), u: QD[q].u, f: given ? '' : FOR[q], color: given ? '#C5CAD2' : '#7CC4FF',
+          style: given ? 'background: #17191D; border: 1px solid #2C3038' : 'background: #7CC4FF14; border: 1.5px solid #7CC4FF' }; })
+        .concat(okOh && (kf < 1 || tri) ? [{ k: 'Puissance apparente', v: nfmt(Sva), u: 'VA', f: tri ? '√3 × U × I' : 'U × I', color: '#7CC4FF', style: 'background: #7CC4FF14; border: 1.5px solid #7CC4FF' }] : []),
+      extra: okOh && V.I !== null ? (V.I <= 16 ? 'Tient sur une ligne 16 A' + (V.I > 16 * s.marge / 100 ? ', mais au-delà de ta marge de ' + s.marge + ' %.' : '.') : (V.I <= 32 ? 'Dépasse 16 A : il faut du 32 A.' : (V.I <= 63 ? 'Dépasse 32 A : il faut du 63 A.' : 'Dépasse 63 A.'))) + (tri ? ' (courant par phase)' : '') : '',
+      memo: tri ? 'P = √3 × U × I × cos φ\nI = P / (√3 × U × cos φ)\nS = √3 × U × I' : 'U = R × I    I = U / R    R = U / I\nP = U × I × cos φ\nP = R × I²   P = U² / R  (cos φ = 1)'
+    };
+    var titles = { power: 'POWER', dmx: 'DMX', rigg: 'RIGG', autre: 'AUTRE', base: 'BASE', cot: 'COTATION', net: 'RÉSEAU', univ: 'UNIVERS', ipc: 'CALCUL IP', vd: 'CHUTE DE TENSION', beam: 'FAISCEAU', mat: 'MATÉRIEL', ohm: 'LOI D’OHM' };
+    var sub = ['base', 'univ', 'ipc', 'vd', 'beam', 'mat', 'ohm'].indexOf(s.screen) >= 0;
     var showReset = s.screen === 'power' || s.screen === 'net' || (s.screen === 'dmx' && s.dmxTab === 'patch');
     return {
       isHome: s.screen === 'home', isTool: s.screen !== 'home', isPower: s.screen === 'power', isDmx: s.screen === 'dmx', isRigg: s.screen === 'rigg', isAutre: s.screen === 'autre', isBase: s.screen === 'base',
@@ -2598,6 +2674,7 @@ class Component extends DCLogic {
       isIpc: s.screen === 'ipc', goIpc: set({ screen: 'ipc' }), ipr: ipr,
       isVd: s.screen === 'vd', goVd: set({ screen: 'vd' }), vd: vd,
       isBeam: s.screen === 'beam', goBeam: set({ screen: 'beam' }), bm: bm,
+      isOhm: s.screen === 'ohm', goOhm: set({ screen: 'ohm' }), oh: oh,
       isMat: s.screen === 'mat', goMat: set({ screen: 'mat', printMsg: '' }), mt: mt,
       isNet: s.screen === 'net', goNet: set({ screen: 'net' }), ev: ev, pp: pp, patchPrintOpen: s.patchPrint, printMsgTxt: s.patchPrint || s.netPrint ? '' : (s.printMsg || ''),
       openPatchPrint: set({ patchPrint: true, printMsg: '' }), patchCsv: function () { exportFile('patch-csv', patchPayload()); }, nt: nt, ne: ne, se: se, swEditOpen: !!s.swEdit, pr: pr, printOpen: s.netPrint,
@@ -2713,6 +2790,6 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () { navigator.serviceWorker.register('./sw.js').catch(function () {}); });
 }
 </script>
-<!-- NTOOL version 20261017-185551 -->
+<!-- NTOOL version 20261017-190207 -->
 </body>
 </html>
