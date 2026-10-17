@@ -1,2 +1,1 @@
-# Ntool
-One Phone, One ToolBox
+# NTOOL\n\nApp web installable (PWA) pour techniciens lumière : Power, DMX, Rigg, Cotation, Réseau.\n\nOuvrir le site sur le téléphone, puis « Ajouter à l’écran d’accueil ».\n
