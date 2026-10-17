@@ -377,11 +377,6 @@ input{font-family:'JetBrains Mono',monospace}
     <span style="color: #7CC4FF; font-size: 20px">›</span>
   </button>
   <div style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC; margin-top: 8px">OUTILS</div>
-  <button type="button" onClick="{{goMat}}" style="border-radius: 14px; background: #17191D; border: 1px solid #2C3038; color: #EEF0F3; padding: 12px 14px; display: flex; align-items: center; gap: 12px; text-align: left; flex-shrink: 0">
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7CC4FF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5h11M9 12h11M9 19h11"></path><path d="M4 5l1 1 2-2M4 12l1 1 2-2M4 19l1 1 2-2"></path></svg>
-    <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 16px">Liste de matériel</span><span style="font-size: 13px; color: #9AA1AC">Depuis le patch, Power, Réseau et Rigg</span></span>
-    <span style="color: #7CC4FF; font-size: 20px">›</span>
-  </button>
   <button type="button" onClick="{{goUniv}}" style="border-radius: 14px; background: #17191D; border: 1px solid #2C3038; color: #EEF0F3; padding: 12px 14px; display: flex; align-items: center; gap: 12px; text-align: left; flex-shrink: 0">
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7CC4FF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M7 10v4M11 10v4M15 10v4M19 10v4"></path></svg>
     <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 16px">Univers et adresses</span><span style="font-size: 13px; color: #9AA1AC">Art-Net, sACN, MA, dip-switch</span></span>
@@ -590,40 +585,6 @@ input{font-family:'JetBrains Mono',monospace}
     </div>
   </section>
   <div style="font-size: 12px; color: #9AA1AC; line-height: 1.45">Angle de faisceau (beam, 50 % de l’intensité) ou angle de champ (field, 10 %) : la tache visible correspond plutôt au champ. Le diamètre est mesuré perpendiculairement à l’axe.</div>
-</div>
-</sc-if>
-
-
-<sc-if value="{{isMat}}" hint-placeholder-val="{{ false }}">
-<div class="scroll" style="flex-grow: 1; overflow-y: auto; padding: 14px 16px 32px; display: flex; flex-direction: column; gap: 16px">
-  <sc-if value="{{mt.showFrom}}" hint-placeholder-val="{{ false }}"><section style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">PROJECTEURS DEPUIS</span><div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px"><sc-for list="{{mt.fromChips}}" as="mf" hint-placeholder-count="2"><button type="button" onClick="{{mf.pick}}" aria-pressed="{{mf.on}}" style="min-height: 40px; border-radius: 10px; padding: 6px 8px; font-size: 13px; font-weight: 600; text-align: center; line-height: 1.2; {{mf.style}}">{{mf.label}}</button></sc-for></div></section></sc-if>
-  <div style="font-size: 12px; color: #9AA1AC; line-height: 1.45">{{mt.fromNote}} Les quantités sont des estimations : ajuste-les avec − et +, coche au chargement.</div>
-  <div style="display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; flex-shrink: 0">
-    <button type="button" onClick="{{mt.download}}" style="min-height: 50px; border-radius: 14px; border: none; background: #7CC4FF; color: #0D0E10; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"></path></svg>PDF A4</button>
-    <button type="button" onClick="{{mt.resetAll}}" style="min-height: 50px; padding: 0 14px; border-radius: 14px; border: 1px solid #2C3038; background: #17191D; color: #EEF0F3; font-size: 13px; font-weight: 600">Réinitialiser</button>
-  </div>
-  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9AA1AC"><span>{{mt.progress}}</span><span style="color: #FFC75A">{{mt.msg}}</span></div>
-  <sc-if value="{{mt.empty}}" hint-placeholder-val="{{ false }}"><div style="border-radius: 14px; border: 1px dashed #3A3F48; padding: 18px; text-align: center; font-size: 14px; color: #9AA1AC">Rien à lister pour l’instant.</div></sc-if>
-  <sc-for list="{{mt.sections}}" as="ms" hint-placeholder-count="3">
-    <section style="display: flex; flex-direction: column; gap: 6px">
-      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">{{ms.title}}</span><span style="font-size: 12px; color: #9AA1AC; text-align: right">{{ms.right}}</span></div>
-      <sc-for list="{{ms.rows}}" as="mr" hint-placeholder-count="3">
-        <div style="border-radius: 12px; background: #17191D; border: 1px solid #2C3038; padding: 8px 8px 8px 10px; display: flex; align-items: center; gap: 10px">
-          <button type="button" onClick="{{mr.toggle}}" aria-pressed="{{mr.chk}}" aria-label="Cocher la ligne" style="width: 30px; height: 30px; flex-shrink: 0; border-radius: 8px; border: 2px solid; display: flex; align-items: center; justify-content: center; {{mr.box}}"><sc-if value="{{mr.chk}}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D0E10" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></sc-if></button>
-          <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px"><span style="font-weight: 600; font-size: 14.5px; {{mr.nameStyle}}">{{mr.name}}</span><sc-if value="{{mr.hasDetail}}" hint-placeholder-val="{{ true }}"><span style="font-size: 11.5px; color: #9AA1AC">{{mr.detail}}</span></sc-if></span>
-          <span style="display: flex; align-items: center; gap: 2px; flex-shrink: 0"><button type="button" onClick="{{mr.minus}}" aria-label="Moins" style="width: 32px; height: 34px; border-radius: 9px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 17px">−</button><span style="min-width: 30px; text-align: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 16px">{{mr.qty}}</span><button type="button" onClick="{{mr.plus}}" aria-label="Plus" style="width: 32px; height: 34px; border-radius: 9px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 17px">+</button></span>
-        </div>
-      </sc-for>
-    </section>
-  </sc-for>
-  <section style="display: flex; flex-direction: column; gap: 6px">
-    <span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">AJOUTER UNE LIGNE</span>
-    <div style="display: grid; grid-template-columns: minmax(0, 1fr) 64px auto; gap: 6px">
-      <input type="text" aria-label="Matériel à ajouter" placeholder="ex. Machine à brouillard" value="{{mt.exName}}" onChange="{{mt.setExName}}" style="font-family: 'Barlow', sans-serif; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 16px; padding: 0 12px; box-sizing: border-box; width: 100%">
-      <input type="text" inputmode="numeric" aria-label="Quantité" value="{{mt.exQty}}" onChange="{{mt.setExQty}}" style="height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 16px; padding: 0 12px; box-sizing: border-box; width: 100%; text-align: center; padding: 0 4px">
-      <button type="button" onClick="{{mt.addExtra}}" style="height: 44px; padding: 0 12px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #7CC4FF; font-size: 14px; font-weight: 600">Ajouter</button>
-    </div>
-  </section>
 </div>
 </sc-if>
 
@@ -1450,28 +1411,6 @@ input{font-family:'JetBrains Mono',monospace}
     return c.finish();
   }
 
-  async function matPdf(p) {
-    var c = await makeDoc(), F = c.F, W = A4[0];
-    c.header('LISTE DE MATÉRIEL', p);
-    var secs = p.sections.filter(function (sc) { return sc.rows.length; });
-    if (!secs.length) { c.text('Liste vide.', M, c.y - 10, 9, F.r, GREY); return c.finish(); }
-    var col = { box: M + 2, qty: M + 40, name: M + 52, detail: M + 300 };
-    secs.forEach(function (sc) {
-      c.section(sc.title, sc.right);
-      sc.rows.forEach(function (r) {
-        c.ensure(16, function () { c.section(sc.title + ' (suite)'); });
-        var top = c.y;
-        c.page.drawRectangle({ x: col.box, y: top - 12.5, width: 9, height: 9, borderColor: hex(GREY), borderWidth: 0.8 });
-        c.text(String(r.qty), col.qty, top - 11, 10, F.mb, INK, 0, 'right');
-        c.text(r.name, col.name, top - 11, 9.5, F.b, INK, 240);
-        if (r.detail) c.text(r.detail, col.detail, top - 11, 8, F.r, GREY, W - M - col.detail);
-        c.y = top - 16; c.line(M, c.y + 1.5, W - M, c.y + 1.5, 0.4, SOFT);
-      });
-      c.y -= 8;
-    });
-    return c.finish();
-  }
-
   function patchCsv(p) {
     var q = function (v) { v = String(v == null ? '' : v); return /[;"\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
     var out = ['Événement;' + q(p.evName), 'Date et lieu;' + q(p.evLine), '', 'ID;Machine;Mode;Canaux;Univers;Adresse;Fin'];
@@ -1507,10 +1446,10 @@ input{font-family:'JetBrains Mono',monospace}
   window.__ntoolExport = async function (kind, p) {
     if (kind === 'patch-csv') return save('Patch-' + slug(p.evName) + '.csv', patchCsv(p));
     if (typeof PDFLib === 'undefined') throw new Error('Le module PDF ne s’est pas chargé (réseau ?).');
-    var bytes = kind === 'patch-pdf' ? await patchPdf(p) : (kind === 'mat-pdf' ? await matPdf(p) : await reseauPdf(p));
-    return save((kind === 'patch-pdf' ? 'Patch-' : (kind === 'mat-pdf' ? 'Materiel-' : 'Memo-reseau-')) + slug(p.evName) + '.pdf', new Blob([bytes], { type: 'application/pdf' }));
+    var bytes = kind === 'patch-pdf' ? await patchPdf(p) : await reseauPdf(p);
+    return save((kind === 'patch-pdf' ? 'Patch-' : 'Memo-reseau-') + slug(p.evName) + '.pdf', new Blob([bytes], { type: 'application/pdf' }));
   };
-  window.__ntoolBuild = { reseauPdf: reseauPdf, patchPdf: patchPdf, matPdf: matPdf, patchCsv: patchCsv };
+  window.__ntoolBuild = { reseauPdf: reseauPdf, patchPdf: patchPdf, patchCsv: patchCsv };
 })();
 </script>
 <script>
@@ -1703,7 +1642,6 @@ class Component extends DCLogic {
       vd: { I: 16, iTxt: '16', L: 25, lTxt: '25', S: 2.5, sys: 'mono', pf: 0.85, pick: null },
       beam: { mode: 'diam', d: 10, dTxt: '10', a: 25, aTxt: '25', w: 4, wTxt: '4', lmTxt: '' },
       ohm: { mode: 'PU', sys: 'mono', pf: 1, v: { U: 230, I: 10, R: 23, P: 1000 }, t: { U: '230', I: '10', R: '23', P: '1000' } },
-      mat: { from: 'auto', adj: {}, chk: {}, extra: [], exName: '', exQty: '1' },
       net: netLoad(), evs: evLoad(), evSheet: false, evArm: null, evMsg: '', evEdit: false, patchPrint: false, netZone: 'all', netView: 'zone', netType: 'all', netEdit: null, swEdit: null, netPrint: false, printMsg: '', netSaved: null, netConfirm: false
     };
   }
@@ -2547,82 +2485,6 @@ class Component extends DCLogic {
       tableTitle: 'TACHE À ' + fmt(angV, 1).toUpperCase() + '° SELON LA DISTANCE'
     };
 
-    /* ---------- LISTE DE MATÉRIEL ---------- */
-    var MT = s.mat, setMt = updKey('mat');
-    var hasPatch = s.groups.length > 0, hasKit = s.kit.length > 0;
-    var fxFrom = MT.from === 'kit' && hasKit ? 'kit' : (MT.from === 'patch' && hasPatch ? 'patch' : (hasPatch ? 'patch' : 'kit'));
-    var fxCount = {}, fxOrder = [], fxModes = {};
-    (fxFrom === 'patch' ? s.groups : s.kit).forEach(function (g) {
-      if (!fxCount[g.fid]) { fxCount[g.fid] = 0; fxOrder.push(g.fid); fxModes[g.fid] = []; }
-      fxCount[g.fid] += g.qty;
-      if (fxFrom === 'patch') { var md = FX[g.fid].modes[g.mode]; if (md) { var ml = md[0] + ' ' + md[1] + ' ch'; if (fxModes[g.fid].indexOf(ml) < 0) fxModes[g.fid].push(ml); } }
-    });
-    var nFx = 0, kgFx = 0; fxOrder.forEach(function (k) { nFx += fxCount[k]; kgFx += (FX[k].kg || 0) * fxCount[k]; });
-    var secs = [];
-    var addSec = function (id, title, right, list) { list = list.filter(function (r) { return r.qty > 0 || (MT.adj[r.id] || 0) !== 0; }); if (list.length) secs.push({ id: id, title: title, right: right, rows: list }); };
-    addSec('fx', 'PROJECTEURS', nFx + ' machines · ' + fmt(kgFx, 0) + ' kg', fxOrder.map(function (k) { var f = FX[k]; return { id: 'fx:' + k, qty: fxCount[k], name: f.brand + ' ' + f.name, detail: [fxModes[k].join(', '), f.kg ? fmt(f.kg * fxCount[k], 0) + ' kg' : ''].filter(function (x) { return x; }).join(' · ') }; }));
-    if (hasKit) {
-      var nCirc = R.circuits.length;
-      addSec('pw', 'ÉLECTRICITÉ', R.src.short + ' · ' + nCirc + ' circuit' + (nCirc > 1 ? 's' : ''), [
-        { id: 'pw:src', qty: 1, name: 'Arrivée ' + R.src.short, detail: 'Phase la plus chargée ' + fmt(R.maxL) + ' A' },
-        multi.ways ? { id: 'pw:multi', qty: Math.ceil(nCirc / multi.ways), name: multi.label, detail: nCirc + ' circuits de 16 A' } : { id: 'pw:pc16', qty: nCirc, name: 'Lignes PC16', detail: '1 par circuit' },
-        multi.ways ? { id: 'pw:bo', qty: Math.ceil(nCirc / multi.ways), name: 'Boîtiers de sortie ' + multi.label, detail: '1 par multi' } : { id: 'pw:none', qty: 0, name: '', detail: '' },
-        { id: 'pw:alim', qty: s.kit.reduce(function (t, k) { return t + k.qty; }, 0), name: 'Câbles d’alim machines', detail: '1 par machine, moins si chaînage' }
-      ]);
-    }
-    if (hasPatch) {
-      var nU = rows.length ? rows[rows.length - 1].u : 0;
-      addSec('dmx', 'DMX', nU + ' univers · ' + rows.length + ' machines', [
-        { id: 'dmx:line', qty: nU, name: 'Départs DMX (node ou console)', detail: '1 ligne par univers au minimum' },
-        { id: 'dmx:chain', qty: Math.max(0, rows.length - nU), name: 'Câbles DMX entre machines', detail: 'Chaînage, longueurs à prévoir' },
-        { id: 'dmx:term', qty: nU, name: 'Bouchons DMX', detail: '1 par ligne' }
-      ]);
-    }
-    if (s.net.devices.length || s.net.switches.length) {
-      var dc = {}, dord = [], nPorts = 0;
-      s.net.devices.forEach(function (d) { var nm = catOf(d.model).name; if (!dc[nm]) { dc[nm] = 0; dord.push(nm); } dc[nm]++; d.ports.forEach(function (p) { if (p.ip) nPorts++; }); });
-      var swc = {}, sord = [];
-      s.net.switches.forEach(function (w) { var m = SW_CAT.find(function (x) { return x.id && x.id === w.model; }), nm = m ? m.brand + ' ' + m.name : 'Switch réseau'; if (!swc[nm]) { swc[nm] = 0; sord.push(nm); } swc[nm]++; });
-      addSec('net', 'RÉSEAU', s.net.devices.length + ' appareils · ' + s.net.switches.length + ' switchs', dord.map(function (nm) { return { id: 'net:' + nm, qty: dc[nm], name: nm, detail: '' }; })
-        .concat(sord.map(function (nm) { return { id: 'sw:' + nm, qty: swc[nm], name: nm, detail: '' }; }))
-        .concat([{ id: 'net:rj', qty: nPorts, name: 'Câbles réseau (RJ45 / etherCON)', detail: '1 par port renseigné dans le mémo' }]));
-    }
-    var trussT = TRUSS[s.rigg.truss];
-    addSec('rig', 'ACCROCHE', trussT.label + ' · ' + fmt(s.rigg.span, 1) + ' m', [
-      { id: 'rig:truss', qty: 1, name: 'Pont ' + trussT.label + ' · ' + fmt(s.rigg.span, 1) + ' m', detail: 'Portée réglée dans Rigg' },
-      { id: 'rig:clamp', qty: nFx, name: 'Crochets / colliers', detail: '1 par machine (2 pour les asservis avec omégas)' },
-      { id: 'rig:safe', qty: nFx, name: 'Élingues de sécurité', detail: '1 par machine' }
-    ]);
-    if (MT.extra.length) addSec('ex', 'DIVERS', MT.extra.length + ' ligne' + (MT.extra.length > 1 ? 's' : ''), MT.extra.map(function (x) { return { id: 'ex:' + x.id, qty: x.qty, name: x.name, detail: '', extraId: x.id }; }));
-    var nChk = 0, nRows = 0;
-    var mtSecs = secs.map(function (sc) { return { title: sc.title, right: sc.right, rows: sc.rows.map(function (r) {
-      var q = Math.max(0, r.qty + (MT.adj[r.id] || 0)), ck = !!MT.chk[r.id]; nRows++; if (ck) nChk++;
-      return { id: r.id, qty: String(q), name: r.name, detail: r.detail, hasDetail: !!r.detail, changed: (MT.adj[r.id] || 0) !== 0, qn: q,
-        chk: ck, box: ck ? 'background: #3FD08A; border-color: #3FD08A' : 'background: transparent; border-color: #4A5260',
-        nameStyle: ck ? 'color: #8A9099; text-decoration: line-through' : 'color: #EEF0F3',
-        toggle: function () { var c = Object.assign({}, self.state.mat.chk); if (c[r.id]) delete c[r.id]; else c[r.id] = true; setMt({ chk: c }); },
-        plus: function () { var a = Object.assign({}, self.state.mat.adj); a[r.id] = (a[r.id] || 0) + 1; setMt({ adj: a }); },
-        minus: function () { if (r.extraId && q <= 1) { setMt({ extra: self.state.mat.extra.filter(function (x) { return x.id !== r.extraId; }) }); return; } var a = Object.assign({}, self.state.mat.adj); a[r.id] = Math.max(-r.qty, (a[r.id] || 0) - 1); setMt({ adj: a }); }
-      }; }) }; });
-    function matPayload() {
-      return { evName: pr.evName, evLine: pr.evLine, date: pr.date, summary: nRows + ' lignes · projecteurs depuis ' + (fxFrom === 'patch' ? 'le patch DMX' : 'le kit Power'),
-        sections: mtSecs.map(function (sc) { return { title: sc.title, right: sc.right, rows: sc.rows.filter(function (r) { return r.qn > 0; }).map(function (r) { return { qty: r.qty, name: r.name, detail: r.detail }; }) }; }) };
-    }
-    var mt = {
-      sections: mtSecs, empty: mtSecs.length === 0,
-      showFrom: hasPatch && hasKit,
-      fromChips: [{ id: 'patch', label: 'Patch DMX' }, { id: 'kit', label: 'Kit Power' }].map(function (x) { var on = fxFrom === x.id; return { label: x.label, on: on, style: chipStyle(on), pick: function () { setMt({ from: x.id }); } }; }),
-      fromNote: hasPatch && hasKit ? 'Le patch et le kit Power peuvent différer : choisis la source des projecteurs.' : (hasPatch ? 'Projecteurs repris du patch DMX.' : (hasKit ? 'Projecteurs repris du kit Power.' : 'Ajoute des machines dans DMX ou Power pour remplir la liste.')),
-      progress: nChk + ' / ' + nRows + ' coché' + (nChk > 1 ? 's' : ''),
-      exName: MT.exName, exQty: MT.exQty,
-      setExName: function (e) { setMt({ exName: e.target.value }); },
-      setExQty: function (e) { setMt({ exQty: intTxt(e.target.value, 3) }); },
-      addExtra: function () { var M2 = self.state.mat, nm = (M2.exName || '').trim(); if (!nm) return; setMt({ extra: M2.extra.concat([{ id: 'x' + Date.now().toString(36), name: nm, qty: Math.max(1, parseInt(M2.exQty, 10) || 1) }]), exName: '', exQty: '1' }); },
-      resetAll: function () { setMt({ adj: {}, chk: {} }); },
-      msg: s.printMsg || '',
-      download: function () { exportFile('mat-pdf', matPayload()); }
-    };
-
 
     /* ---------- LOI D'OHM ET PUISSANCE ---------- */
     var OH = s.ohm, setOh = updKey('ohm');
@@ -2662,8 +2524,8 @@ class Component extends DCLogic {
       extra: okOh && V.I !== null ? (V.I <= 16 ? 'Tient sur une ligne 16 A' + (V.I > 16 * s.marge / 100 ? ', mais au-delà de ta marge de ' + s.marge + ' %.' : '.') : (V.I <= 32 ? 'Dépasse 16 A : il faut du 32 A.' : (V.I <= 63 ? 'Dépasse 32 A : il faut du 63 A.' : 'Dépasse 63 A.'))) + (tri ? ' (courant par phase)' : '') : '',
       memo: tri ? 'P = √3 × U × I × cos φ\nI = P / (√3 × U × cos φ)\nS = √3 × U × I' : 'U = R × I    I = U / R    R = U / I\nP = U × I × cos φ\nP = R × I²   P = U² / R  (cos φ = 1)'
     };
-    var titles = { power: 'POWER', dmx: 'DMX', rigg: 'RIGG', autre: 'AUTRE', base: 'BASE', cot: 'COTATION', net: 'RÉSEAU', univ: 'UNIVERS', ipc: 'CALCUL IP', vd: 'CHUTE DE TENSION', beam: 'FAISCEAU', mat: 'MATÉRIEL', ohm: 'LOI D’OHM' };
-    var sub = ['base', 'univ', 'ipc', 'vd', 'beam', 'mat', 'ohm'].indexOf(s.screen) >= 0;
+    var titles = { power: 'POWER', dmx: 'DMX', rigg: 'RIGG', autre: 'AUTRE', base: 'BASE', cot: 'COTATION', net: 'RÉSEAU', univ: 'UNIVERS', ipc: 'CALCUL IP', vd: 'CHUTE DE TENSION', beam: 'FAISCEAU', ohm: 'LOI D’OHM' };
+    var sub = ['base', 'univ', 'ipc', 'vd', 'beam', 'ohm'].indexOf(s.screen) >= 0;
     var showReset = s.screen === 'power' || s.screen === 'net' || (s.screen === 'dmx' && s.dmxTab === 'patch');
     return {
       isHome: s.screen === 'home', isTool: s.screen !== 'home', isPower: s.screen === 'power', isDmx: s.screen === 'dmx', isRigg: s.screen === 'rigg', isAutre: s.screen === 'autre', isBase: s.screen === 'base',
@@ -2675,7 +2537,6 @@ class Component extends DCLogic {
       isVd: s.screen === 'vd', goVd: set({ screen: 'vd' }), vd: vd,
       isBeam: s.screen === 'beam', goBeam: set({ screen: 'beam' }), bm: bm,
       isOhm: s.screen === 'ohm', goOhm: set({ screen: 'ohm' }), oh: oh,
-      isMat: s.screen === 'mat', goMat: set({ screen: 'mat', printMsg: '' }), mt: mt,
       isNet: s.screen === 'net', goNet: set({ screen: 'net' }), ev: ev, pp: pp, patchPrintOpen: s.patchPrint, printMsgTxt: s.patchPrint || s.netPrint ? '' : (s.printMsg || ''),
       openPatchPrint: set({ patchPrint: true, printMsg: '' }), patchCsv: function () { exportFile('patch-csv', patchPayload()); }, nt: nt, ne: ne, se: se, swEditOpen: !!s.swEdit, pr: pr, printOpen: s.netPrint,
       showReset: showReset, resetLabel: s.screen === 'net' ? (s.netConfirm ? 'Confirmer : tout vider ?' : 'Vider le mémo') : 'Nouvelle feuille',
@@ -2790,6 +2651,6 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () { navigator.serviceWorker.register('./sw.js').catch(function () {}); });
 }
 </script>
-<!-- NTOOL version 20261017-190207 -->
+<!-- NTOOL version 20261017-190726 -->
 </body>
 </html>
