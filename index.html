@@ -632,12 +632,12 @@ input{font-family:'JetBrains Mono',monospace}
 
   <sc-if value="{{ct.isLine}}" hint-placeholder-val="{{ true }}">
   <section style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
-    <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">LONGUEUR (M)</span>
-      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{ct.lMinus}}" aria-label="Longueur moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="decimal" aria-label="Longueur en mètres" value="{{ct.lTxt}}" onChange="{{ct.setL}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box"><button type="button" onClick="{{ct.lPlus}}" aria-label="Longueur plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
+    <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">LONGUEUR (CM)</span>
+      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{ct.lMinus}}" aria-label="Longueur moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="numeric" aria-label="Longueur en centimètres" value="{{ct.lTxt}}" onChange="{{ct.setL}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box"><button type="button" onClick="{{ct.lPlus}}" aria-label="Longueur plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
     </div>
     <sc-if value="{{ct.isFix}}" hint-placeholder-val="{{ false }}">
-    <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">ENTRAXE (M)</span>
-      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{ct.eMinus}}" aria-label="Entraxe moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="decimal" aria-label="Entraxe en mètres" value="{{ct.eTxt}}" onChange="{{ct.setE}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box; color: #7CC4FF"><button type="button" onClick="{{ct.ePlus}}" aria-label="Entraxe plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
+    <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">ENTRAXE (CM)</span>
+      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{ct.eMinus}}" aria-label="Entraxe moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="numeric" aria-label="Entraxe en centimètres" value="{{ct.eTxt}}" onChange="{{ct.setE}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box; color: #7CC4FF"><button type="button" onClick="{{ct.ePlus}}" aria-label="Entraxe plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
     </div>
     </sc-if>
     <sc-if value="{{ct.showN}}" hint-placeholder-val="{{ true }}">
@@ -656,8 +656,8 @@ input{font-family:'JetBrains Mono',monospace}
   </sc-if>
   <sc-if value="{{ct.isCircle}}" hint-placeholder-val="{{ false }}">
   <section style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
-    <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">DIAMÈTRE (M)</span>
-      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{ct.dMinus}}" aria-label="Diamètre moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="decimal" aria-label="Diamètre en mètres" value="{{ct.dTxt}}" onChange="{{ct.setD}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box"><button type="button" onClick="{{ct.dPlus}}" aria-label="Diamètre plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
+    <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">DIAMÈTRE (CM)</span>
+      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{ct.dMinus}}" aria-label="Diamètre moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="numeric" aria-label="Diamètre en centimètres" value="{{ct.dTxt}}" onChange="{{ct.setD}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box"><button type="button" onClick="{{ct.dPlus}}" aria-label="Diamètre plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
     </div>
     <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">MACHINES</span>
       <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{ct.ncMinus}}" aria-label="Une machine de moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="numeric" aria-label="Nombre de machines sur le cercle" value="{{ct.ncTxt}}" onChange="{{ct.setNc}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box"><button type="button" onClick="{{ct.ncPlus}}" aria-label="Une machine de plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
@@ -1636,7 +1636,7 @@ class Component extends DCLogic {
       round: true,
       quick: { fid: 'esprite', mode: 0, qty: 8, start: 1 },
       rigg: { truss: 'sc300', span: 8, cas: 'Q', crit: 'pre', load: 300 },
-      cot: { mode: 'pts', L: 12, n: 4, lTxt: '12', ref: 'bout', off: 0, offTxt: '0', e: 1.5, eTxt: '1,5', par: 'auto', D: 6, dTxt: '6', nc: 8, start: 'top' },
+      cot: { mode: 'pts', L: 12, n: 4, lTxt: '1200', ref: 'bout', off: 0, offTxt: '0', e: 1.5, eTxt: '150', par: 'auto', D: 6, dTxt: '600', nc: 8, start: 'top' },
       uv: { U: 1, uTxt: '1', addr: '3.145', dip: 1, dipTxt: '1' },
       ipc: { ip: '2.0.0.10', pre: 8, ip2: '' },
       vd: { I: 16, iTxt: '16', L: 25, lTxt: '25', S: 2.5, sys: 'mono', pf: 0.85, pick: null },
@@ -1975,7 +1975,9 @@ class Component extends DCLogic {
     for (var si = 0; si < nSeg; si++) segList.push([offM + si * gapV, gapV]);
     if (offM > 0) segList.push([L - offM, offM]);
     var setCot = function (patch) { self.setState({ cot: Object.assign({}, self.state.cot, patch) }); };
-    var f2 = function (x) { return fmt(x, 2); };
+    var cmIn = function (t) { return String(t).replace(/[^0-9]/g, '').slice(0, 5); }, cmStep = function (k, kt, d, min) { return function () { var v = Math.max(min, Math.round((self.state.cot[k] || 0) * 100) + d); var o = {}; o[k] = v / 100; o[kt] = String(v); setCot(o); }; }, cmSet = function (k, kt) { return function (e) { var t = cmIn(e.target.value), v = parseInt(t, 10), o = {}; o[kt] = t; if (v > 0) o[k] = v / 100; setCot(o); }; };
+    /* au cm près ; un demi-centimètre exact (marges centrées) s'affiche au mm pour que les cotes s'additionnent juste */
+    var f2 = function (x) { var c = Math.abs(x * 100), fr = c - Math.floor(c); return Math.abs(fr - 0.5) < 1e-6 ? fmt(x, 3) : fmt(x, 2); };
     var showLbl = segList.length <= 10, axe = c0.ref === 'axe';
     var sgn = function (d) { return Math.abs(d) < 1e-9 ? '0,00' : (d > 0 ? '+' : '−') + f2(Math.abs(d)); };
     var ct = {
@@ -2001,17 +2003,13 @@ class Component extends DCLogic {
       pos: posV.map(function (x, i) { var d = x - L / 2; return { n: i + 1, m: axe ? sgn(d) : f2(x), color: axe && Math.abs(d) < 1e-9 ? '#FFB020' : '#EEF0F3' }; }),
       isLine: !circ, isFix: fix, isCircle: circ, showN: !fix && !circ,
       eTxt: c0.eTxt,
-      ePlus: function () { var v = Math.round(((self.state.cot.e || 0) + 0.25) * 100) / 100; setCot({ e: v, eTxt: String(v).replace('.', ',') }); },
-      eMinus: function () { var v = Math.max(0.05, Math.round(((self.state.cot.e || 0) - 0.25) * 100) / 100); setCot({ e: v, eTxt: String(v).replace('.', ',') }); },
-      setE: function (e) { var t = e.target.value, v = num(t); setCot(v && v > 0 ? { e: v, eTxt: t } : { eTxt: t }); },
+      ePlus: cmStep('e', 'eTxt', 5, 1), eMinus: cmStep('e', 'eTxt', -5, 1), setE: cmSet('e', 'eTxt'),
       parChips: [{ id: 'auto', label: 'Au plus' }, { id: 'pair', label: 'Nombre pair' }, { id: 'impair', label: 'Impair (une au centre)' }].map(function (x) { var on = (c0.par || 'auto') === x.id; return { label: x.label, on: on, style: chipStyle(on), pick: function () { setCot({ par: x.id }); } }; }),
       nPlus: function () { setCot({ n: Math.min(40, self.state.cot.n + 1), nTxt: null }); },
       nMinus: function () { setCot({ n: Math.max(ext ? 2 : 1, self.state.cot.n - 1), nTxt: null }); },
       nTxt: c0.nTxt != null ? c0.nTxt : String(c0.n),
       setN: function (e) { var t = e.target.value.replace(/[^0-9]/g, '').slice(0, 2), v = parseInt(t, 10); setCot(v >= (ext ? 2 : 1) && v <= 40 ? { n: v, nTxt: t } : { nTxt: t }); },
-      lPlus: function () { var v = Math.round((self.state.cot.L + 0.5) * 100) / 100; setCot({ L: v, lTxt: String(v).replace('.', ',') }); },
-      lMinus: function () { var v = Math.max(0.5, Math.round((self.state.cot.L - 0.5) * 100) / 100); setCot({ L: v, lTxt: String(v).replace('.', ',') }); },
-      setL: function (e) { var t = e.target.value, v = num(t); setCot(v && v > 0 ? { L: v, lTxt: t } : { lTxt: t }); }
+      lPlus: cmStep('L', 'lTxt', 50, 10), lMinus: cmStep('L', 'lTxt', -50, 10), setL: cmSet('L', 'lTxt')
     };
     /* cercle : n machines réparties sur un pont circulaire de diamètre D (mesuré à l'axe des machines) */
     (function () {
@@ -2020,9 +2018,7 @@ class Component extends DCLogic {
       var fdeg = function (a) { a = ((a % 360) + 360) % 360; return (Math.round(a * 10) / 10).toString().replace('.', ',') + '°'; };
       if (circ) { ct.gap = fdeg(step); ct.gapUnit = ''; ct.gapLabel = 'Angle entre machines'; ct.gapSub = 'Arc ' + f2(arc) + ' m · corde ' + f2(chord) + ' m entre deux machines'; ct.hasSub = true; }
       ct.dTxt = c0.dTxt; ct.nc = nc;
-      ct.dPlus = function () { var v = Math.round(((self.state.cot.D || 0) + 0.5) * 100) / 100; setCot({ D: v, dTxt: String(v).replace('.', ',') }); };
-      ct.dMinus = function () { var v = Math.max(0.5, Math.round(((self.state.cot.D || 0) - 0.5) * 100) / 100); setCot({ D: v, dTxt: String(v).replace('.', ',') }); };
-      ct.setD = function (e) { var t = e.target.value, v = num(t); setCot(v && v > 0 ? { D: v, dTxt: t } : { dTxt: t }); };
+      ct.dPlus = cmStep('D', 'dTxt', 50, 10); ct.dMinus = cmStep('D', 'dTxt', -50, 10); ct.setD = cmSet('D', 'dTxt');
       ct.ncPlus = function () { setCot({ nc: Math.min(48, (self.state.cot.nc || 2) + 1), ncTxt: null }); };
       ct.ncMinus = function () { setCot({ nc: Math.max(2, (self.state.cot.nc || 2) - 1), ncTxt: null }); };
       ct.ncTxt = c0.ncTxt != null ? c0.ncTxt : String(nc);
@@ -2651,6 +2647,6 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () { navigator.serviceWorker.register('./sw.js').catch(function () {}); });
 }
 </script>
-<!-- NTOOL version 20261017-190726 -->
+<!-- NTOOL version 20261017-202523 -->
 </body>
 </html>
