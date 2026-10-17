@@ -387,23 +387,54 @@ input{font-family:'JetBrains Mono',monospace}
 <sc-if value="{{isCot}}" hint-placeholder-val="{{ false }}">
 <div class="scroll" style="flex-grow: 1; overflow-y: auto; padding: 14px 16px 32px; display: flex; flex-direction: column; gap: 16px">
   <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
-    <sc-for list="{{ct.modes}}" as="cm" hint-placeholder-count="2">
+    <sc-for list="{{ct.modes}}" as="cm" hint-placeholder-count="4">
       <button type="button" onClick="{{cm.pick}}" aria-pressed="{{cm.on}}" style="min-height: 64px; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 3px; text-align: left; {{cm.style}}"><span style="font-weight: 600; font-size: 14px">{{cm.label}}</span><span style="font-size: 11.5px; opacity: 0.8; line-height: 1.25">{{cm.sub}}</span></button>
     </sc-for>
   </div>
 
+  <sc-if value="{{ct.isLine}}" hint-placeholder-val="{{ true }}">
   <section style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
     <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">LONGUEUR (M)</span>
       <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{ct.lMinus}}" aria-label="Longueur moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="decimal" aria-label="Longueur en mètres" value="{{ct.lTxt}}" onChange="{{ct.setL}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box"><button type="button" onClick="{{ct.lPlus}}" aria-label="Longueur plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
     </div>
+    <sc-if value="{{ct.isFix}}" hint-placeholder-val="{{ false }}">
+    <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">ENTRAXE (M)</span>
+      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{ct.eMinus}}" aria-label="Entraxe moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="decimal" aria-label="Entraxe en mètres" value="{{ct.eTxt}}" onChange="{{ct.setE}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box; color: #7CC4FF"><button type="button" onClick="{{ct.ePlus}}" aria-label="Entraxe plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
+    </div>
+    </sc-if>
+    <sc-if value="{{ct.showN}}" hint-placeholder-val="{{ true }}">
     <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">MACHINES</span>
       <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{ct.nMinus}}" aria-label="Une machine de moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px">−</button><span style="flex-grow: 1; text-align: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 20px">{{ct.n}}</span><button type="button" onClick="{{ct.nPlus}}" aria-label="Une machine de plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px">+</button></div>
     </div>
+    </sc-if>
   </section>
+  </sc-if>
+  <sc-if value="{{ct.isFix}}" hint-placeholder-val="{{ false }}">
+  <section style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">NOMBRE DE MACHINES</span>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+      <sc-for list="{{ct.parChips}}" as="pc" hint-placeholder-count="3"><button type="button" onClick="{{pc.pick}}" aria-pressed="{{pc.on}}" style="min-height: 40px; border-radius: 10px; padding: 6px 8px; font-size: 13px; font-weight: 600; text-align: center; line-height: 1.2; {{pc.style}}">{{pc.label}}</button></sc-for>
+    </div>
+  </section>
+  </sc-if>
+  <sc-if value="{{ct.isCircle}}" hint-placeholder-val="{{ false }}">
+  <section style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+    <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">DIAMÈTRE (M)</span>
+      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{ct.dMinus}}" aria-label="Diamètre moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="decimal" aria-label="Diamètre en mètres" value="{{ct.dTxt}}" onChange="{{ct.setD}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box"><button type="button" onClick="{{ct.dPlus}}" aria-label="Diamètre plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">MACHINES</span>
+      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{ct.ncMinus}}" aria-label="Une machine de moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><span style="flex-grow: 1; text-align: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 20px">{{ct.nc}}</span><button type="button" onClick="{{ct.ncPlus}}" aria-label="Une machine de plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
+    </div>
+  </section>
+  <section style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">DÉPART</span>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
+      <sc-for list="{{ct.startChips}}" as="sc" hint-placeholder-count="2"><button type="button" onClick="{{sc.pick}}" aria-pressed="{{sc.on}}" style="min-height: 40px; border-radius: 10px; padding: 6px 8px; font-size: 13px; font-weight: 600; text-align: center; line-height: 1.2; {{sc.style}}">{{sc.label}}</button></sc-for>
+    </div>
+  </section>
+  </sc-if>
   <sc-if value="{{ct.isExt}}" hint-placeholder-val="{{ false }}">
   <section style="display: flex; flex-direction: column; gap: 6px">
     <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; align-items: end">
-      <span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC; padding-bottom: 14px">OFFSET À CHAQUE BOUT (CM)</span>
+      <span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC; padding-bottom: 14px">{{ct.offLabel}}</span>
       <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{ct.offMinus}}" aria-label="Offset moins 5 cm" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="decimal" id="cot-offset" aria-label="Offset en centimètres" value="{{ct.offTxt}}" onChange="{{ct.setOff}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #FFB020; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box"><button type="button" onClick="{{ct.offPlus}}" aria-label="Offset plus 5 cm" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
     </div>
     <span style="font-size: 12px; color: #9AA1AC">{{ct.offNote}}</span>
@@ -411,10 +442,11 @@ input{font-family:'JetBrains Mono',monospace}
   </sc-if>
 
   <div style="border-radius: 16px; border: 1.5px solid #7CC4FF; background: #7CC4FF14; padding: 14px 16px; display: flex; align-items: baseline; justify-content: space-between; gap: 10px">
-    <span style="font-size: 13px; color: #C5CAD2">{{ct.gapLabel}}</span>
-    <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 28px; color: #7CC4FF">{{ct.gap}}<span style="font-size: 15px"> m</span></span>
+    <span style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 13px; color: #C5CAD2">{{ct.gapLabel}}</span><sc-if value="{{ct.hasSub}}" hint-placeholder-val="{{ false }}"><span style="font-size: 11.5px; color: #9AA1AC">{{ct.gapSub}}</span></sc-if></span>
+    <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 28px; color: #7CC4FF; white-space: nowrap">{{ct.gap}}<span style="font-size: 15px">{{ct.gapUnit}}</span></span>
   </div>
 
+  <sc-if value="{{ct.isLine}}" hint-placeholder-val="{{ true }}">
   <section style="border-radius: 14px; background: #131518; border: 1px solid #2C3038; padding: 18px 18px 14px; display: flex; flex-direction: column; gap: 6px">
     <sc-if value="{{ct.axeOn}}" hint-placeholder-val="{{ false }}">
       <div style="position: relative; height: 14px"><span style="position: absolute; left: 50%; transform: translateX(-50%); font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700; color: #FFB020; white-space: nowrap">AXE 0</span></div>
@@ -469,6 +501,41 @@ input{font-family:'JetBrains Mono',monospace}
       </sc-for>
     </div>
   </section>
+  </sc-if>
+
+  <sc-if value="{{ct.isCircle}}" hint-placeholder-val="{{ false }}">
+  <section style="border-radius: 14px; background: #131518; border: 1px solid #2C3038; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+    <div style="position: relative; width: 100%; aspect-ratio: 1 / 1; max-width: 300px; align-self: center">
+      <div style="position: absolute; left: 8%; top: 8%; width: 84%; height: 84%; box-sizing: border-box; border-radius: 50%; border: 6px double #9AA1AC"></div>
+      <span style="position: absolute; left: 50%; top: 14%; bottom: 14%; border-left: 1px dashed #FFB02088"></span>
+      <span style="position: absolute; top: 50%; left: 14%; right: 14%; border-top: 1px dashed #FFB02055"></span>
+      <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, 6px); font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: #C5CAD2; background: #131518; padding: 0 4px">{{ct.cDiam}}</span>
+      <span style="position: absolute; left: calc(50% + 12px); top: 0; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; color: #FFB020">0°</span>
+      <sc-for list="{{ct.cpts}}" as="cp" hint-placeholder-count="8">
+        <span style="position: absolute; left: {{cp.x}}%; top: {{cp.y}}%; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 5px; background: #7CC4FF; box-shadow: 0 0 0 2px #131518"></span>
+        <span style="position: absolute; left: {{cp.lx}}%; top: {{cp.ly}}%; transform: translate(-50%, -50%); font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700; color: #EEF0F3">{{cp.lbl}}</span>
+      </sc-for>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
+      <sc-for list="{{ct.cStats}}" as="cs" hint-placeholder-count="4">
+        <div style="border-radius: 10px; background: #17191D; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; color: #9AA1AC">{{cs.k}}</span><span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 15px">{{cs.v}}</span></div>
+      </sc-for>
+    </div>
+    <div style="font-size: 11.5px; color: #9AA1AC">{{ct.cCaption}}</div>
+  </section>
+  <section style="display: flex; flex-direction: column; gap: 8px">
+    <div style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">POSITIONS (ANGLE · ARC DEPUIS M1)</div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+      <sc-for list="{{ct.cpts}}" as="cq" hint-placeholder-count="6">
+        <div style="border-radius: 12px; background: #17191D; border: 1px solid #2C3038; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px">
+          <span style="font-size: 11px; color: #9AA1AC">Machine {{cq.n}}</span>
+          <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 17px; color: #7CC4FF">{{cq.ang}}</span>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #C5CAD2">{{cq.arcFrom}} m</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+  </sc-if>
 </div>
 </sc-if>
 
@@ -1282,7 +1349,7 @@ class Component extends DCLogic {
       round: true,
       quick: { fid: 'esprite', mode: 0, qty: 8, start: 1 },
       rigg: { truss: 'sc300', span: 8, cas: 'Q', crit: 'pre', load: 300 },
-      cot: { mode: 'pts', L: 12, n: 4, lTxt: '12', ref: 'bout', off: 0, offTxt: '0' },
+      cot: { mode: 'pts', L: 12, n: 4, lTxt: '12', ref: 'bout', off: 0, offTxt: '0', e: 1.5, eTxt: '1,5', par: 'auto', D: 6, dTxt: '6', nc: 8, start: 'top' },
       net: netLoad(), evEdit: false, patchPrint: false, netZone: 'all', netView: 'zone', netType: 'all', netEdit: null, swEdit: null, netPrint: false, printMsg: '', netSaved: null, netConfirm: false
     };
   }
@@ -1597,10 +1664,19 @@ class Component extends DCLogic {
     /* ---------- COTATION ---------- */
     var c0 = s.cot, L = c0.L, nM = c0.n, ext = c0.mode === 'ext';
     /* offset (cm) : marge à chaque bout en mode « entre deux extrémités » ; la première machine est à l'offset, la dernière à L - offset */
-    var offM = ext ? (c0.off || 0) / 100 : 0, offBad = ext && 2 * offM >= L;
+    var fixMode = c0.mode === 'fix', offM = ext || fixMode ? (c0.off || 0) / 100 : 0, offBad = (ext || fixMode) && 2 * offM >= L;
     if (offBad) offM = 0;
-    var nSeg = ext ? nM - 1 : nM + 1, span = L - 2 * offM, gapV = nSeg > 0 ? span / nSeg : 0;
-    var posV = []; for (var pi = 0; pi < nM; pi++) posV.push(ext ? offM + pi * gapV : (pi + 1) * gapV);
+    var fix = c0.mode === 'fix', circ = c0.mode === 'circle';
+    /* entraxe imposé : autant de machines que possible à cet entraxe, centrées (marge égale aux deux bouts) */
+    var eV = c0.e || 0, fixMargin = 0, minOff = offM;
+    if (fix) {
+      nM = eV > 0 ? Math.floor((L - 2 * minOff) / eV + 1e-9) + 1 : 1;
+      if (c0.par === 'pair' && nM % 2 === 1) nM -= 1;
+      if (c0.par === 'impair' && nM % 2 === 0) nM -= 1;
+      nM = Math.max(1, nM); fixMargin = (L - (nM - 1) * eV) / 2; offM = fixMargin;
+    }
+    var nSeg = ext || fix ? nM - 1 : nM + 1, span = L - 2 * offM, gapV = fix ? eV : (nSeg > 0 ? span / nSeg : 0);
+    var posV = []; for (var pi = 0; pi < nM; pi++) posV.push(ext || fix ? offM + pi * gapV : (pi + 1) * gapV);
     /* segments du schéma : [début, longueur] en m */
     var segList = [];
     if (offM > 0) segList.push([0, offM]);
@@ -1608,18 +1684,20 @@ class Component extends DCLogic {
     if (offM > 0) segList.push([L - offM, offM]);
     var setCot = function (patch) { self.setState({ cot: Object.assign({}, self.state.cot, patch) }); };
     var f2 = function (x) { return fmt(x, 2); };
-    var showLbl = segList.length <= 8, axe = c0.ref === 'axe';
+    var showLbl = segList.length <= 10, axe = c0.ref === 'axe';
     var sgn = function (d) { return Math.abs(d) < 1e-9 ? '0,00' : (d > 0 ? '+' : '−') + f2(Math.abs(d)); };
     var ct = {
-      n: nM, lTxt: c0.lTxt, gap: f2(gapV), total: f2(L),
-      gapLabel: ext ? 'Entraxe entre machines' : 'Espace égal (bouts et machines)',
-      isExt: ext, offTxt: c0.offTxt, offBad: offBad,
-      offNote: offBad ? 'Offset trop grand pour cette longueur : il est ignoré.' : (offM > 0 ? 'Marge de ' + f2(offM) + ' m à chaque bout : machines réparties sur ' + f2(span) + ' m.' : 'Marge laissée à chaque bout quand on ne peut pas accrocher au bord.'),
+      n: nM, lTxt: c0.lTxt, gap: fix ? String(nM) : f2(gapV), gapUnit: fix ? ' machines' : ' m', total: f2(L),
+      gapLabel: fix ? 'Machines sur le pont' : (ext ? 'Entraxe entre machines' : 'Espace égal (bouts et machines)'),
+      gapSub: fix ? 'Marge de ' + f2(offM) + ' m à chaque bout' : '', hasSub: fix,
+      offLabel: fix ? 'MARGE MINI À CHAQUE BOUT (CM)' : 'OFFSET À CHAQUE BOUT (CM)',
+      isExt: ext || fix, offTxt: c0.offTxt, offBad: offBad,
+      offNote: fix ? (offBad ? 'Marge trop grande pour cette longueur : elle est ignorée.' : 'Marge minimum à chaque bout (ex. pour ne pas accrocher sur le bord ou la jonction). Les machines restent centrées.') : offBad ? 'Offset trop grand pour cette longueur : il est ignoré.' : (offM > 0 ? 'Marge de ' + f2(offM) + ' m à chaque bout : machines réparties sur ' + f2(span) + ' m.' : 'Marge laissée à chaque bout quand on ne peut pas accrocher au bord.'),
       offPlus: function () { var v = Math.round((self.state.cot.off || 0) + 5); setCot({ off: v, offTxt: String(v) }); },
       offMinus: function () { var v = Math.max(0, Math.round((self.state.cot.off || 0) - 5)); setCot({ off: v, offTxt: String(v) }); },
       setOff: function (e) { var t = e.target.value, v = num(t); setCot(v !== null && v >= 0 ? { off: v, offTxt: t } : { offTxt: t }); },
-      caption: (ext ? nM + ' machines, la première à ' + f2(offM) + ' m et la dernière à ' + f2(L - offM) + ' m : ' : nM + ' machines, ' + nSeg + ' espaces égaux bouts compris : ') + nSeg + ' × ' + f2(gapV) + ' m' + (offM > 0 ? ' + 2 × ' + f2(offM) + ' m d’offset' : '') + ' = ' + f2(L) + ' m.' + (showLbl ? '' : ' Cotes masquées sur le schéma (trop serrées), voir les positions.'),
-      modes: [ { id: 'pts', label: 'Entre deux points', sub: 'Espaces égaux, bouts du pont compris' }, { id: 'ext', label: 'Entre deux extrémités', sub: 'Une machine à chaque bout (offset possible)' } ].map(function (m) { var on = m.id === c0.mode; return { label: m.label, sub: m.sub, on: on, style: chipStyle(on), pick: function () { setCot({ mode: m.id, n: m.id === 'ext' ? Math.max(2, self.state.cot.n) : self.state.cot.n }); } }; }),
+      caption: fix ? nM + ' machines à ' + f2(eV) + ' m d’entraxe, centrées : ' + (nM - 1) + ' × ' + f2(eV) + ' m + 2 × ' + f2(offM) + ' m de marge = ' + f2(L) + ' m.' : (ext ? nM + ' machines, la première à ' + f2(offM) + ' m et la dernière à ' + f2(L - offM) + ' m : ' : nM + ' machines, ' + nSeg + ' espaces égaux bouts compris : ') + nSeg + ' × ' + f2(gapV) + ' m' + (offM > 0 ? ' + 2 × ' + f2(offM) + ' m d’offset' : '') + ' = ' + f2(L) + ' m.' + (showLbl ? '' : ' Cotes masquées sur le schéma (trop serrées), voir les positions.'),
+      modes: [ { id: 'pts', label: 'Entre deux points', sub: 'Espaces égaux, bouts compris' }, { id: 'ext', label: 'Entre deux extrémités', sub: 'Une machine à chaque bout' }, { id: 'fix', label: 'Entraxe imposé', sub: 'Combien tiennent, centrées' }, { id: 'circle', label: 'Cercle', sub: 'Pont circulaire' } ].map(function (m) { var on = m.id === c0.mode; return { label: m.label, sub: m.sub, on: on, style: chipStyle(on), pick: function () { setCot({ mode: m.id, n: m.id === 'ext' ? Math.max(2, self.state.cot.n) : self.state.cot.n }); } }; }),
       machines: posV.map(function (x) { return { x: L > 0 ? x / L * 100 : 0 }; }),
       segs: segList.map(function (g, i) { var isOff = offM > 0 && (i === 0 || i === segList.length - 1), w = L > 0 ? g[1] / L * 100 : 0; return { x: L > 0 ? g[0] / L * 100 : 0, w: w, label: f2(g[1]), labelStyle: (showLbl && w >= 9 ? '' : 'visibility: hidden') + (isOff ? '; color: #FFB020' : '') }; }),
       axeOn: axe, boutOn: !axe,
@@ -1629,12 +1707,41 @@ class Component extends DCLogic {
       refNote: axe ? 'Axe = milieu de la longueur (' + f2(L / 2) + ' m du bout). Négatif à gauche, positif à droite.' : 'Distance mesurée depuis le bout gauche du pont.',
       axLabels: posV.map(function (x) { var d = x - L / 2; return { x: L > 0 ? x / L * 100 : 0, label: sgn(d), color: Math.abs(d) < 1e-9 ? '#FFB020' : '#C5CAD2', style: nM <= 8 ? '' : 'visibility: hidden' }; }),
       pos: posV.map(function (x, i) { var d = x - L / 2; return { n: i + 1, m: axe ? sgn(d) : f2(x), color: axe && Math.abs(d) < 1e-9 ? '#FFB020' : '#EEF0F3' }; }),
+      isLine: !circ, isFix: fix, isCircle: circ, showN: !fix && !circ,
+      eTxt: c0.eTxt,
+      ePlus: function () { var v = Math.round(((self.state.cot.e || 0) + 0.25) * 100) / 100; setCot({ e: v, eTxt: String(v).replace('.', ',') }); },
+      eMinus: function () { var v = Math.max(0.05, Math.round(((self.state.cot.e || 0) - 0.25) * 100) / 100); setCot({ e: v, eTxt: String(v).replace('.', ',') }); },
+      setE: function (e) { var t = e.target.value, v = num(t); setCot(v && v > 0 ? { e: v, eTxt: t } : { eTxt: t }); },
+      parChips: [{ id: 'auto', label: 'Au plus' }, { id: 'pair', label: 'Nombre pair' }, { id: 'impair', label: 'Impair (une au centre)' }].map(function (x) { var on = (c0.par || 'auto') === x.id; return { label: x.label, on: on, style: chipStyle(on), pick: function () { setCot({ par: x.id }); } }; }),
       nPlus: function () { setCot({ n: Math.min(40, self.state.cot.n + 1) }); },
       nMinus: function () { setCot({ n: Math.max(ext ? 2 : 1, self.state.cot.n - 1) }); },
       lPlus: function () { var v = Math.round((self.state.cot.L + 0.5) * 100) / 100; setCot({ L: v, lTxt: String(v).replace('.', ',') }); },
       lMinus: function () { var v = Math.max(0.5, Math.round((self.state.cot.L - 0.5) * 100) / 100); setCot({ L: v, lTxt: String(v).replace('.', ',') }); },
       setL: function (e) { var t = e.target.value, v = num(t); setCot(v && v > 0 ? { L: v, lTxt: t } : { lTxt: t }); }
     };
+    /* cercle : n machines réparties sur un pont circulaire de diamètre D (mesuré à l'axe des machines) */
+    (function () {
+      var D = c0.D || 0, nc = Math.max(2, c0.nc || 2), step = 360 / nc, startA = c0.start === 'half' ? step / 2 : 0;
+      var perim = Math.PI * D, arc = perim / nc, chord = D * Math.sin(Math.PI / nc);
+      var fdeg = function (a) { a = ((a % 360) + 360) % 360; return (Math.round(a * 10) / 10).toString().replace('.', ',') + '°'; };
+      if (circ) { ct.gap = fdeg(step); ct.gapUnit = ''; ct.gapLabel = 'Angle entre machines'; ct.gapSub = 'Arc ' + f2(arc) + ' m · corde ' + f2(chord) + ' m entre deux machines'; ct.hasSub = true; }
+      ct.dTxt = c0.dTxt; ct.nc = nc;
+      ct.dPlus = function () { var v = Math.round(((self.state.cot.D || 0) + 0.5) * 100) / 100; setCot({ D: v, dTxt: String(v).replace('.', ',') }); };
+      ct.dMinus = function () { var v = Math.max(0.5, Math.round(((self.state.cot.D || 0) - 0.5) * 100) / 100); setCot({ D: v, dTxt: String(v).replace('.', ',') }); };
+      ct.setD = function (e) { var t = e.target.value, v = num(t); setCot(v && v > 0 ? { D: v, dTxt: t } : { dTxt: t }); };
+      ct.ncPlus = function () { setCot({ nc: Math.min(48, (self.state.cot.nc || 2) + 1) }); };
+      ct.ncMinus = function () { setCot({ nc: Math.max(2, (self.state.cot.nc || 2) - 1) }); };
+      ct.startChips = [{ id: 'top', label: 'Machine en haut (0°)' }, { id: 'half', label: 'Écart centré en haut' }].map(function (x) { var on = (c0.start || 'top') === x.id; return { label: x.label, on: on, style: chipStyle(on), pick: function () { setCot({ start: x.id }); } }; });
+      var pts = [];
+      for (var i = 0; i < nc; i++) {
+        var a = startA + i * step, r = a * Math.PI / 180;
+        pts.push({ n: i + 1, x: 50 + 42 * Math.sin(r), y: 50 - 42 * Math.cos(r), lx: 50 + 49 * Math.sin(r), ly: 50 - 49 * Math.cos(r), lbl: nc <= 16 ? String(i + 1) : '', ang: fdeg(a), arcFrom: f2(i * arc) });
+      }
+      ct.cpts = pts;
+      ct.cDiam = 'Ø ' + f2(D) + ' m';
+      ct.cStats = [{ k: 'Circonférence', v: f2(perim) + ' m' }, { k: 'Arc entre machines', v: f2(arc) + ' m' }, { k: 'Corde entre machines', v: f2(chord) + ' m' }, { k: 'Rayon', v: f2(D / 2) + ' m' }];
+      ct.cCaption = nc + ' machines tous les ' + fdeg(step) + ', machine 1 ' + (c0.start === 'half' ? 'à ' + fdeg(startA) + ' (un écart centré en haut)' : 'en haut à 0°') + ', sens des aiguilles d’une montre. Diamètre mesuré à l’axe des machines.';
+    })();
 
     /* ---------- RÉSEAU ---------- */
     var N = s.net;
@@ -1980,6 +2087,6 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () { navigator.serviceWorker.register('./sw.js').catch(function () {}); });
 }
 </script>
-<!-- NTOOL version 20261017-164501 -->
+<!-- NTOOL version 20261017-175544 -->
 </body>
 </html>
