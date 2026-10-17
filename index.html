@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0D0E10">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -251,7 +251,7 @@ input{font-family:'JetBrains Mono',monospace}
     <sc-if value="{{ev.editing}}" hint-placeholder-val="{{ false }}">
       <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #9AA1AC">Nom de l'événement<input type="text" id="ev-name-dmx" value="{{ev.vName}}" onChange="{{ev.setName}}" placeholder="ex. Festival d'été, soir 2" style="height: 42px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 16px; padding: 0 10px; box-sizing: border-box; width: 100%"></label>
       <div style="display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 8px">
-        <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #9AA1AC">Date<input type="date" id="ev-date-dmx" value="{{ev.vDate}}" onChange="{{ev.setDate}}" style="height: 42px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 15px; padding: 0 8px; box-sizing: border-box; width: 100%; color-scheme: dark"></label>
+        <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #9AA1AC">Date<input type="date" id="ev-date-dmx" value="{{ev.vDate}}" onChange="{{ev.setDate}}" style="height: 42px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 16px; padding: 0 8px; box-sizing: border-box; width: 100%; color-scheme: dark"></label>
         <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #9AA1AC">Lieu<input type="text" id="ev-place-dmx" value="{{ev.vPlace}}" onChange="{{ev.setPlace}}" placeholder="ex. Zénith, Nantes" style="height: 42px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 16px; padding: 0 10px; box-sizing: border-box; width: 100%"></label>
       </div>
     </sc-if>
@@ -554,7 +554,7 @@ input{font-family:'JetBrains Mono',monospace}
     <sc-if value="{{ev.editing}}" hint-placeholder-val="{{ false }}">
       <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #9AA1AC">Nom de l'événement<input type="text" id="ev-name" value="{{ev.vName}}" onChange="{{ev.setName}}" placeholder="ex. Festival d'été, soir 2" style="height: 42px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 16px; padding: 0 10px; box-sizing: border-box; width: 100%"></label>
       <div style="display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 8px">
-        <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #9AA1AC">Date<input type="date" id="ev-date" value="{{ev.vDate}}" onChange="{{ev.setDate}}" style="height: 42px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 15px; padding: 0 8px; box-sizing: border-box; width: 100%; color-scheme: dark"></label>
+        <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #9AA1AC">Date<input type="date" id="ev-date" value="{{ev.vDate}}" onChange="{{ev.setDate}}" style="height: 42px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 16px; padding: 0 8px; box-sizing: border-box; width: 100%; color-scheme: dark"></label>
         <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #9AA1AC">Lieu<input type="text" id="ev-place" value="{{ev.vPlace}}" onChange="{{ev.setPlace}}" placeholder="ex. Zénith, Nantes" style="height: 42px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 16px; padding: 0 10px; box-sizing: border-box; width: 100%"></label>
       </div>
     </sc-if>
@@ -786,15 +786,15 @@ input{font-family:'JetBrains Mono',monospace}
         <div style="display: flex; flex-wrap: wrap; gap: 6px">
           <sc-for list="{{ne.zones}}" as="z" hint-placeholder-count="3"><button type="button" onClick="{{z.pick}}" aria-pressed="{{z.on}}" style="height: 36px; padding: 0 12px; border-radius: 9px; font-size: 13px; font-weight: 600; {{z.style}}">{{z.label}}</button></sc-for>
         </div>
-        <div style="display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px"><input type="text" value="{{ne.newZone}}" onChange="{{ne.setNewZone}}" placeholder="Nouvelle zone (ex. Plateau)" aria-label="Nouvelle zone" style="height: 38px; border-radius: 9px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 14px; padding: 0 10px; box-sizing: border-box; min-width: 0"><button type="button" onClick="{{ne.addZone}}" style="height: 38px; padding: 0 12px; border-radius: 9px; border: 1px solid #2C3038; background: #20232A; color: #7CC4FF; font-weight: 600">Ajouter</button></div>
+        <div style="display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px"><input type="text" value="{{ne.newZone}}" onChange="{{ne.setNewZone}}" placeholder="Nouvelle zone (ex. Plateau)" aria-label="Nouvelle zone" style="height: 38px; border-radius: 9px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 16px; padding: 0 10px; box-sizing: border-box; min-width: 0"><button type="button" onClick="{{ne.addZone}}" style="height: 38px; padding: 0 12px; border-radius: 9px; border: 1px solid #2C3038; background: #20232A; color: #7CC4FF; font-weight: 600">Ajouter</button></div>
       </div>
-      <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #9AA1AC">Sous-zone<input type="text" value="{{ne.sub}}" onChange="{{ne.setSub}}" placeholder="ex. Régie lumière, Jardin, Cour" style="height: 42px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 15px; padding: 0 10px; box-sizing: border-box; width: 100%"></label>
+      <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #9AA1AC">Sous-zone<input type="text" value="{{ne.sub}}" onChange="{{ne.setSub}}" placeholder="ex. Régie lumière, Jardin, Cour" style="height: 42px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 16px; padding: 0 10px; box-sizing: border-box; width: 100%"></label>
 
       <div style="display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: #9AA1AC">Branché sur le switch
         <div style="display: flex; flex-wrap: wrap; gap: 6px">
           <sc-for list="{{ne.switches}}" as="sw" hint-placeholder-count="3"><button type="button" onClick="{{sw.pick}}" aria-pressed="{{sw.on}}" style="height: 36px; padding: 0 12px; border-radius: 9px; font-size: 13px; font-weight: 600; {{sw.style}}">{{sw.label}}</button></sc-for>
         </div>
-        <div style="display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px"><input type="text" value="{{ne.newSw}}" onChange="{{ne.setNewSw}}" placeholder="Nouveau switch (ex. Switch plateau)" aria-label="Nouveau switch" style="height: 38px; border-radius: 9px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 14px; padding: 0 10px; box-sizing: border-box; min-width: 0"><button type="button" onClick="{{ne.addSw}}" style="height: 38px; padding: 0 12px; border-radius: 9px; border: 1px solid #2C3038; background: #20232A; color: #7CC4FF; font-weight: 600">Ajouter</button></div>
+        <div style="display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px"><input type="text" value="{{ne.newSw}}" onChange="{{ne.setNewSw}}" placeholder="Nouveau switch (ex. Switch plateau)" aria-label="Nouveau switch" style="height: 38px; border-radius: 9px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 16px; padding: 0 10px; box-sizing: border-box; min-width: 0"><button type="button" onClick="{{ne.addSw}}" style="height: 38px; padding: 0 12px; border-radius: 9px; border: 1px solid #2C3038; background: #20232A; color: #7CC4FF; font-weight: 600">Ajouter</button></div>
       </div>
 
       <div style="font-size: 11px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">ADRESSES IP</div>
@@ -802,7 +802,7 @@ input{font-family:'JetBrains Mono',monospace}
         <div style="border-radius: 12px; border: 1px solid #2C3038; background: #0D0E10; padding: 10px; display: flex; flex-direction: column; gap: 8px">
           <div style="display: grid; grid-template-columns: 50px minmax(0, 1fr) 36px; gap: 6px; align-items: center">
             <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #7CC4FF">{{np.label}}</span>
-            <input type="text" inputmode="decimal" value="{{np.ip}}" onChange="{{np.setIp}}" placeholder="Adresse IP" aria-label="Adresse IP" autocomplete="off" pattern="[0-9.]*" style="height: 40px; border-radius: 9px; border: 1px solid {{np.border}}; background: #17191D; color: #EEF0F3; font-size: 15px; padding: 0 10px; box-sizing: border-box; min-width: 0">
+            <input type="text" inputmode="decimal" value="{{np.ip}}" onChange="{{np.setIp}}" placeholder="Adresse IP" aria-label="Adresse IP" autocomplete="off" pattern="[0-9.]*" style="height: 40px; border-radius: 9px; border: 1px solid {{np.border}}; background: #17191D; color: #EEF0F3; font-size: 16px; padding: 0 10px; box-sizing: border-box; min-width: 0">
             <sc-if value="{{np.canRemove}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{np.remove}}" aria-label="Supprimer ce port" style="height: 40px; width: 36px; border-radius: 9px; border: 1px solid #2C3038; background: #20232A; color: #FF8A8E; font-size: 18px">×</button></sc-if>
           </div>
           <span style="font-size: 12px; font-weight: 600; color: #FF8A8E">{{np.conflictTxt}}</span>
@@ -816,7 +816,7 @@ input{font-family:'JetBrains Mono',monospace}
       </sc-for>
       <sc-if value="{{ne.canAddPort}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ne.addPort}}" style="height: 42px; width: 100%; border-radius: 12px; border: 1px dashed #3A3F48; background: transparent; color: #7CC4FF; font-size: 14px; font-weight: 600">+ Ajouter une carte réseau</button></sc-if>
       <div style="font-size: 11.5px; color: #9AA1AC">{{ne.portNote}}</div>
-      <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #9AA1AC">Note<input type="text" value="{{ne.note}}" onChange="{{ne.setNote}}" placeholder="ex. session MA 1, univers 1 à 8" style="height: 42px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 15px; padding: 0 10px; box-sizing: border-box; width: 100%"></label>
+      <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #9AA1AC">Note<input type="text" value="{{ne.note}}" onChange="{{ne.setNote}}" placeholder="ex. session MA 1, univers 1 à 8" style="height: 42px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 16px; padding: 0 10px; box-sizing: border-box; width: 100%"></label>
     </div>
     <div style="font-size: 12.5px; color: #FF8A8E; min-height: 16px">{{ne.err}}</div>
     <div style="display: grid; grid-template-columns: {{ne.btnCols}}; gap: 8px">
@@ -877,8 +877,8 @@ input{font-family:'JetBrains Mono',monospace}
       <div style="font-size: 11px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">MODES DMX</div>
       <sc-for list="{{ed.modes}}" as="em" hint-placeholder-count="2">
         <div style="display: grid; grid-template-columns: minmax(0, 1fr) 84px 40px; gap: 6px; align-items: end">
-          <label style="display: flex; flex-direction: column; gap: 4px; font-size: 11.5px; color: #9AA1AC">Nom du mode<input type="text" value="{{em.name}}" onChange="{{em.setName}}" placeholder="ex. Standard 16 bit" style="height: 42px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 15px; padding: 0 10px; box-sizing: border-box; width: 100%"></label>
-          <label style="display: flex; flex-direction: column; gap: 4px; font-size: 11.5px; color: #9AA1AC">Canaux<input type="text" inputmode="numeric" value="{{em.ch}}" onChange="{{em.setCh}}" style="height: 42px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-size: 15px; text-align: center; box-sizing: border-box; width: 100%"></label>
+          <label style="display: flex; flex-direction: column; gap: 4px; font-size: 11.5px; color: #9AA1AC">Nom du mode<input type="text" value="{{em.name}}" onChange="{{em.setName}}" placeholder="ex. Standard 16 bit" style="height: 42px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 16px; padding: 0 10px; box-sizing: border-box; width: 100%"></label>
+          <label style="display: flex; flex-direction: column; gap: 4px; font-size: 11.5px; color: #9AA1AC">Canaux<input type="text" inputmode="numeric" value="{{em.ch}}" onChange="{{em.setCh}}" style="height: 42px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-size: 16px; text-align: center; box-sizing: border-box; width: 100%"></label>
           <button type="button" onClick="{{em.remove}}" aria-label="Supprimer ce mode" style="height: 42px; border-radius: 10px; border: 1px solid #2C3038; background: #20232A; color: #FF8A8E; font-size: 18px">×</button>
         </div>
       </sc-for>
@@ -910,7 +910,7 @@ input{font-family:'JetBrains Mono',monospace}
         <button type="button" onClick="{{pu.pick}}" aria-pressed="{{pu.on}}" style="height: 40px; border-radius: 10px; font-size: 13px; font-weight: 600; {{pu.style}}">{{pu.label}}</button>
       </sc-for>
     </div>
-    <label style="display: flex; align-items: center; gap: 8px; height: 44px; flex-shrink: 0; border-radius: 12px; background: #0D0E10; border: 1px solid #2C3038; padding: 0 12px; color: #9AA1AC"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg><input type="text" placeholder="Modèle" aria-label="Rechercher" value="{{pickQuery}}" onChange="{{setPickQuery}}" style="flex-grow: 1; border: none; background: transparent; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 15px; outline: none"></label>
+    <label style="display: flex; align-items: center; gap: 8px; height: 44px; flex-shrink: 0; border-radius: 12px; background: #0D0E10; border: 1px solid #2C3038; padding: 0 12px; color: #9AA1AC"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg><input type="text" placeholder="Modèle" aria-label="Rechercher" value="{{pickQuery}}" onChange="{{setPickQuery}}" style="flex-grow: 1; border: none; background: transparent; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 16px; outline: none"></label>
     <div style="font-size: 12px; color: #9AA1AC">{{pickCount}}</div>
     <div class="scroll" style="overflow-y: auto; display: flex; flex-direction: column; gap: 6px; flex-grow: 1; min-height: 0">
       <sc-for list="{{pickList}}" as="f" hint-placeholder-count="4">
@@ -2190,6 +2190,6 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () { navigator.serviceWorker.register('./sw.js').catch(function () {}); });
 }
 </script>
-<!-- NTOOL version 20261017-181356 -->
+<!-- NTOOL version 20261017-182805 -->
 </body>
 </html>
