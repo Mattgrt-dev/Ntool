@@ -78,7 +78,7 @@ input{font-family:'JetBrains Mono',monospace}
     </button>
     <button type="button" onClick="{{goAutre}}" style="height: 116px; border-radius: 20px; border: 1px dashed #3A3F48; background: transparent; color: #EEF0F3; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; padding: 16px 18px; text-align: left">
       <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#9AA1AC" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><path d="M17.5 14v7M14 17.5h7"></path></svg>
-      <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 28px; letter-spacing: 0.5px">AUTRE</span><span style="font-size: 13px; color: #9AA1AC">Base, outils à venir</span></span>
+      <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 28px; letter-spacing: 0.5px">AUTRE</span><span style="font-size: 13px; color: #9AA1AC">Base et outils de calcul</span></span>
     </button>
   </div>
   <div style="margin-top: auto; display: flex; justify-content: center">
@@ -376,10 +376,251 @@ input{font-family:'JetBrains Mono',monospace}
     <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 16px">Compléter la base</span><span style="font-size: 13px; color: #9AA1AC">{{baseSummary}}</span></span>
     <span style="color: #7CC4FF; font-size: 20px">›</span>
   </button>
-  <div style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC; margin-top: 8px">OUTILS À VENIR</div>
-  <div style="border-radius: 14px; background: #17191D; border: 1px solid #2C3038; padding: 14px; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">Chute de tension</span><span style="font-size: 13px; color: #9AA1AC">Longueur et section de câble</span></div>
-  <div style="border-radius: 14px; background: #17191D; border: 1px solid #2C3038; padding: 14px; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">Faisceau</span><span style="font-size: 13px; color: #9AA1AC">Angle, distance et diamètre de tache</span></div>
+  <div style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC; margin-top: 8px">OUTILS</div>
+  <button type="button" onClick="{{goMat}}" style="border-radius: 14px; background: #17191D; border: 1px solid #2C3038; color: #EEF0F3; padding: 12px 14px; display: flex; align-items: center; gap: 12px; text-align: left; flex-shrink: 0">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7CC4FF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5h11M9 12h11M9 19h11"></path><path d="M4 5l1 1 2-2M4 12l1 1 2-2M4 19l1 1 2-2"></path></svg>
+    <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 16px">Liste de matériel</span><span style="font-size: 13px; color: #9AA1AC">Depuis le patch, Power, Réseau et Rigg</span></span>
+    <span style="color: #7CC4FF; font-size: 20px">›</span>
+  </button>
+  <button type="button" onClick="{{goUniv}}" style="border-radius: 14px; background: #17191D; border: 1px solid #2C3038; color: #EEF0F3; padding: 12px 14px; display: flex; align-items: center; gap: 12px; text-align: left; flex-shrink: 0">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7CC4FF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M7 10v4M11 10v4M15 10v4M19 10v4"></path></svg>
+    <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 16px">Univers et adresses</span><span style="font-size: 13px; color: #9AA1AC">Art-Net, sACN, MA, dip-switch</span></span>
+    <span style="color: #7CC4FF; font-size: 20px">›</span>
+  </button>
+  <button type="button" onClick="{{goIpc}}" style="border-radius: 14px; background: #17191D; border: 1px solid #2C3038; color: #EEF0F3; padding: 12px 14px; display: flex; align-items: center; gap: 12px; text-align: left; flex-shrink: 0">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7CC4FF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="5" rx="1"></rect><rect x="2" y="17" width="6" height="5" rx="1"></rect><rect x="16" y="17" width="6" height="5" rx="1"></rect><path d="M12 7v5M5 17v-5h14v5"></path></svg>
+    <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 16px">Calcul IP</span><span style="font-size: 13px; color: #9AA1AC">Réseau, masque, vérif du mémo</span></span>
+    <span style="color: #7CC4FF; font-size: 20px">›</span>
+  </button>
+  <button type="button" onClick="{{goVd}}" style="border-radius: 14px; background: #17191D; border: 1px solid #2C3038; color: #EEF0F3; padding: 12px 14px; display: flex; align-items: center; gap: 12px; text-align: left; flex-shrink: 0">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7CC4FF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"></path></svg>
+    <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 16px">Chute de tension</span><span style="font-size: 13px; color: #9AA1AC">Longueur et section de câble</span></span>
+    <span style="color: #7CC4FF; font-size: 20px">›</span>
+  </button>
+  <button type="button" onClick="{{goBeam}}" style="border-radius: 14px; background: #17191D; border: 1px solid #2C3038; color: #EEF0F3; padding: 12px 14px; display: flex; align-items: center; gap: 12px; text-align: left; flex-shrink: 0">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7CC4FF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12l18-8v16z"></path></svg>
+    <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 16px">Faisceau</span><span style="font-size: 13px; color: #9AA1AC">Angle, distance et diamètre de tache</span></span>
+    <span style="color: #7CC4FF; font-size: 20px">›</span>
+  </button>
+  <div style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC; margin-top: 8px">À VENIR</div>
   <div style="border-radius: 14px; background: #17191D; border: 1px solid #2C3038; padding: 14px; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">Loi d'Ohm et puissance</span><span style="font-size: 13px; color: #9AA1AC">P, U, I, R en un écran</span></div>
+</div>
+</sc-if>
+
+
+<sc-if value="{{isUniv}}" hint-placeholder-val="{{ false }}">
+<div class="scroll" style="flex-grow: 1; overflow-y: auto; padding: 14px 16px 32px; display: flex; flex-direction: column; gap: 16px">
+  <section style="display: flex; flex-direction: column; gap: 10px">
+    <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">UNIVERS (LE PREMIER = 1)</span>
+      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{uv.uMinus}}" aria-label="Univers moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="numeric" aria-label="Univers" value="{{uv.uTxt}}" onChange="{{uv.setU}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box"><button type="button" onClick="{{uv.uPlus}}" aria-label="Univers plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+      <div style="border-radius: 12px; background: #17191D; border: 1px solid #2C3038; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 11.5px; color: #9AA1AC">Art-Net (Net : Sub : Univ)</span><span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 18px; overflow-wrap: anywhere">{{uv.artnet}}</span><span style="font-size: 11.5px; color: #C5CAD2; overflow-wrap: anywhere">{{uv.port15}}</span></div>
+      <div style="border-radius: 12px; background: #17191D; border: 1px solid #2C3038; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 11.5px; color: #9AA1AC">sACN</span><span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 18px; overflow-wrap: anywhere">{{uv.sacn}}</span><span style="font-size: 11.5px; color: #C5CAD2; overflow-wrap: anywhere">{{uv.mcast}}</span></div>
+      <div style="border-radius: 12px; background: #17191D; border: 1px solid #2C3038; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 11.5px; color: #9AA1AC">grandMA (univers)</span><span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 18px; overflow-wrap: anywhere">{{uv.ma}}</span></div>
+      <div style="border-radius: 12px; background: #17191D; border: 1px solid #2C3038; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 11.5px; color: #9AA1AC">Saisir en Art-Net</span>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; margin-top: 2px">
+          <input type="text" inputmode="numeric" aria-label="Art-Net Net (0 à 127)" value="{{uv.net}}" onChange="{{uv.setNet}}" style="min-width: 0; height: 36px; border-radius: 8px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-size: 16px; font-weight: 700; text-align: center; box-sizing: border-box">
+          <input type="text" inputmode="numeric" aria-label="Art-Net Sub-Net (0 à 15)" value="{{uv.sub}}" onChange="{{uv.setSub}}" style="min-width: 0; height: 36px; border-radius: 8px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-size: 16px; font-weight: 700; text-align: center; box-sizing: border-box">
+          <input type="text" inputmode="numeric" aria-label="Art-Net Universe (0 à 15)" value="{{uv.uni}}" onChange="{{uv.setUni}}" style="min-width: 0; height: 36px; border-radius: 8px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-size: 16px; font-weight: 700; text-align: center; box-sizing: border-box">
+        </div>
+        <span style="font-size: 10.5px; color: #6B727D; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); text-align: center"><span>Net</span><span>Sub</span><span>Univ</span></span>
+      </div>
+    </div>
+    <div style="font-size: 12px; color: #9AA1AC; line-height: 1.45">Convention courante : univers 1 = Art-Net 0:0:0 = sACN 1. Certaines consoles et nodes comptent l’Art-Net à partir de 1 : vérifie le premier univers sur ton matériel.</div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 8px">
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">ADRESSE : UNIVERS.ADRESSE OU ABSOLUE</span>
+    <input type="text" inputmode="decimal" aria-label="Adresse DMX" placeholder="ex. 3.145 ou 1169" value="{{uv.addrTxt}}" onChange="{{uv.setAddr}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box; flex-grow: 0; width: 100%">
+    <sc-if value="{{uv.addrOk}}" hint-placeholder-val="{{ true }}">
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+        <div style="border-radius: 12px; background: #17191D; border: 1px solid #2C3038; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 11.5px; color: #9AA1AC">Univers.adresse</span><span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 18px; overflow-wrap: anywhere">{{uv.aMa}}</span></div>
+        <div style="border-radius: 12px; background: #17191D; border: 1px solid #2C3038; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 11.5px; color: #9AA1AC">Absolue</span><span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 18px; overflow-wrap: anywhere">{{uv.aAbs}}</span></div>
+        <div style="border-radius: 12px; background: #17191D; border: 1px solid #2C3038; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 11.5px; color: #9AA1AC">Art-Net</span><span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 18px; overflow-wrap: anywhere">{{uv.aArt}}</span><span style="font-size: 11.5px; color: #C5CAD2; overflow-wrap: anywhere">{{uv.aArtSub}}</span></div>
+      </div>
+      <div style="font-size: 12px; color: #9AA1AC; line-height: 1.45">{{uv.aEnd}}</div>
+    </sc-if>
+    <sc-if value="{{uv.addrBad}}" hint-placeholder-val="{{ false }}"><div style="font-size: 12.5px; color: #FF8A8E">Format attendu : 3.145 (univers.adresse, adresse de 1 à 512) ou 1169 (adresse absolue).</div></sc-if>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 10px">
+    <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">DIP-SWITCH (ADRESSE 0 À 511)</span>
+      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{uv.dipMinus}}" aria-label="Adresse dip-switch moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="numeric" aria-label="Adresse dip-switch" value="{{uv.dipTxt}}" onChange="{{uv.setDip}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box"><button type="button" onClick="{{uv.dipPlus}}" aria-label="Adresse dip-switch plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
+    </div>
+    <div style="border-radius: 14px; background: #131518; border: 1px solid #2C3038; padding: 12px 8px; display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 2px">
+      <sc-for list="{{uv.dips}}" as="dp" hint-placeholder-count="9">
+        <button type="button" onClick="{{dp.pick}}" aria-pressed="{{dp.on}}" aria-label="{{dp.aria}}" style="border: none; background: transparent; padding: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; color: #EEF0F3">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 700; {{dp.txt}}">{{dp.state}}</span>
+          <span style="position: relative; width: 26px; height: 58px; border-radius: 7px; border: 1.5px solid; box-sizing: border-box; {{dp.track}}"><span style="position: absolute; left: 3px; width: 17px; height: 23px; border-radius: 4px; {{dp.knob}}"></span></span>
+          <span style="font-size: 12px; font-weight: 700">{{dp.n}}</span>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: #9AA1AC">{{dp.val}}</span>
+        </button>
+      </sc-for>
+    </div>
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #C5CAD2; text-align: center">{{uv.dipSum}}</div>
+    <div style="font-size: 12px; color: #9AA1AC; line-height: 1.45">Touche un interrupteur pour le basculer. Sur la plupart des machines, l’interrupteur 1 vaut 1, le 2 vaut 2, le 3 vaut 4… jusqu’au 9 qui vaut 256. Le 10, s’il existe, sert souvent à une autre fonction : vérifie le sens « ON » sur la machine.</div>
+  </section>
+</div>
+</sc-if>
+
+
+<sc-if value="{{isIpc}}" hint-placeholder-val="{{ false }}">
+<div class="scroll" style="flex-grow: 1; overflow-y: auto; padding: 14px 16px 32px; display: flex; flex-direction: column; gap: 16px">
+  <section style="display: flex; flex-direction: column; gap: 10px">
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">ADRESSE IP</span>
+    <input type="text" inputmode="decimal" autocomplete="off" aria-label="Adresse IP" placeholder="ex. 2.0.0.10" value="{{ipr.ip}}" onChange="{{ipr.setIp}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box; flex-grow: 0; width: 100%; font-family: 'JetBrains Mono', monospace">
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">MASQUE</span>
+    <div style="display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 8px; align-items: center">
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px"><sc-for list="{{ipr.preChips}}" as="pc" hint-placeholder-count="3"><button type="button" onClick="{{pc.pick}}" aria-pressed="{{pc.on}}" style="min-height: 40px; border-radius: 10px; padding: 6px 8px; font-size: 13px; font-weight: 600; text-align: center; line-height: 1.2; {{pc.style}}">{{pc.label}}</button></sc-for></div>
+      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{ipr.preMinus}}" aria-label="Masque moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><span style="flex-grow: 1; text-align: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 18px">{{ipr.pre}}</span><button type="button" onClick="{{ipr.prePlus}}" aria-label="Masque plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
+    </div>
+  </section>
+  <sc-if value="{{ipr.ok}}" hint-placeholder-val="{{ true }}">
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+      <sc-for list="{{ipr.cells}}" as="ic" hint-placeholder-count="6"><div style="border-radius: 12px; background: #17191D; border: 1px solid #2C3038; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 11.5px; color: #9AA1AC">{{ic.k}}</span><span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 18px; overflow-wrap: anywhere; font-size: 15px">{{ic.v}}</span></div></sc-for>
+    </div>
+    <sc-if value="{{ipr.hasHints}}" hint-placeholder-val="{{ false }}"><div style="border-radius: 12px; border: 1px solid #FFB02066; background: #FFB02012; padding: 10px 12px; font-size: 12.5px; line-height: 1.45; color: #FFE1A6; white-space: pre-line">{{ipr.hints}}</div></sc-if>
+  </sc-if>
+  <sc-if value="{{ipr.bad}}" hint-placeholder-val="{{ false }}"><div style="font-size: 13px; color: #FF8A8E">Adresse invalide (format 192.168.1.10).</div></sc-if>
+
+  <section style="display: flex; flex-direction: column; gap: 8px">
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">COMPARER AVEC UNE AUTRE IP</span>
+    <input type="text" inputmode="decimal" autocomplete="off" aria-label="Adresse IP à comparer" placeholder="ex. 2.0.0.50" value="{{ipr.ip2}}" onChange="{{ipr.setIp2}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box; flex-grow: 0; width: 100%; font-family: 'JetBrains Mono', monospace">
+    <sc-if value="{{ipr.cmpShow}}" hint-placeholder-val="{{ false }}"><div style="border-radius: 12px; padding: 10px 12px; font-size: 13.5px; font-weight: 600; {{ipr.cmpStyle}}">{{ipr.cmpTxt}}</div></sc-if>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 8px">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">VÉRIFIER LE MÉMO RÉSEAU</span><span style="font-size: 12px; color: #9AA1AC; text-align: right">{{ipr.memoSub}}</span></div>
+    <sc-if value="{{ipr.memoEmpty}}" hint-placeholder-val="{{ false }}"><div style="border-radius: 12px; border: 1px dashed #3A3F48; padding: 14px; font-size: 13px; color: #9AA1AC; text-align: center">Aucune adresse IP dans le mémo Réseau.</div></sc-if>
+    <sc-if value="{{ipr.hasMemoWarn}}" hint-placeholder-val="{{ false }}"><div style="border-radius: 12px; border: 1px solid #FF5A5F66; background: #FF5A5F14; padding: 10px 12px; font-size: 12.5px; line-height: 1.45; color: #F2C4C5; white-space: pre-line">{{ipr.memoWarn}}</div></sc-if>
+    <sc-for list="{{ipr.memo}}" as="mg" hint-placeholder-count="2">
+      <div style="border-radius: 12px; background: #17191D; border: 1px solid {{mg.border}}; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 15px">{{mg.key}}</span><span style="font-size: 12px; color: #9AA1AC">{{mg.count}}</span></div>
+        <sc-for list="{{mg.items}}" as="mi" hint-placeholder-count="2"><div style="display: flex; justify-content: space-between; gap: 8px; font-size: 13px"><span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{mi.name}}</span><span style="font-family: 'JetBrains Mono', monospace; color: #C5CAD2">{{mi.ip}}</span></div></sc-for>
+        <sc-if value="{{mg.alone}}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; color: #FFC75A">Seul sur ce réseau : il ne parle à aucun autre appareil du mémo.</span></sc-if>
+      </div>
+    </sc-for>
+  </section>
+</div>
+</sc-if>
+
+
+<sc-if value="{{isVd}}" hint-placeholder-val="{{ false }}">
+<div class="scroll" style="flex-grow: 1; overflow-y: auto; padding: 14px 16px 32px; display: flex; flex-direction: column; gap: 16px">
+  <div style="border-radius: 16px; border: 1.5px solid {{vd.color}}; background: {{vd.bg}}; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; flex-shrink: 0">
+    <div style="display: flex; align-items: baseline; gap: 10px"><span style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 30px; color: {{vd.color}}">{{vd.word}}</span><span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 30px">{{vd.pct}}<span style="font-size: 16px"> %</span></span><span style="font-size: 13px; color: #C5CAD2">de chute</span></div>
+    <span style="font-size: 13.5px; color: #EEF0F3">{{vd.sub}}</span>
+    <span style="font-size: 12.5px; color: #C5CAD2">{{vd.lmax}}</span>
+  </div>
+  <section style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+    <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">COURANT (A)</span>
+      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{vd.iMinus}}" aria-label="Courant moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="decimal" aria-label="Courant" value="{{vd.iTxt}}" onChange="{{vd.setI}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box"><button type="button" onClick="{{vd.iPlus}}" aria-label="Courant plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">LONGUEUR (M)</span>
+      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{vd.lMinus}}" aria-label="Longueur de câble moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="decimal" aria-label="Longueur de câble" value="{{vd.lTxt}}" onChange="{{vd.setL}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box"><button type="button" onClick="{{vd.lPlus}}" aria-label="Longueur de câble plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
+    </div>
+  </section>
+  <sc-if value="{{vd.hasCirc}}" hint-placeholder-val="{{ false }}">
+  <section style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">REPRENDRE DEPUIS POWER</span>
+    <div class="scroll" style="display: flex; gap: 6px; overflow-x: auto; flex-shrink: 0"><sc-for list="{{vd.circ}}" as="vc" hint-placeholder-count="3"><button type="button" onClick="{{vc.pick}}" aria-pressed="{{vc.on}}" style="min-height: 40px; border-radius: 10px; padding: 6px 8px; font-size: 13px; font-weight: 600; text-align: center; line-height: 1.2; flex-shrink: 0; padding: 6px 12px; white-space: nowrap; {{vc.style}}">{{vc.label}}</button></sc-for></div>
+  </section>
+  </sc-if>
+  <section style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">SYSTÈME</span><div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px"><sc-for list="{{vd.sysChips}}" as="sy" hint-placeholder-count="2"><button type="button" onClick="{{sy.pick}}" aria-pressed="{{sy.on}}" style="min-height: 40px; border-radius: 10px; padding: 6px 8px; font-size: 13px; font-weight: 600; text-align: center; line-height: 1.2; {{sy.style}}">{{sy.label}}</button></sc-for></div></section>
+  <section style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">SECTION (MM²)</span><div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px"><sc-for list="{{vd.secChips}}" as="sc" hint-placeholder-count="8"><button type="button" onClick="{{sc.pick}}" aria-pressed="{{sc.on}}" style="min-height: 40px; border-radius: 10px; padding: 6px 8px; font-size: 13px; font-weight: 600; text-align: center; line-height: 1.2; {{sc.style}}">{{sc.label}}</button></sc-for></div></section>
+  <section style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">COS φ</span><div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px"><sc-for list="{{vd.pfChips}}" as="pf" hint-placeholder-count="4"><button type="button" onClick="{{pf.pick}}" aria-pressed="{{pf.on}}" style="min-height: 40px; border-radius: 10px; padding: 6px 8px; font-size: 13px; font-weight: 600; text-align: center; line-height: 1.2; {{pf.style}}">{{pf.label}}</button></sc-for></div></section>
+  <section style="display: flex; flex-direction: column; gap: 6px">
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">COMPARER LES SECTIONS</span>
+    <sc-for list="{{vd.table}}" as="vt" hint-placeholder-count="8">
+      <button type="button" onClick="{{vt.pick}}" aria-pressed="{{vt.on}}" style="display: grid; grid-template-columns: 76px minmax(0, 1fr) 62px; gap: 10px; align-items: center; border-radius: 10px; padding: 6px 10px; color: #EEF0F3; text-align: left; {{vt.rowStyle}}">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px">{{vt.sec}}</span>
+        <span style="height: 8px; border-radius: 4px; background: #20232A; position: relative; overflow: hidden"><span style="position: absolute; left: 0; top: 0; bottom: 0; width: {{vt.w}}%; background: {{vt.color}}; border-radius: 4px"></span></span>
+        <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 13px; text-align: right; color: {{vt.color}}">{{vt.pct}}</span>
+      </button>
+    </sc-for>
+  </section>
+  <div style="font-size: 12px; color: #9AA1AC; line-height: 1.45">Câble cuivre, méthode NF C 15-100 : ΔU = b (ρ L cos φ / S + λ L sin φ) I, avec b = 2 en mono, 1 en tri, ρ = 0,0225 Ω·mm²/m et λ = 0,08 mΩ/m. Repères : 3 % pour l’éclairage, 5 % pour les autres usages. La section doit aussi être adaptée au courant et à la protection.</div>
+</div>
+</sc-if>
+
+
+<sc-if value="{{isBeam}}" hint-placeholder-val="{{ false }}">
+<div class="scroll" style="flex-grow: 1; overflow-y: auto; padding: 14px 16px 32px; display: flex; flex-direction: column; gap: 16px">
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+    <sc-for list="{{bm.modes}}" as="bmo" hint-placeholder-count="3"><button type="button" onClick="{{bmo.pick}}" aria-pressed="{{bmo.on}}" style="min-height: 54px; border-radius: 12px; padding: 6px 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; {{bmo.style}}"><span style="font-weight: 600; font-size: 14px">{{bmo.label}}</span><span style="font-size: 11px; opacity: 0.8">{{bmo.sub}}</span></button></sc-for>
+  </div>
+  <section style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+    <sc-if value="{{bm.showD}}" hint-placeholder-val="{{ true }}"><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">DISTANCE (M)</span>
+      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{bm.dMinus}}" aria-label="Distance moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="decimal" aria-label="Distance" value="{{bm.dTxt}}" onChange="{{bm.setD}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box"><button type="button" onClick="{{bm.dPlus}}" aria-label="Distance plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
+    </div></sc-if>
+    <sc-if value="{{bm.showA}}" hint-placeholder-val="{{ true }}"><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">ANGLE (°)</span>
+      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{bm.aMinus}}" aria-label="Angle moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="decimal" aria-label="Angle" value="{{bm.aTxt}}" onChange="{{bm.setA}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box"><button type="button" onClick="{{bm.aPlus}}" aria-label="Angle plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
+    </div></sc-if>
+    <sc-if value="{{bm.showW}}" hint-placeholder-val="{{ false }}"><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">DIAMÈTRE (M)</span>
+      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{bm.wMinus}}" aria-label="Diamètre de tache moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="decimal" aria-label="Diamètre de tache" value="{{bm.wTxt}}" onChange="{{bm.setW}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box"><button type="button" onClick="{{bm.wPlus}}" aria-label="Diamètre de tache plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
+    </div></sc-if>
+  </section>
+  <div style="border-radius: 16px; border: 1.5px solid #7CC4FF; background: #7CC4FF14; padding: 14px 16px; display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-shrink: 0">
+    <span style="font-size: 13px; color: #C5CAD2">{{bm.resLabel}}</span>
+    <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 28px; color: #7CC4FF; white-space: nowrap">{{bm.res}}<span style="font-size: 15px">{{bm.resUnit}}</span></span>
+  </div>
+  <section style="border-radius: 14px; background: #131518; border: 1px solid #2C3038; padding: 14px; display: flex; flex-direction: column; gap: 6px">
+    <div style="position: relative; height: 120px">
+      <div style="position: absolute; left: 6px; right: 14px; top: 0; bottom: 0; background: linear-gradient(90deg, #FFE7A055, #FFE7A01A); {{bm.cone}}"></div>
+      <span style="position: absolute; left: 0; top: 50%; width: 14px; height: 14px; margin-top: -7px; border-radius: 4px; background: #7CC4FF"></span>
+      <span style="position: absolute; right: 10px; top: {{bm.coneTop}}; height: {{bm.coneH}}; border-left: 2px solid #FFB020"></span>
+      <span style="position: absolute; left: 24px; top: 50%; transform: translateY(-50%); font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: #FFE7A0">{{bm.lblAng}}</span>
+          </div>
+    <div style="display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 12px"><span style="color: #C5CAD2">← {{bm.lblDist}} →</span><span style="color: #FFB020; font-weight: 700">{{bm.lblDiam}}</span></div>
+  </section>
+  <section style="display: flex; flex-direction: column; gap: 8px">
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">FLUX DE LA MACHINE (LM, OPTIONNEL)</span>
+    <input type="text" inputmode="numeric" aria-label="Flux en lumens" placeholder="ex. 22000" value="{{bm.lmTxt}}" onChange="{{bm.setLm}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box; flex-grow: 0; width: 100%">
+    <sc-if value="{{bm.hasLux}}" hint-placeholder-val="{{ false }}">
+      <div style="border-radius: 12px; background: #17191D; border: 1px solid #2C3038; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 11.5px; color: #9AA1AC">Éclairement moyen</span><span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 18px; overflow-wrap: anywhere; font-size: 22px">{{bm.lux}} lux</span><span style="font-size: 11.5px; color: #C5CAD2">{{bm.luxSub}}</span></div>
+    </sc-if>
+  </section>
+  <section style="display: flex; flex-direction: column; gap: 6px">
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">{{bm.tableTitle}}</span>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+      <sc-for list="{{bm.table}}" as="bt" hint-placeholder-count="9"><div style="border-radius: 10px; background: #17191D; border: 1px solid #2C3038; padding: 6px 8px; display: flex; justify-content: space-between; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px"><span style="color: #9AA1AC">{{bt.d}}</span><span style="font-weight: 700">{{bt.w}}</span></div></sc-for>
+    </div>
+  </section>
+  <div style="font-size: 12px; color: #9AA1AC; line-height: 1.45">Angle de faisceau (beam, 50 % de l’intensité) ou angle de champ (field, 10 %) : la tache visible correspond plutôt au champ. Le diamètre est mesuré perpendiculairement à l’axe.</div>
+</div>
+</sc-if>
+
+
+<sc-if value="{{isMat}}" hint-placeholder-val="{{ false }}">
+<div class="scroll" style="flex-grow: 1; overflow-y: auto; padding: 14px 16px 32px; display: flex; flex-direction: column; gap: 16px">
+  <sc-if value="{{mt.showFrom}}" hint-placeholder-val="{{ false }}"><section style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">PROJECTEURS DEPUIS</span><div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px"><sc-for list="{{mt.fromChips}}" as="mf" hint-placeholder-count="2"><button type="button" onClick="{{mf.pick}}" aria-pressed="{{mf.on}}" style="min-height: 40px; border-radius: 10px; padding: 6px 8px; font-size: 13px; font-weight: 600; text-align: center; line-height: 1.2; {{mf.style}}">{{mf.label}}</button></sc-for></div></section></sc-if>
+  <div style="font-size: 12px; color: #9AA1AC; line-height: 1.45">{{mt.fromNote}} Les quantités sont des estimations : ajuste-les avec − et +, coche au chargement.</div>
+  <div style="display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; flex-shrink: 0">
+    <button type="button" onClick="{{mt.download}}" style="min-height: 50px; border-radius: 14px; border: none; background: #7CC4FF; color: #0D0E10; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"></path></svg>PDF A4</button>
+    <button type="button" onClick="{{mt.resetAll}}" style="min-height: 50px; padding: 0 14px; border-radius: 14px; border: 1px solid #2C3038; background: #17191D; color: #EEF0F3; font-size: 13px; font-weight: 600">Réinitialiser</button>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9AA1AC"><span>{{mt.progress}}</span><span style="color: #FFC75A">{{mt.msg}}</span></div>
+  <sc-if value="{{mt.empty}}" hint-placeholder-val="{{ false }}"><div style="border-radius: 14px; border: 1px dashed #3A3F48; padding: 18px; text-align: center; font-size: 14px; color: #9AA1AC">Rien à lister pour l’instant.</div></sc-if>
+  <sc-for list="{{mt.sections}}" as="ms" hint-placeholder-count="3">
+    <section style="display: flex; flex-direction: column; gap: 6px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">{{ms.title}}</span><span style="font-size: 12px; color: #9AA1AC; text-align: right">{{ms.right}}</span></div>
+      <sc-for list="{{ms.rows}}" as="mr" hint-placeholder-count="3">
+        <div style="border-radius: 12px; background: #17191D; border: 1px solid #2C3038; padding: 8px 8px 8px 10px; display: flex; align-items: center; gap: 10px">
+          <button type="button" onClick="{{mr.toggle}}" aria-pressed="{{mr.chk}}" aria-label="Cocher la ligne" style="width: 30px; height: 30px; flex-shrink: 0; border-radius: 8px; border: 2px solid; display: flex; align-items: center; justify-content: center; {{mr.box}}"><sc-if value="{{mr.chk}}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D0E10" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></sc-if></button>
+          <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px"><span style="font-weight: 600; font-size: 14.5px; {{mr.nameStyle}}">{{mr.name}}</span><sc-if value="{{mr.hasDetail}}" hint-placeholder-val="{{ true }}"><span style="font-size: 11.5px; color: #9AA1AC">{{mr.detail}}</span></sc-if></span>
+          <span style="display: flex; align-items: center; gap: 2px; flex-shrink: 0"><button type="button" onClick="{{mr.minus}}" aria-label="Moins" style="width: 32px; height: 34px; border-radius: 9px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 17px">−</button><span style="min-width: 30px; text-align: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 16px">{{mr.qty}}</span><button type="button" onClick="{{mr.plus}}" aria-label="Plus" style="width: 32px; height: 34px; border-radius: 9px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 17px">+</button></span>
+        </div>
+      </sc-for>
+    </section>
+  </sc-for>
+  <section style="display: flex; flex-direction: column; gap: 6px">
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">AJOUTER UNE LIGNE</span>
+    <div style="display: grid; grid-template-columns: minmax(0, 1fr) 64px auto; gap: 6px">
+      <input type="text" aria-label="Matériel à ajouter" placeholder="ex. Machine à brouillard" value="{{mt.exName}}" onChange="{{mt.setExName}}" style="font-family: 'Barlow', sans-serif; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 16px; padding: 0 12px; box-sizing: border-box; width: 100%">
+      <input type="text" inputmode="numeric" aria-label="Quantité" value="{{mt.exQty}}" onChange="{{mt.setExQty}}" style="height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 16px; padding: 0 12px; box-sizing: border-box; width: 100%; text-align: center; padding: 0 4px">
+      <button type="button" onClick="{{mt.addExtra}}" style="height: 44px; padding: 0 12px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #7CC4FF; font-size: 14px; font-weight: 600">Ajouter</button>
+    </div>
+  </section>
 </div>
 </sc-if>
 
@@ -1173,6 +1414,28 @@ input{font-family:'JetBrains Mono',monospace}
     return c.finish();
   }
 
+  async function matPdf(p) {
+    var c = await makeDoc(), F = c.F, W = A4[0];
+    c.header('LISTE DE MATÉRIEL', p);
+    var secs = p.sections.filter(function (sc) { return sc.rows.length; });
+    if (!secs.length) { c.text('Liste vide.', M, c.y - 10, 9, F.r, GREY); return c.finish(); }
+    var col = { box: M + 2, qty: M + 40, name: M + 52, detail: M + 300 };
+    secs.forEach(function (sc) {
+      c.section(sc.title, sc.right);
+      sc.rows.forEach(function (r) {
+        c.ensure(16, function () { c.section(sc.title + ' (suite)'); });
+        var top = c.y;
+        c.page.drawRectangle({ x: col.box, y: top - 12.5, width: 9, height: 9, borderColor: hex(GREY), borderWidth: 0.8 });
+        c.text(String(r.qty), col.qty, top - 11, 10, F.mb, INK, 0, 'right');
+        c.text(r.name, col.name, top - 11, 9.5, F.b, INK, 240);
+        if (r.detail) c.text(r.detail, col.detail, top - 11, 8, F.r, GREY, W - M - col.detail);
+        c.y = top - 16; c.line(M, c.y + 1.5, W - M, c.y + 1.5, 0.4, SOFT);
+      });
+      c.y -= 8;
+    });
+    return c.finish();
+  }
+
   function patchCsv(p) {
     var q = function (v) { v = String(v == null ? '' : v); return /[;"\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
     var out = ['Événement;' + q(p.evName), 'Date et lieu;' + q(p.evLine), '', 'ID;Machine;Mode;Canaux;Univers;Adresse;Fin'];
@@ -1208,10 +1471,10 @@ input{font-family:'JetBrains Mono',monospace}
   window.__ntoolExport = async function (kind, p) {
     if (kind === 'patch-csv') return save('Patch-' + slug(p.evName) + '.csv', patchCsv(p));
     if (typeof PDFLib === 'undefined') throw new Error('Le module PDF ne s’est pas chargé (réseau ?).');
-    var bytes = kind === 'patch-pdf' ? await patchPdf(p) : await reseauPdf(p);
-    return save((kind === 'patch-pdf' ? 'Patch-' : 'Memo-reseau-') + slug(p.evName) + '.pdf', new Blob([bytes], { type: 'application/pdf' }));
+    var bytes = kind === 'patch-pdf' ? await patchPdf(p) : (kind === 'mat-pdf' ? await matPdf(p) : await reseauPdf(p));
+    return save((kind === 'patch-pdf' ? 'Patch-' : (kind === 'mat-pdf' ? 'Materiel-' : 'Memo-reseau-')) + slug(p.evName) + '.pdf', new Blob([bytes], { type: 'application/pdf' }));
   };
-  window.__ntoolBuild = { reseauPdf: reseauPdf, patchPdf: patchPdf, patchCsv: patchCsv };
+  window.__ntoolBuild = { reseauPdf: reseauPdf, patchPdf: patchPdf, matPdf: matPdf, patchCsv: patchCsv };
 })();
 </script>
 <script>
@@ -1399,6 +1662,11 @@ class Component extends DCLogic {
       quick: { fid: 'esprite', mode: 0, qty: 8, start: 1 },
       rigg: { truss: 'sc300', span: 8, cas: 'Q', crit: 'pre', load: 300 },
       cot: { mode: 'pts', L: 12, n: 4, lTxt: '12', ref: 'bout', off: 0, offTxt: '0', e: 1.5, eTxt: '1,5', par: 'auto', D: 6, dTxt: '6', nc: 8, start: 'top' },
+      uv: { U: 1, uTxt: '1', addr: '3.145', dip: 1, dipTxt: '1' },
+      ipc: { ip: '2.0.0.10', pre: 8, ip2: '' },
+      vd: { I: 16, iTxt: '16', L: 25, lTxt: '25', S: 2.5, sys: 'mono', pf: 0.85, pick: null },
+      beam: { mode: 'diam', d: 10, dTxt: '10', a: 25, aTxt: '25', w: 4, wTxt: '4', lmTxt: '' },
+      mat: { from: 'auto', adj: {}, chk: {}, extra: [], exName: '', exQty: '1' },
       net: netLoad(), evs: evLoad(), evSheet: false, evArm: null, evMsg: '', evEdit: false, patchPrint: false, netZone: 'all', netView: 'zone', netType: 'all', netEdit: null, swEdit: null, netPrint: false, printMsg: '', netSaved: null, netConfirm: false
     };
   }
@@ -2068,14 +2336,269 @@ class Component extends DCLogic {
       };
     }
 
-    var titles = { power: 'POWER', dmx: 'DMX', rigg: 'RIGG', autre: 'AUTRE', base: 'BASE', cot: 'COTATION', net: 'RÉSEAU' };
-    var sub = s.screen === 'base';
+    /* ================= OUTILS DE CALCUL (Autre) ================= */
+    var updKey = function (key) { return function (p) { var o = {}; o[key] = Object.assign({}, self.state[key], p); self.setState(o); }; };
+    var intTxt = function (t, max) { return String(t).replace(/[^0-9]/g, '').slice(0, max || 5); };
+
+    /* ---------- UNIVERS & ADRESSES ---------- */
+    var UV = s.uv, setUv = updKey('uv');
+    var Uc = Math.min(32768, Math.max(1, UV.U || 1)), port = Uc - 1;
+    var anOf = function (u) { var p = u - 1; return (p >> 8) + ':' + ((p >> 4) & 15) + ':' + (p & 15); };
+    var hex4 = function (n) { return '0x' + ('000' + n.toString(16).toUpperCase()).slice(-4); };
+    var setUfromPort = function (p) { p = Math.max(0, Math.min(32767, p)); setUv({ U: p + 1, uTxt: String(p + 1) }); };
+    var addrP = (function (t) {
+      t = String(t || '').replace(',', '.').trim();
+      var m = t.match(/^(\d+)\.(\d+)$/);
+      if (m) { var u = +m[1], a = +m[2]; return u >= 1 && a >= 1 && a <= 512 ? { u: u, a: a, abs: (u - 1) * 512 + a } : null; }
+      if (/^\d+$/.test(t) && +t >= 1) { var ab = +t; return { u: Math.floor((ab - 1) / 512) + 1, a: (ab - 1) % 512 + 1, abs: ab }; }
+      return null;
+    })(UV.addr);
+    var dipV = Math.max(0, Math.min(511, UV.dip | 0));
+    var setComp = function (k) { return function (e) {
+      var v = parseInt(intTxt(e.target.value, 3), 10); if (isNaN(v)) return;
+      var p = Uc - 1, n = p >> 8, sb = (p >> 4) & 15, un = p & 15;
+      if (k === 'n') n = Math.min(127, v); if (k === 's') sb = Math.min(15, v); if (k === 'u') un = Math.min(15, v);
+      setUfromPort((n << 8) | (sb << 4) | un);
+    }; };
+    var uv = {
+      uTxt: UV.uTxt,
+      setU: function (e) { var t = intTxt(e.target.value, 5), v = parseInt(t, 10); setUv(v >= 1 && v <= 32768 ? { U: v, uTxt: t } : { uTxt: t }); },
+      uPlus: function () { setUfromPort(Uc); }, uMinus: function () { setUfromPort(Uc - 2); },
+      net: String(port >> 8), sub: String((port >> 4) & 15), uni: String(port & 15),
+      setNet: setComp('n'), setSub: setComp('s'), setUni: setComp('u'),
+      artnet: anOf(Uc), port15: 'Port Art-Net ' + port + ' (' + hex4(port) + ')',
+      sacn: Uc <= 63999 ? String(Uc) : 'hors plage', mcast: 'Multicast 239.255.' + (Uc >> 8) + '.' + (Uc & 255),
+      ma: String(Uc),
+      addrTxt: UV.addr, setAddr: function (e) { setUv({ addr: String(e.target.value).replace(/[^0-9.,]/g, '').slice(0, 9) }); },
+      addrOk: !!addrP, addrBad: !addrP && !!String(UV.addr || '').trim(),
+      aMa: addrP ? addrP.u + '.' + addrP.a : '', aAbs: addrP ? String(addrP.abs) : '', aArt: addrP ? anOf(addrP.u) : '', aArtSub: addrP ? 'adresse ' + addrP.a : '',
+      aEnd: addrP ? 'Il reste ' + (512 - addrP.a) + ' canaux dans cet univers' : '',
+      dipTxt: UV.dipTxt,
+      setDip: function (e) { var t = intTxt(e.target.value, 3), v = parseInt(t, 10); setUv(!isNaN(v) && v <= 511 ? { dip: v, dipTxt: t } : { dipTxt: t }); },
+      dipPlus: function () { var v = Math.min(511, (self.state.uv.dip | 0) + 1); setUv({ dip: v, dipTxt: String(v) }); },
+      dipMinus: function () { var v = Math.max(0, (self.state.uv.dip | 0) - 1); setUv({ dip: v, dipTxt: String(v) }); },
+      dips: [0, 1, 2, 3, 4, 5, 6, 7, 8].map(function (i) {
+        var val = 1 << i, on = !!(dipV & val);
+        return { n: String(i + 1), val: String(val), on: on, aria: 'Interrupteur ' + (i + 1) + ', valeur ' + val + (on ? ', ON' : ', off'), state: on ? 'ON' : 'off',
+          track: on ? 'background: #7CC4FF33; border-color: #7CC4FF' : 'background: #0D0E10; border-color: #3A3F48',
+          knob: on ? 'top: 3px; background: #7CC4FF' : 'top: 29px; background: #5A616C',
+          txt: on ? 'color: #7CC4FF' : 'color: #6B727D',
+          pick: function () { var v = (self.state.uv.dip | 0) ^ val; setUv({ dip: v, dipTxt: String(v) }); } };
+      }),
+      dipSum: dipV ? [0, 1, 2, 3, 4, 5, 6, 7, 8].filter(function (i) { return dipV & (1 << i); }).map(function (i) { return String(1 << i); }).join(' + ') + ' = ' + dipV : 'Tous les interrupteurs sur off = adresse 0'
+    };
+
+    /* ---------- CALCUL IP ---------- */
+    var IPC = s.ipc, setIpc = updKey('ipc');
+    var ipInt = function (t) { if (!ipValid(t)) return null; return t.split('.').reduce(function (a, b) { return a * 256 + (+b); }, 0); };
+    var intIp = function (n) { return [(n >>> 24) & 255, (n >>> 16) & 255, (n >>> 8) & 255, n & 255].join('.'); };
+    var maskOf = function (p) { return p <= 0 ? 0 : (p >= 32 ? 0xFFFFFFFF : (0xFFFFFFFF << (32 - p)) >>> 0); };
+    var netOf = function (i, p) { return (i & maskOf(p)) >>> 0; };
+    var pre = Math.max(1, Math.min(32, IPC.pre | 0)), ipi = ipInt(IPC.ip), mk = maskOf(pre);
+    var ipr = { ok: ipi !== null };
+    if (ipi !== null) {
+      var nw = netOf(ipi, pre), bc = (nw | (~mk >>> 0)) >>> 0;
+      var nh = pre >= 31 ? (pre === 32 ? 1 : 2) : Math.pow(2, 32 - pre) - 2;
+      ipr.cells = [
+        { k: 'Réseau', v: intIp(nw) + '/' + pre }, { k: 'Masque', v: intIp(mk) },
+        { k: 'Première adresse', v: intIp(pre >= 31 ? nw : nw + 1) }, { k: 'Dernière adresse', v: intIp(pre >= 31 ? bc : bc - 1) },
+        { k: 'Broadcast', v: intIp(bc) }, { k: 'Appareils possibles', v: nh.toLocaleString('fr-FR') }
+      ];
+      var o1 = ipi >>> 24, o2 = (ipi >>> 16) & 255, hints = [];
+      if (pre < 31 && (ipi === nw || ipi === bc)) hints.push('Attention : ' + IPC.ip + ' est l’adresse ' + (ipi === nw ? 'du réseau' : 'de broadcast') + ', elle ne peut pas être donnée à un appareil.');
+      if (o1 === 2 || o1 === 10) hints.push(o1 === 2 ? 'Plage 2.x.x.x : plage historique Art-Net (en général /8).' : 'Plage 10.x.x.x : plage Art-Net secondaire, souvent utilisée aussi en sACN.');
+      if (o1 === 192 && o2 === 168) hints.push('Plage 192.168.x.x : réseau privé classique (souvent /24).');
+      if (o1 === 169 && o2 === 254) hints.push('Plage 169.254.x.x : adresse automatique, l’appareil n’a sans doute pas reçu d’IP.');
+      ipr.hints = hints.join('\n'); ipr.hasHints = hints.length > 0;
+    } else { ipr.cells = []; ipr.hints = ''; ipr.hasHints = false; }
+    ipr.bad = ipi === null && !!String(IPC.ip || '').trim();
+    var ip2i = ipInt(IPC.ip2 || '');
+    ipr.cmpShow = !!(IPC.ip2 || '').trim();
+    ipr.cmpOk = ipi !== null && ip2i !== null && netOf(ipi, pre) === netOf(ip2i, pre);
+    ipr.cmpTxt = !ipr.cmpShow ? '' : (ip2i === null ? 'Adresse à comparer invalide.' : (ipi === null ? 'Adresse principale invalide.' : (ipr.cmpOk ? (ipi === ip2i ? 'Même adresse : conflit IP !' : 'Même réseau en /' + pre + ' : les deux appareils se voient.') : 'Réseaux différents en /' + pre + ' : ils ne se verront pas sans routeur.')));
+    ipr.cmpStyle = ipr.cmpOk && ipi !== ip2i ? 'border: 1.5px solid #3FD08A; background: #3FD08A17; color: #BDF2D5' : 'border: 1.5px solid #FF5A5F; background: #FF5A5F17; color: #F2C4C5';
+    ipr.ip = IPC.ip; ipr.ip2 = IPC.ip2 || ''; ipr.pre = '/' + pre;
+    ipr.setIp = function (e) { setIpc({ ip: ipClean(e.target.value) }); };
+    ipr.setIp2 = function (e) { setIpc({ ip2: ipClean(e.target.value) }); };
+    ipr.prePlus = function () { setIpc({ pre: Math.min(32, (self.state.ipc.pre | 0) + 1) }); };
+    ipr.preMinus = function () { setIpc({ pre: Math.max(1, (self.state.ipc.pre | 0) - 1) }); };
+    ipr.preChips = [8, 16, 24].map(function (p) { var on = pre === p; return { label: '/' + p, on: on, style: chipStyle(on), pick: function () { setIpc({ pre: p }); } }; });
+    /* vérification du mémo réseau : regroupe chaque port par réseau (IP + masque) */
+    var memo = [];
+    s.net.devices.forEach(function (d) { d.ports.forEach(function (p) { var i = ipInt(p.ip || ''); if (i !== null) memo.push({ name: d.name + (d.ports.length > 1 ? ' · ' + p.label : ''), ip: p.ip, pre: parseInt(String(p.mask || '/24').slice(1), 10) || 24, i: i }); }); });
+    var gm = {}, glist = [];
+    memo.forEach(function (m) { var key = intIp(netOf(m.i, m.pre)) + '/' + m.pre; if (!gm[key]) { gm[key] = { key: key, net: netOf(m.i, m.pre), pre: m.pre, items: [] }; glist.push(gm[key]); } gm[key].items.push(m); });
+    glist.sort(function (a, b) { return a.net - b.net || a.pre - b.pre; });
+    var mwarn = [];
+    glist.forEach(function (g, gi) { glist.forEach(function (h, hi) { if (hi <= gi) return; var p = Math.min(g.pre, h.pre); if (netOf(g.net, p) === netOf(h.net, p)) mwarn.push('Masques différents : ' + g.key + ' et ' + h.key + ' se chevauchent. Mets le même masque partout sur ce réseau.'); }); });
+    ipr.memoEmpty = glist.length === 0;
+    ipr.memo = glist.map(function (g) { var alone = g.items.length === 1; return {
+      key: g.key, count: g.items.length + ' adresse' + (g.items.length > 1 ? 's' : ''),
+      border: alone ? '#FFB02099' : '#2C3038', alone: alone,
+      items: g.items.map(function (m) { return { name: m.name, ip: m.ip }; })
+    }; });
+    ipr.memoWarn = mwarn.join('\n'); ipr.hasMemoWarn = mwarn.length > 0;
+    ipr.memoSub = s.net.event && s.net.event.name ? 'Mémo « ' + s.net.event.name + ' »' : 'Mémo réseau en cours';
+
+    /* ---------- CHUTE DE TENSION ---------- */
+    /* NF C 15-100 : ΔU = b (ρ1 L cosφ / S + λ L sinφ) I ; ρ1 cuivre 0,0225 Ω·mm²/m, λ 0,08 mΩ/m ; b = 2 mono, 1 tri ; % rapporté à 230 V */
+    var VD = s.vd, setVd = updKey('vd');
+    var RHO = 0.0225, LAM = 0.00008, SECS = [1.5, 2.5, 4, 6, 10, 16, 25, 35];
+    var vI = VD.I || 0, vL = VD.L || 0, vS = VD.S, cphi = VD.pf, sphi = Math.sqrt(Math.max(0, 1 - cphi * cphi)), bb = VD.sys === 'tri' ? 1 : 2;
+    var dropOf = function (S) { return bb * (RHO * vL * cphi / S + LAM * vL * sphi) * vI; };
+    var dU = dropOf(vS), pct = dU / 230 * 100;
+    var vlv = pct <= 3 + 1e-9 ? 'ok' : (pct <= 5 + 1e-9 ? 'warn' : 'bad');
+    var lmax = function (p) { var k = bb * (RHO * cphi / vS + LAM * sphi) * vI; return k > 0 ? p / 100 * 230 / k : 0; };
+    var secTxt = function (x) { return String(x).replace('.', ',') + ' mm²'; };
+    var vd = {
+      color: COL[vlv], bg: COL[vlv] + '17', word: { ok: 'OK', warn: 'ATTENTION', bad: 'TROP' }[vlv], pct: fmt(pct, 1),
+      sub: 'ΔU = ' + fmt(dU, 1) + ' V · ' + (VD.sys === 'tri' ? 'environ ' + Math.round(400 - dU * Math.sqrt(3)) + ' V entre phases en bout' : 'environ ' + Math.round(230 - dU) + ' V en bout'),
+      lmax: 'Longueur max : ' + Math.floor(lmax(3)) + ' m pour 3 % · ' + Math.floor(lmax(5)) + ' m pour 5 %',
+      iTxt: VD.iTxt, lTxt: VD.lTxt,
+      setI: function (e) { var t = e.target.value, v = num(t); setVd(v !== null && v >= 0 ? { I: v, iTxt: t, pick: null } : { iTxt: t }); },
+      iPlus: function () { var v = Math.round((self.state.vd.I || 0) + 1); setVd({ I: v, iTxt: String(v), pick: null }); },
+      iMinus: function () { var v = Math.max(0, Math.round((self.state.vd.I || 0) - 1)); setVd({ I: v, iTxt: String(v), pick: null }); },
+      setL: function (e) { var t = e.target.value, v = num(t); setVd(v !== null && v >= 0 ? { L: v, lTxt: t } : { lTxt: t }); },
+      lPlus: function () { var v = Math.round((self.state.vd.L || 0) + 5); setVd({ L: v, lTxt: String(v) }); },
+      lMinus: function () { var v = Math.max(0, Math.round((self.state.vd.L || 0) - 5)); setVd({ L: v, lTxt: String(v) }); },
+      sysChips: [{ id: 'mono', label: 'Mono 230 V' }, { id: 'tri', label: 'Tri 400 V (équilibré)' }].map(function (x) { var on = VD.sys === x.id; return { label: x.label, on: on, style: chipStyle(on), pick: function () { setVd({ sys: x.id }); } }; }),
+      secChips: SECS.map(function (x) { var on = vS === x; return { label: String(x).replace('.', ','), on: on, style: chipStyle(on), pick: function () { setVd({ S: x }); } }; }),
+      pfChips: [0.85, 0.9, 0.95, 1].map(function (x) { var on = Math.abs(cphi - x) < 1e-6; return { label: String(x).replace('.', ','), on: on, style: chipStyle(on), pick: function () { setVd({ pf: x }); } }; }),
+      hasCirc: R.circuits.length > 0,
+      circ: [{ id: 'src', label: 'Alim ' + R.src.short + ' · ' + fmt(R.maxL) + ' A', I: R.maxL, sys: R.src.ph === 3 ? 'tri' : 'mono' }].concat(R.circuits.map(function (c, i) { return { id: 'c' + i, label: 'Circuit ' + (i + 1) + ' · ' + fmt(c.I) + ' A', I: c.I, sys: 'mono' }; })).map(function (x) {
+        var on = VD.pick === x.id; return { label: x.label, on: on, style: chipStyle(on), pick: function () { var v = Math.round(x.I * 10) / 10; setVd({ I: v, iTxt: String(v).replace('.', ','), sys: x.sys, pick: x.id }); } };
+      }),
+      table: SECS.map(function (x) {
+        var p = dropOf(x) / 230 * 100, lv = p <= 3 + 1e-9 ? 'ok' : (p <= 5 + 1e-9 ? 'warn' : 'bad'), on = x === vS;
+        return { sec: secTxt(x), pct: fmt(p, 1) + ' %', color: COL[lv], w: Math.min(100, p / 6 * 100), on: on,
+          rowStyle: on ? 'background: #7CC4FF14; border: 1px solid #7CC4FF66' : 'background: transparent; border: 1px solid transparent',
+          pick: function () { setVd({ S: x }); } };
+      })
+    };
+
+    /* ---------- FAISCEAU ---------- */
+    var BM = s.beam, setBm = updKey('beam');
+    var rad = function (d) { return d * Math.PI / 180; };
+    var bd = BM.d || 0, ba = Math.min(170, BM.a || 0), bw = BM.w || 0, res, resLabel, resUnit, diamV, distV, angV;
+    if (BM.mode === 'dist') { distV = ba > 0 ? bw / (2 * Math.tan(rad(ba / 2))) : 0; diamV = bw; angV = ba; res = fmt(distV, 2); resLabel = 'Distance pour ' + fmt(bw, 2) + ' m à ' + fmt(ba, 1) + '°'; resUnit = ' m'; }
+    else if (BM.mode === 'angle') { angV = bd > 0 ? 2 * Math.atan(bw / (2 * bd)) * 180 / Math.PI : 0; distV = bd; diamV = bw; res = fmt(angV, 1); resLabel = 'Angle pour ' + fmt(bw, 2) + ' m à ' + fmt(bd, 1) + ' m'; resUnit = '°'; }
+    else { diamV = 2 * bd * Math.tan(rad(ba / 2)); distV = bd; angV = ba; res = fmt(diamV, 2); resLabel = 'Diamètre à ' + fmt(bd, 1) + ' m (' + fmt(ba, 1) + '°)'; resUnit = ' m'; }
+    var halfH = Math.min(46, Math.max(3, Math.tan(rad(Math.min(160, angV) / 2)) * 120));
+    var lm = num(BM.lmTxt || ''), area = Math.PI * Math.pow(diamV / 2, 2);
+    var bm = {
+      modes: [{ id: 'diam', label: 'Diamètre', sub: 'distance + angle' }, { id: 'dist', label: 'Distance', sub: 'diamètre + angle' }, { id: 'angle', label: 'Angle', sub: 'distance + diamètre' }].map(function (x) { var on = BM.mode === x.id; return { label: x.label, sub: x.sub, on: on, style: chipStyle(on), pick: function () { setBm({ mode: x.id }); } }; }),
+      showD: BM.mode !== 'dist', showA: BM.mode !== 'angle', showW: BM.mode !== 'diam',
+      dTxt: BM.dTxt, aTxt: BM.aTxt, wTxt: BM.wTxt, lmTxt: BM.lmTxt || '',
+      setD: function (e) { var t = e.target.value, v = num(t); setBm(v !== null && v > 0 ? { d: v, dTxt: t } : { dTxt: t }); },
+      dPlus: function () { var v = Math.round((self.state.beam.d || 0) + 1); setBm({ d: v, dTxt: String(v) }); },
+      dMinus: function () { var v = Math.max(1, Math.round((self.state.beam.d || 0) - 1)); setBm({ d: v, dTxt: String(v) }); },
+      setA: function (e) { var t = e.target.value, v = num(t); setBm(v !== null && v > 0 && v < 170 ? { a: v, aTxt: t } : { aTxt: t }); },
+      aPlus: function () { var v = Math.min(160, Math.round((self.state.beam.a || 0) + 1)); setBm({ a: v, aTxt: String(v) }); },
+      aMinus: function () { var v = Math.max(1, Math.round((self.state.beam.a || 0) - 1)); setBm({ a: v, aTxt: String(v) }); },
+      setW: function (e) { var t = e.target.value, v = num(t); setBm(v !== null && v > 0 ? { w: v, wTxt: t } : { wTxt: t }); },
+      wPlus: function () { var v = Math.round(((self.state.beam.w || 0) + 0.5) * 10) / 10; setBm({ w: v, wTxt: String(v).replace('.', ',') }); },
+      wMinus: function () { var v = Math.max(0.5, Math.round(((self.state.beam.w || 0) - 0.5) * 10) / 10); setBm({ w: v, wTxt: String(v).replace('.', ',') }); },
+      setLm: function (e) { setBm({ lmTxt: String(e.target.value).replace(/[^0-9]/g, '').slice(0, 7) }); },
+      res: res, resLabel: resLabel, resUnit: resUnit,
+      cone: 'clip-path: polygon(0 50%, 100% ' + (50 - halfH) + '%, 100% ' + (50 + halfH) + '%)',
+      coneTop: (50 - halfH) + '%', coneH: (2 * halfH) + '%',
+      lblDist: fmt(distV, 1) + ' m', lblDiam: 'Ø ' + fmt(diamV, 2) + ' m', lblAng: fmt(angV, 1) + '°',
+      hasLux: lm !== null && lm > 0 && area > 0,
+      lux: lm !== null && area > 0 ? Math.round(lm / area).toLocaleString('fr-FR') : '',
+      luxSub: 'Moyenne sur une tache de ' + fmt(area, 1) + ' m² (flux réparti uniformément : le centre est plus fort).',
+      table: [3, 5, 8, 10, 12, 15, 20, 25, 30].map(function (d) { return { d: d + ' m', w: fmt(2 * d * Math.tan(rad(angV / 2)), 2) + ' m' }; }),
+      tableTitle: 'TACHE À ' + fmt(angV, 1).toUpperCase() + '° SELON LA DISTANCE'
+    };
+
+    /* ---------- LISTE DE MATÉRIEL ---------- */
+    var MT = s.mat, setMt = updKey('mat');
+    var hasPatch = s.groups.length > 0, hasKit = s.kit.length > 0;
+    var fxFrom = MT.from === 'kit' && hasKit ? 'kit' : (MT.from === 'patch' && hasPatch ? 'patch' : (hasPatch ? 'patch' : 'kit'));
+    var fxCount = {}, fxOrder = [], fxModes = {};
+    (fxFrom === 'patch' ? s.groups : s.kit).forEach(function (g) {
+      if (!fxCount[g.fid]) { fxCount[g.fid] = 0; fxOrder.push(g.fid); fxModes[g.fid] = []; }
+      fxCount[g.fid] += g.qty;
+      if (fxFrom === 'patch') { var md = FX[g.fid].modes[g.mode]; if (md) { var ml = md[0] + ' ' + md[1] + ' ch'; if (fxModes[g.fid].indexOf(ml) < 0) fxModes[g.fid].push(ml); } }
+    });
+    var nFx = 0, kgFx = 0; fxOrder.forEach(function (k) { nFx += fxCount[k]; kgFx += (FX[k].kg || 0) * fxCount[k]; });
+    var secs = [];
+    var addSec = function (id, title, right, list) { list = list.filter(function (r) { return r.qty > 0 || (MT.adj[r.id] || 0) !== 0; }); if (list.length) secs.push({ id: id, title: title, right: right, rows: list }); };
+    addSec('fx', 'PROJECTEURS', nFx + ' machines · ' + fmt(kgFx, 0) + ' kg', fxOrder.map(function (k) { var f = FX[k]; return { id: 'fx:' + k, qty: fxCount[k], name: f.brand + ' ' + f.name, detail: [fxModes[k].join(', '), f.kg ? fmt(f.kg * fxCount[k], 0) + ' kg' : ''].filter(function (x) { return x; }).join(' · ') }; }));
+    if (hasKit) {
+      var nCirc = R.circuits.length;
+      addSec('pw', 'ÉLECTRICITÉ', R.src.short + ' · ' + nCirc + ' circuit' + (nCirc > 1 ? 's' : ''), [
+        { id: 'pw:src', qty: 1, name: 'Arrivée ' + R.src.short, detail: 'Phase la plus chargée ' + fmt(R.maxL) + ' A' },
+        multi.ways ? { id: 'pw:multi', qty: Math.ceil(nCirc / multi.ways), name: multi.label, detail: nCirc + ' circuits de 16 A' } : { id: 'pw:pc16', qty: nCirc, name: 'Lignes PC16', detail: '1 par circuit' },
+        multi.ways ? { id: 'pw:bo', qty: Math.ceil(nCirc / multi.ways), name: 'Boîtiers de sortie ' + multi.label, detail: '1 par multi' } : { id: 'pw:none', qty: 0, name: '', detail: '' },
+        { id: 'pw:alim', qty: s.kit.reduce(function (t, k) { return t + k.qty; }, 0), name: 'Câbles d’alim machines', detail: '1 par machine, moins si chaînage' }
+      ]);
+    }
+    if (hasPatch) {
+      var nU = rows.length ? rows[rows.length - 1].u : 0;
+      addSec('dmx', 'DMX', nU + ' univers · ' + rows.length + ' machines', [
+        { id: 'dmx:line', qty: nU, name: 'Départs DMX (node ou console)', detail: '1 ligne par univers au minimum' },
+        { id: 'dmx:chain', qty: Math.max(0, rows.length - nU), name: 'Câbles DMX entre machines', detail: 'Chaînage, longueurs à prévoir' },
+        { id: 'dmx:term', qty: nU, name: 'Bouchons DMX', detail: '1 par ligne' }
+      ]);
+    }
+    if (s.net.devices.length || s.net.switches.length) {
+      var dc = {}, dord = [], nPorts = 0;
+      s.net.devices.forEach(function (d) { var nm = catOf(d.model).name; if (!dc[nm]) { dc[nm] = 0; dord.push(nm); } dc[nm]++; d.ports.forEach(function (p) { if (p.ip) nPorts++; }); });
+      var swc = {}, sord = [];
+      s.net.switches.forEach(function (w) { var m = SW_CAT.find(function (x) { return x.id && x.id === w.model; }), nm = m ? m.brand + ' ' + m.name : 'Switch réseau'; if (!swc[nm]) { swc[nm] = 0; sord.push(nm); } swc[nm]++; });
+      addSec('net', 'RÉSEAU', s.net.devices.length + ' appareils · ' + s.net.switches.length + ' switchs', dord.map(function (nm) { return { id: 'net:' + nm, qty: dc[nm], name: nm, detail: '' }; })
+        .concat(sord.map(function (nm) { return { id: 'sw:' + nm, qty: swc[nm], name: nm, detail: '' }; }))
+        .concat([{ id: 'net:rj', qty: nPorts, name: 'Câbles réseau (RJ45 / etherCON)', detail: '1 par port renseigné dans le mémo' }]));
+    }
+    var trussT = TRUSS[s.rigg.truss];
+    addSec('rig', 'ACCROCHE', trussT.label + ' · ' + fmt(s.rigg.span, 1) + ' m', [
+      { id: 'rig:truss', qty: 1, name: 'Pont ' + trussT.label + ' · ' + fmt(s.rigg.span, 1) + ' m', detail: 'Portée réglée dans Rigg' },
+      { id: 'rig:clamp', qty: nFx, name: 'Crochets / colliers', detail: '1 par machine (2 pour les asservis avec omégas)' },
+      { id: 'rig:safe', qty: nFx, name: 'Élingues de sécurité', detail: '1 par machine' }
+    ]);
+    if (MT.extra.length) addSec('ex', 'DIVERS', MT.extra.length + ' ligne' + (MT.extra.length > 1 ? 's' : ''), MT.extra.map(function (x) { return { id: 'ex:' + x.id, qty: x.qty, name: x.name, detail: '', extraId: x.id }; }));
+    var nChk = 0, nRows = 0;
+    var mtSecs = secs.map(function (sc) { return { title: sc.title, right: sc.right, rows: sc.rows.map(function (r) {
+      var q = Math.max(0, r.qty + (MT.adj[r.id] || 0)), ck = !!MT.chk[r.id]; nRows++; if (ck) nChk++;
+      return { id: r.id, qty: String(q), name: r.name, detail: r.detail, hasDetail: !!r.detail, changed: (MT.adj[r.id] || 0) !== 0, qn: q,
+        chk: ck, box: ck ? 'background: #3FD08A; border-color: #3FD08A' : 'background: transparent; border-color: #4A5260',
+        nameStyle: ck ? 'color: #8A9099; text-decoration: line-through' : 'color: #EEF0F3',
+        toggle: function () { var c = Object.assign({}, self.state.mat.chk); if (c[r.id]) delete c[r.id]; else c[r.id] = true; setMt({ chk: c }); },
+        plus: function () { var a = Object.assign({}, self.state.mat.adj); a[r.id] = (a[r.id] || 0) + 1; setMt({ adj: a }); },
+        minus: function () { if (r.extraId && q <= 1) { setMt({ extra: self.state.mat.extra.filter(function (x) { return x.id !== r.extraId; }) }); return; } var a = Object.assign({}, self.state.mat.adj); a[r.id] = Math.max(-r.qty, (a[r.id] || 0) - 1); setMt({ adj: a }); }
+      }; }) }; });
+    function matPayload() {
+      return { evName: pr.evName, evLine: pr.evLine, date: pr.date, summary: nRows + ' lignes · projecteurs depuis ' + (fxFrom === 'patch' ? 'le patch DMX' : 'le kit Power'),
+        sections: mtSecs.map(function (sc) { return { title: sc.title, right: sc.right, rows: sc.rows.filter(function (r) { return r.qn > 0; }).map(function (r) { return { qty: r.qty, name: r.name, detail: r.detail }; }) }; }) };
+    }
+    var mt = {
+      sections: mtSecs, empty: mtSecs.length === 0,
+      showFrom: hasPatch && hasKit,
+      fromChips: [{ id: 'patch', label: 'Patch DMX' }, { id: 'kit', label: 'Kit Power' }].map(function (x) { var on = fxFrom === x.id; return { label: x.label, on: on, style: chipStyle(on), pick: function () { setMt({ from: x.id }); } }; }),
+      fromNote: hasPatch && hasKit ? 'Le patch et le kit Power peuvent différer : choisis la source des projecteurs.' : (hasPatch ? 'Projecteurs repris du patch DMX.' : (hasKit ? 'Projecteurs repris du kit Power.' : 'Ajoute des machines dans DMX ou Power pour remplir la liste.')),
+      progress: nChk + ' / ' + nRows + ' coché' + (nChk > 1 ? 's' : ''),
+      exName: MT.exName, exQty: MT.exQty,
+      setExName: function (e) { setMt({ exName: e.target.value }); },
+      setExQty: function (e) { setMt({ exQty: intTxt(e.target.value, 3) }); },
+      addExtra: function () { var M2 = self.state.mat, nm = (M2.exName || '').trim(); if (!nm) return; setMt({ extra: M2.extra.concat([{ id: 'x' + Date.now().toString(36), name: nm, qty: Math.max(1, parseInt(M2.exQty, 10) || 1) }]), exName: '', exQty: '1' }); },
+      resetAll: function () { setMt({ adj: {}, chk: {} }); },
+      msg: s.printMsg || '',
+      download: function () { exportFile('mat-pdf', matPayload()); }
+    };
+
+    var titles = { power: 'POWER', dmx: 'DMX', rigg: 'RIGG', autre: 'AUTRE', base: 'BASE', cot: 'COTATION', net: 'RÉSEAU', univ: 'UNIVERS', ipc: 'CALCUL IP', vd: 'CHUTE DE TENSION', beam: 'FAISCEAU', mat: 'MATÉRIEL' };
+    var sub = ['base', 'univ', 'ipc', 'vd', 'beam', 'mat'].indexOf(s.screen) >= 0;
     var showReset = s.screen === 'power' || s.screen === 'net' || (s.screen === 'dmx' && s.dmxTab === 'patch');
     return {
       isHome: s.screen === 'home', isTool: s.screen !== 'home', isPower: s.screen === 'power', isDmx: s.screen === 'dmx', isRigg: s.screen === 'rigg', isAutre: s.screen === 'autre', isBase: s.screen === 'base',
       toolTitle: titles[s.screen] || '', backLabel: sub ? 'Autre' : 'Accueil',
       goBack: set({ screen: sub ? 'autre' : 'home', picker: null, edit: null, netEdit: null, swEdit: null, netPrint: false, patchPrint: false, printMsg: '', netConfirm: false }),
       isCot: s.screen === 'cot', goCot: set({ screen: 'cot' }), ct: ct,
+      isUniv: s.screen === 'univ', goUniv: set({ screen: 'univ' }), uv: uv,
+      isIpc: s.screen === 'ipc', goIpc: set({ screen: 'ipc' }), ipr: ipr,
+      isVd: s.screen === 'vd', goVd: set({ screen: 'vd' }), vd: vd,
+      isBeam: s.screen === 'beam', goBeam: set({ screen: 'beam' }), bm: bm,
+      isMat: s.screen === 'mat', goMat: set({ screen: 'mat', printMsg: '' }), mt: mt,
       isNet: s.screen === 'net', goNet: set({ screen: 'net' }), ev: ev, pp: pp, patchPrintOpen: s.patchPrint, printMsgTxt: s.patchPrint || s.netPrint ? '' : (s.printMsg || ''),
       openPatchPrint: set({ patchPrint: true, printMsg: '' }), patchCsv: function () { exportFile('patch-csv', patchPayload()); }, nt: nt, ne: ne, se: se, swEditOpen: !!s.swEdit, pr: pr, printOpen: s.netPrint,
       showReset: showReset, resetLabel: s.screen === 'net' ? (s.netConfirm ? 'Confirmer : tout vider ?' : 'Vider le mémo') : 'Nouvelle feuille',
@@ -2190,6 +2713,6 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () { navigator.serviceWorker.register('./sw.js').catch(function () {}); });
 }
 </script>
-<!-- NTOOL version 20261017-184418 -->
+<!-- NTOOL version 20261017-185551 -->
 </body>
 </html>
