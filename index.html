@@ -547,6 +547,10 @@ input{font-family:'JetBrains Mono',monospace}
       <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">ÉVÉNEMENT</span><span style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.1">{{ev.name}}</span><span style="font-size: 13px; color: #C5CAD2">{{ev.line}}</span></div>
       <button type="button" onClick="{{ev.toggle}}" style="height: 38px; padding: 0 12px; border-radius: 10px; border: 1px solid #2C3038; background: #20232A; color: #7CC4FF; font-size: 13px; font-weight: 600; flex-shrink: 0">{{ev.btn}}</button>
     </div>
+    <div style="display: flex; align-items: center; gap: 8px">
+      <span style="flex-grow: 1; font-size: 12px; color: {{ev.savedColor}}">{{ev.savedState}}</span>
+      <button type="button" onClick="{{ev.openSheet}}" style="height: 36px; padding: 0 12px; border-radius: 10px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 13px; font-weight: 600; flex-shrink: 0; display: flex; align-items: center; gap: 6px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"></path><path d="M4 9h16M9 4v5"></path></svg>{{ev.count}}</button>
+    </div>
     <sc-if value="{{ev.editing}}" hint-placeholder-val="{{ false }}">
       <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #9AA1AC">Nom de l'événement<input type="text" id="ev-name" value="{{ev.vName}}" onChange="{{ev.setName}}" placeholder="ex. Festival d'été, soir 2" style="height: 42px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 16px; padding: 0 10px; box-sizing: border-box; width: 100%"></label>
       <div style="display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 8px">
@@ -614,12 +618,45 @@ input{font-family:'JetBrains Mono',monospace}
 </sc-if>
 
 
+<sc-if value="{{ev.sheet}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; inset: 0; background: #000000B3; display: flex; flex-direction: column; justify-content: flex-end; z-index: 5">
+  <div style="background: #17191D; border-radius: 22px 22px 0 0; padding: 16px 16px 22px; display: flex; flex-direction: column; gap: 12px; max-height: 88%; box-sizing: border-box">
+    <div style="display: flex; align-items: center; justify-content: space-between"><span style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px">Événements</span><button type="button" onClick="{{ev.closeSheet}}" aria-label="Fermer" style="width: 44px; height: 44px; border-radius: 12px; border: none; background: #20232A; color: #EEF0F3; font-size: 20px">×</button></div>
+    <sc-if value="{{ev.notSaved}}" hint-placeholder-val="{{ true }}">
+      <button type="button" onClick="{{ev.save}}" style="min-height: 50px; flex-shrink: 0; border-radius: 12px; border: none; background: #7CC4FF; color: #0D0E10; font-size: 15px; font-weight: 700">Enregistrer « {{ev.name}} »</button>
+    </sc-if>
+    <sc-if value="{{ev.isSaved}}" hint-placeholder-val="{{ false }}">
+      <div style="font-size: 12.5px; color: #3FD08A; line-height: 1.4">Le mémo ouvert est enregistré : chaque modification met à jour l’événement.</div>
+    </sc-if>
+    <sc-if value="{{ev.hasMsg}}" hint-placeholder-val="{{ false }}"><div style="font-size: 12.5px; color: #9ED3FF">{{ev.msg}}</div></sc-if>
+    <div class="scroll" style="overflow-y: auto; min-height: 0; display: flex; flex-direction: column; gap: 8px">
+      <sc-if value="{{ev.empty}}" hint-placeholder-val="{{ false }}"><div style="border-radius: 12px; border: 1px dashed #3A3F48; padding: 14px; font-size: 13px; color: #9AA1AC; text-align: center">Aucun événement enregistré.</div></sc-if>
+      <sc-for list="{{ev.list}}" as="el" hint-placeholder-count="2">
+        <div style="border-radius: 12px; border: 1px solid {{el.border}}; background: #0D0E10; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; flex-shrink: 0">
+          <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 15px">{{el.name}}<sc-if value="{{el.isCur}}" hint-placeholder-val="{{ false }}"><span style="font-size: 11px; font-weight: 700; color: #7CC4FF; margin-left: 8px">OUVERT</span></sc-if></span><span style="font-size: 12.5px; color: #C5CAD2">{{el.line}}</span><span style="font-size: 11.5px; color: #9AA1AC">{{el.meta}}</span></div>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
+            <sc-if value="{{el.notCur}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{el.open}}" style="height: 40px; border-radius: 10px; border: 1px solid #7CC4FF80; background: #7CC4FF1F; color: #EEF0F3; font-size: 13px; font-weight: 600">{{el.openLabel}}</button></sc-if>
+            <sc-if value="{{el.isCur}}" hint-placeholder-val="{{ false }}"><span style="height: 40px; display: flex; align-items: center; justify-content: center; font-size: 12.5px; color: #9AA1AC">Déjà ouvert</span></sc-if>
+            <button type="button" onClick="{{el.del}}" style="height: 40px; border-radius: 10px; border: 1px solid #FF5A5F66; background: transparent; color: #FF8A8E; font-size: 13px; font-weight: 600">{{el.delLabel}}</button>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <button type="button" onClick="{{ev.newBlank}}" style="min-height: 46px; flex-shrink: 0; border-radius: 12px; border: 1px dashed #3A3F48; background: transparent; color: #7CC4FF; font-size: 14px; font-weight: 600">{{ev.newLabel}}</button>
+  </div>
+</div>
+</sc-if>
+
+
 <sc-if value="{{swEditOpen}}" hint-placeholder-val="{{ false }}">
 <div style="position: absolute; inset: 0; background: #000000B3; display: flex; flex-direction: column; justify-content: flex-end; z-index: 5">
   <div style="background: #17191D; border-radius: 22px 22px 0 0; padding: 16px 16px 22px; display: flex; flex-direction: column; gap: 12px">
     <div style="display: flex; align-items: center; justify-content: space-between"><span style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px">{{se.title}}</span><button type="button" onClick="{{se.close}}" aria-label="Fermer" style="width: 44px; height: 44px; border-radius: 12px; border: none; background: #20232A; color: #EEF0F3; font-size: 20px">×</button></div>
+    <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; color: #9AA1AC">Modèle (Luminex)</span>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px"><sc-for list="{{se.models}}" as="sm" hint-placeholder-count="4"><button type="button" onClick="{{sm.pick}}" aria-pressed="{{sm.on}}" style="min-height: 40px; border-radius: 10px; padding: 6px 8px; font-size: 13px; font-weight: 600; text-align: center; line-height: 1.2; {{sm.style}}">{{sm.label}}</button></sc-for></div>
+    </div>
     <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #9AA1AC">Nom du switch<input type="text" value="{{se.name}}" onChange="{{se.setName}}" placeholder="ex. Switch FOH" style="height: 44px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 16px; padding: 0 10px; box-sizing: border-box; width: 100%"></label>
-    <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #9AA1AC">Adresse IP<input type="text" inputmode="decimal" value="{{se.ip}}" onChange="{{se.setIp}}" placeholder="ex. 192.168.1.250" autocomplete="off" pattern="[0-9.]*" style="height: 44px; border-radius: 10px; border: 1px solid {{se.ipBorder}}; background: #0D0E10; color: #EEF0F3; font-size: 16px; padding: 0 10px; box-sizing: border-box; width: 100%"></label>
+    <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #9AA1AC">Adresse IP (optionnelle)<input type="text" inputmode="decimal" value="{{se.ip}}" onChange="{{se.setIp}}" placeholder="ex. 192.168.1.250" autocomplete="off" pattern="[0-9.]*" style="height: 44px; border-radius: 10px; border: 1px solid {{se.ipBorder}}; background: #0D0E10; color: #EEF0F3; font-size: 16px; padding: 0 10px; box-sizing: border-box; width: 100%"></label>
     <span style="font-size: 12px; font-weight: 600; color: #FF8A8E; margin-top: -6px">{{se.conflictTxt}}</span>
     <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #9AA1AC">Emplacement<input type="text" value="{{se.loc}}" onChange="{{se.setLoc}}" placeholder="ex. Régie FOH, rack lumière" style="height: 44px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-family: 'Barlow', sans-serif; font-size: 16px; padding: 0 10px; box-sizing: border-box; width: 100%"></label>
     <div style="font-size: 12.5px; color: #FF8A8E; min-height: 16px">{{se.err}}</div>
@@ -795,7 +832,7 @@ input{font-family:'JetBrains Mono',monospace}
 
 <sc-if value="{{isBase}}" hint-placeholder-val="{{ false }}">
 <div class="scroll" style="flex-grow: 1; overflow-y: auto; padding: 14px 16px 32px; display: flex; flex-direction: column; gap: 10px">
-  <button type="button" onClick="{{newFixture}}" style="height: 52px; border-radius: 14px; border: none; background: #7CC4FF; color: #0D0E10; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Ajouter un projecteur</button>
+  <button type="button" onClick="{{newFixture}}" style="min-height: 56px; flex-shrink: 0; border-radius: 14px; border: none; background: #7CC4FF; color: #0D0E10; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Ajouter un projecteur</button>
   <div style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC; margin-top: 6px">À COMPLÉTER OU VÉRIFIER</div>
   <div style="font-size: 13px; color: #9AA1AC; line-height: 1.45">Données manquantes ou à confirmer avec la fiche constructeur. Un cos φ non publié prend 0,85 et n'apparaît pas ici. Touche une ligne pour la modifier.</div>
   <sc-if value="{{baseEmpty}}" hint-placeholder-val="{{ false }}"><div style="border-radius: 12px; border: 1px dashed #3A3F48; padding: 14px; font-size: 13px; color: #9AA1AC; text-align: center">Rien à compléter.</div></sc-if>
@@ -1293,16 +1330,23 @@ var NET_CAT = [
   { id: 'ma3cxt', cat: 'Consoles', name: 'grandMA3 compact XT', ports: 3, check: true, proto: 'MA-Net' },
   { id: 'ma3c', cat: 'Consoles', name: 'grandMA3 compact', ports: 3, check: true, proto: 'MA-Net' },
   { id: 'ma3pc', cat: 'Consoles', name: 'grandMA3 onPC (ordinateur)', ports: 1, proto: 'MA-Net' },
+  /* grandMA2 : 2 etherCON (fiches produit MA Lighting, archive) */
+  { id: 'ma2fs', cat: 'Consoles', name: 'grandMA2 full-size', short: 'MA2 full-size', ports: 2, proto: 'MA-Net' },
+  { id: 'ma2light', cat: 'Consoles', name: 'grandMA2 light', short: 'MA2 light', ports: 2, proto: 'MA-Net' },
+  { id: 'ma2ul', cat: 'Consoles', name: 'grandMA2 ultra-light', short: 'MA2 ultra-light', ports: 2, proto: 'MA-Net' },
   { id: 'ma3pul', cat: 'Processing units', name: 'grandMA3 processing unit L', ports: 2, proto: 'MA-Net' },
   { id: 'ma3pum', cat: 'Processing units', name: 'grandMA3 processing unit M', ports: 2, proto: 'MA-Net' },
   { id: 'ma3puxl', cat: 'Processing units', name: 'grandMA3 processing unit XL', ports: 2, proto: 'MA-Net' },
-  { id: 'ln2', cat: 'Nodes', name: 'Luminex LumiNode 2', ports: 1, single: true, proto: 'Art-Net' },
-  { id: 'ln4', cat: 'Nodes', name: 'Luminex LumiNode 4', ports: 1, single: true, proto: 'Art-Net' },
-  { id: 'ln12', cat: 'Nodes', name: 'Luminex LumiNode 12', ports: 1, single: true, proto: 'Art-Net' },
-  { id: 'en4', cat: 'Nodes', name: 'Obsidian NETRON EN4', ports: 1, single: true, proto: 'Art-Net' },
-  { id: 'en12', cat: 'Nodes', name: 'Obsidian NETRON EN12', ports: 1, single: true, proto: 'Art-Net' },
+  { id: 'ma2npu', cat: 'Processing units', name: 'grandMA2 NPU (network processing unit)', short: 'MA2 NPU', ports: 2, check: true, proto: 'MA-Net' },
+  { id: 'ln2', cat: 'Nodes', name: 'Luminex LumiNode 2', short: 'LumiNode 2', ports: 1, single: true, proto: 'Art-Net' },
+  { id: 'ln4', cat: 'Nodes', name: 'Luminex LumiNode 4', short: 'LumiNode 4', ports: 1, single: true, proto: 'Art-Net' },
+  { id: 'ln12', cat: 'Nodes', name: 'Luminex LumiNode 12', short: 'LumiNode 12', ports: 1, single: true, proto: 'Art-Net' },
+  { id: 'en4', cat: 'Nodes', name: 'Obsidian NETRON EN4', short: 'NETRON EN4', ports: 1, single: true, proto: 'Art-Net' },
+  { id: 'en12', cat: 'Nodes', name: 'Obsidian NETRON EN12', short: 'NETRON EN12', ports: 1, single: true, proto: 'Art-Net' },
   { id: 'other', cat: 'Autre', name: 'Autre appareil', ports: 1, proto: '' }
 ];
+/* switchs : une seule IP (optionnelle) */
+var SW_CAT = [{ id: 'gc30i', name: 'GigaCore 30i', brand: 'Luminex' }, { id: 'gc20t', name: 'GigaCore 20t', brand: 'Luminex' }, { id: 'gc10t', name: 'GigaCore 10t', brand: 'Luminex' }, { id: '', name: 'Autre', brand: '' }];
 var NET_PROTOS = ['MA-Net', 'Art-Net', 'sACN', 'DMX', 'RDMnet', 'Autre'];
 /* code couleur protocole : MA-Net rouge, Art-Net orange, sACN vert, DMX bleu profond */
 var PROTO_COL = { 'MA-Net': '#FF5A5F', 'Art-Net': '#FF9F43', 'sACN': '#3FD08A', 'DMX': '#4F7BFF' };
@@ -1323,6 +1367,11 @@ function netSeed() {
 }
 function netNormalize(o) { o.event = o.event || { name: '', date: '', place: '' }; o.switches = (o.switches || []).map(function (w) { return typeof w === 'string' ? { name: w, ip: '', loc: '' } : w; }); o.devices.forEach(function (d) { var c = NET_CAT.find(function (x) { return x.id === d.model; }); if (c && c.single && d.ports.length) { d.ports = [Object.assign({}, d.ports[0], { label: 'IP' })]; } }); return o; }
 function netLoad() { try { var t = window.localStorage.getItem(NET_KEY); if (t) { var o = JSON.parse(t); if (o && o.devices) return netNormalize(o); } } catch (e) {} return netSeed(); }
+/* événements enregistrés : copies complètes du mémo, gardées sur le téléphone */
+var EV_KEY = 'ntool-reseau-events-v1';
+function evLoad() { try { var t = window.localStorage.getItem(EV_KEY); var a = t ? JSON.parse(t) : []; return Array.isArray(a) ? a : []; } catch (e) { return []; } }
+function evStore(a) { try { window.localStorage.setItem(EV_KEY, JSON.stringify(a)); return true; } catch (e) { return false; } }
+function evEntry(id, n) { var e = n.event || {}; return { id: id, name: e.name || '', date: e.date || '', place: e.place || '', savedAt: new Date().toISOString(), data: JSON.parse(JSON.stringify(n)) }; }
 function netStore(n) { try { window.localStorage.setItem(NET_KEY, JSON.stringify(n)); return true; } catch (e) { return false; } }
 /* clavier FR : la virgule devient un point, tout le reste hors chiffres et points est retiré */
 function ipClean(t) { return String(t).replace(/,/g, '.').replace(/[^0-9.]/g, '').slice(0, 15); }
@@ -1350,7 +1399,7 @@ class Component extends DCLogic {
       quick: { fid: 'esprite', mode: 0, qty: 8, start: 1 },
       rigg: { truss: 'sc300', span: 8, cas: 'Q', crit: 'pre', load: 300 },
       cot: { mode: 'pts', L: 12, n: 4, lTxt: '12', ref: 'bout', off: 0, offTxt: '0', e: 1.5, eTxt: '1,5', par: 'auto', D: 6, dTxt: '6', nc: 8, start: 'top' },
-      net: netLoad(), evEdit: false, patchPrint: false, netZone: 'all', netView: 'zone', netType: 'all', netEdit: null, swEdit: null, netPrint: false, printMsg: '', netSaved: null, netConfirm: false
+      net: netLoad(), evs: evLoad(), evSheet: false, evArm: null, evMsg: '', evEdit: false, patchPrint: false, netZone: 'all', netView: 'zone', netType: 'all', netEdit: null, swEdit: null, netPrint: false, printMsg: '', netSaved: null, netConfirm: false
     };
   }
 
@@ -1749,7 +1798,12 @@ class Component extends DCLogic {
 
     /* ---------- RÉSEAU ---------- */
     var N = s.net;
-    var setNet = function (n2) { var ok = netStore(n2); self.setState({ net: n2, netSaved: ok, netConfirm: false }); };
+    var setNet = function (n2, extra) {
+      var ok = netStore(n2), st = Object.assign({ net: n2, netSaved: ok, netConfirm: false }, extra || {});
+      /* un mémo déjà enregistré comme événement reste synchronisé */
+      if (n2.evId) { var L2 = (st.evs || self.state.evs); if (L2.some(function (x) { return x.id === n2.evId; })) { L2 = L2.map(function (x) { return x.id === n2.evId ? evEntry(x.id, n2) : x; }); evStore(L2); st.evs = L2; } }
+      self.setState(st);
+    };
     var catOf = function (id) { return NET_CAT.find(function (c) { return c.id === id; }) || NET_CAT[NET_CAT.length - 1]; };
     var ipCount = {}, ipOwners = {};
     var addOwner = function (ip, id, txt) { if (!ip) return; ipCount[ip] = (ipCount[ip] || 0) + 1; (ipOwners[ip] = ipOwners[ip] || []).push({ id: id, txt: txt }); };
@@ -1785,7 +1839,7 @@ class Component extends DCLogic {
       });
       showSw = s.netType === 'all' || s.netType === 'Switchs';
     }
-    var swOpen = function (i) { return function () { var w = i === null ? { name: '', ip: '', loc: '' } : self.state.net.switches[i]; self.setState({ swEdit: { idx: i, name: w.name, ip: w.ip, loc: w.loc, err: '', clashOk: false, delArm: false } }); }; };
+    var swOpen = function (i) { return function () { var w = i === null ? { name: '', ip: '', loc: '', model: '' } : self.state.net.switches[i]; self.setState({ swEdit: { idx: i, name: w.name, ip: w.ip, loc: w.loc, model: w.model || '', err: '', clashOk: false, delArm: false } }); }; };
     var nIp = 0; N.devices.forEach(function (d) { d.ports.forEach(function (p) { if (p.ip) nIp++; }); });
     var onlySw = s.netView === 'type' && s.netType === 'Switchs';
     var EV = N.event || { name: '', date: '', place: '' };
@@ -1798,6 +1852,43 @@ class Component extends DCLogic {
       vName: EV.name, vDate: EV.date, vPlace: EV.place,
       setName: setEv('name'), setDate: setEv('date'), setPlace: setEv('place')
     };
+    (function () {
+      var L3 = s.evs, cur = N.evId && L3.some(function (x) { return x.id === N.evId; });
+      var blank = function () { return { event: { name: '', date: '', place: '' }, zones: ['FOH', 'Scène'], switches: [], devices: [] }; };
+      var guard = function (key, go) { return function () { var n3 = self.state.net, inList = n3.evId && self.state.evs.some(function (x) { return x.id === n3.evId; }); if (!inList && n3.devices.length && self.state.evArm !== key) { self.setState({ evArm: key, evMsg: '' }); return; } go(); }; };
+      ev.savedState = cur ? '✓ Événement enregistré (mise à jour auto)' : 'Événement pas encore enregistré';
+      ev.savedColor = cur ? '#3FD08A' : '#9AA1AC';
+      ev.count = L3.length ? 'Événements (' + L3.length + ')' : 'Événements';
+      ev.sheet = !!s.evSheet; ev.msg = s.evMsg; ev.hasMsg = !!s.evMsg;
+      ev.openSheet = set({ evSheet: true, evArm: null, evMsg: '' });
+      ev.closeSheet = set({ evSheet: false, evArm: null, evMsg: '' });
+      ev.isSaved = cur; ev.notSaved = !cur;
+      ev.save = function () {
+        var n3 = self.state.net, id = 'e' + Date.now().toString(36), L4 = [evEntry(id, Object.assign({}, n3, { evId: id }))].concat(self.state.evs);
+        var ok = evStore(L4); setNet(Object.assign({}, n3, { evId: id }), { evs: L4, evMsg: ok ? 'Événement enregistré.' : 'Impossible d’enregistrer (stockage du téléphone indisponible).', evArm: null });
+      };
+      ev.newBlank = guard('new', function () { setNet(blank(), { evArm: null, evMsg: 'Nouveau mémo vierge.', evEdit: true, evSheet: false, netZone: 'all' }); });
+      ev.newArm = s.evArm === 'new';
+      ev.newLabel = s.evArm === 'new' ? 'Le mémo actuel n’est pas enregistré : confirmer ?' : '+ Nouveau mémo vierge';
+      ev.list = L3.map(function (x) {
+        var nd = (x.data && x.data.devices || []).length, nsw = (x.data && x.data.switches || []).length, isCur = x.id === N.evId;
+        var dk = 'del:' + x.id, ok2 = 'open:' + x.id;
+        return {
+          name: x.name || 'Événement sans nom', line: [fmtDate(x.date), x.place].filter(function (y) { return y; }).join(' · ') || 'Date et lieu non renseignés',
+          meta: nd + ' appareil' + (nd > 1 ? 's' : '') + ' · ' + nsw + ' switch' + (nsw > 1 ? 's' : ''), isCur: isCur, notCur: !isCur,
+          border: isCur ? '#7CC4FF' : '#2C3038',
+          openLabel: s.evArm === ok2 ? 'Remplacer le mémo ?' : 'Ouvrir',
+          open: guard(ok2, function () { var d = netNormalize(JSON.parse(JSON.stringify(x.data))); d.evId = x.id; setNet(d, { evSheet: false, evArm: null, evMsg: '', netZone: 'all' }); }),
+          delLabel: s.evArm === dk ? 'Confirmer' : 'Supprimer',
+          del: function () {
+            if (self.state.evArm !== dk) { self.setState({ evArm: dk, evMsg: '' }); return; }
+            var L5 = self.state.evs.filter(function (y) { return y.id !== x.id; }); evStore(L5);
+            if (self.state.net.evId === x.id) { var n4 = Object.assign({}, self.state.net); delete n4.evId; setNet(n4, { evs: L5, evArm: null }); } else self.setState({ evs: L5, evArm: null });
+          }
+        };
+      });
+      ev.empty = L3.length === 0;
+    })();
     var nt = {
       viewZone: s.netView === 'zone', viewType: s.netView === 'type',
       viewChips: [{ id: 'zone', label: 'Par zone' }, { id: 'type', label: 'Par type' }].map(function (x) { var on = s.netView === x.id; return { label: x.label, on: on, style: on ? 'background: #2C3038; color: #EEF0F3' : 'background: transparent; color: #9AA1AC', pick: set({ netView: x.id }) }; }),
@@ -1814,7 +1905,8 @@ class Component extends DCLogic {
       showSw: showSw && N.switches.length > 0,
       swCards: N.switches.map(function (w, i) {
         var n = N.devices.filter(function (d) { return d.sw === w.name; }).length, dup = w.ip && ipCount[w.ip] > 1;
-        return { name: w.name, loc: w.loc || 'Emplacement ?', ip: w.ip || '— pas d’IP', ipColor: dup || (w.ip && !ipValid(w.ip)) ? '#FF8A8E' : (w.ip ? '#EEF0F3' : '#6B727D'), count: n + ' appareil' + (n > 1 ? 's' : '') + ' branché' + (n > 1 ? 's' : ''), conflict: !!dup, edit: swOpen(i) };
+        var swm = SW_CAT.find(function (x) { return x.id && x.id === w.model; });
+        return { name: w.name, loc: (swm && swm.name !== w.name ? 'Luminex ' + swm.name + ' · ' : '') + (w.loc || 'Emplacement ?'), ip: w.ip || '— pas d’IP', ipColor: dup || (w.ip && !ipValid(w.ip)) ? '#FF8A8E' : (w.ip ? '#EEF0F3' : '#6B727D'), count: n + ' appareil' + (n > 1 ? 's' : '') + ' branché' + (n > 1 ? 's' : ''), conflict: !!dup, edit: swOpen(i) };
       }),
       editOpen: !!s.netEdit,
       legend: ['MA-Net', 'Art-Net', 'sACN', 'DMX'].map(function (x) { return { label: x, style: protoStyle(x) }; }),
@@ -1830,6 +1922,13 @@ class Component extends DCLogic {
       se = {
         title: SE.idx === null ? 'Nouveau switch' : 'Modifier le switch',
         name: SE.name, ip: SE.ip, loc: SE.loc, err: SE.err,
+        models: SW_CAT.map(function (m) { var on = (SE.model || '') === m.id; return { label: m.name, on: on, style: chipStyle(on), pick: function () {
+          var S3 = self.state.swEdit, prev = SW_CAT.find(function (x) { return x.id === S3.model; }), nm = S3.name.trim();
+          var auto = !nm || (prev && prev.id && nm.indexOf(prev.name) === 0);
+          if (auto && m.id) { var base = m.name, k = 1, cand = base; while (self.state.net.switches.some(function (x, j) { return x.name === cand && j !== S3.idx; })) { k++; cand = base + ' ' + k; } nm = cand; }
+          else if (auto) nm = '';
+          updS({ model: m.id, name: nm, err: '' });
+        } }; }),
         ipBorder: SE.ip && (!ipValid(SE.ip) || others.length) ? '#FF5A5F' : '#2C3038',
         conflictTxt: SE.ip && !ipValid(SE.ip) ? 'Adresse invalide (format 192.168.1.10).' : (others.length ? 'Conflit : déjà utilisée par ' + others.map(function (o) { return o.txt; }).join(', ') : ''),
         setName: function (e) { updS({ name: e.target.value }); }, setIp: function (e) { updS({ ip: ipClean(e.target.value), clashOk: false, err: '' }); }, setLoc: function (e) { updS({ loc: e.target.value }); },
@@ -1849,7 +1948,7 @@ class Component extends DCLogic {
           if (S2.ip && !ipValid(S2.ip)) { updS({ err: 'Adresse IP invalide.' }); return; }
           var sid = S2.idx === null ? null : 'sw:' + self.state.net.switches[S2.idx].name;
           if (S2.ip && (ipOwners[S2.ip] || []).some(function (o) { return o.id !== sid; }) && !S2.clashOk) { updS({ err: 'Conflit IP. Touche encore Enregistrer pour garder quand même.', clashOk: true }); return; }
-          var w = { name: nm, ip: S2.ip, loc: S2.loc.trim() }, sws, devs = self.state.net.devices;
+          var w = { name: nm, ip: S2.ip, loc: S2.loc.trim(), model: S2.model || '' }, sws, devs = self.state.net.devices;
           if (S2.idx === null) sws = self.state.net.switches.concat([w]);
           else { var old = self.state.net.switches[S2.idx].name; sws = self.state.net.switches.map(function (x, j) { return j === S2.idx ? w : x; }); if (old !== nm) devs = devs.map(function (d) { return d.sw === old ? Object.assign({}, d, { sw: nm }) : d; }); }
           setNet(Object.assign({}, self.state.net, { switches: sws, devices: devs }));
@@ -1927,9 +2026,9 @@ class Component extends DCLogic {
         title: NE.id ? 'Modifier l’appareil' : (NE.model ? 'Nouvel appareil' : 'Choisir le modèle'),
         choosing: !NE.model, form: !!NE.model,
         close: set({ netEdit: null }),
-        catalog: cats.map(function (c) { return { cat: c.toUpperCase(), items: NET_CAT.filter(function (x) { return x.cat === c; }).map(function (x) { return { name: x.name, meta: x.single ? '1 IP' : x.ports + ' cartes réseau' + (x.check ? ' ?' : ''), pick: function () {
+        catalog: cats.map(function (c) { return { cat: c.toUpperCase(), items: NET_CAT.filter(function (x) { return x.cat === c; }).map(function (x) { return { name: x.name, meta: x.single ? '1 IP' : x.ports + (x.ports > 1 ? ' cartes réseau' : ' carte réseau') + (x.check ? ' ?' : ''), pick: function () {
           var ports = []; for (var i = 0; i < x.ports; i++) ports.push({ label: x.single ? 'IP' : 'ETH' + i, ip: '', mask: '/16', protos: i === 0 && x.proto ? [x.proto] : [] });
-          updE({ model: x.id, name: x.name.replace('grandMA3 ', 'MA3 ').replace('processing unit', 'PU'), ports: ports });
+          updE({ model: x.id, name: x.short || x.name.replace('grandMA3 ', 'MA3 ').replace('processing unit', 'PU'), ports: ports });
         } }; }) }; }),
         model: cm ? cm.name : '', name: NE.name, sub: NE.sub, note: NE.note, newZone: NE.newZone, newSw: NE.newSw, err: NE.err,
         setName: function (e) { updE({ name: e.target.value }); }, setSub: function (e) { updE({ sub: e.target.value }); }, setNote: function (e) { updE({ note: e.target.value }); },
@@ -1981,7 +2080,7 @@ class Component extends DCLogic {
       openPatchPrint: set({ patchPrint: true, printMsg: '' }), patchCsv: function () { exportFile('patch-csv', patchPayload()); }, nt: nt, ne: ne, se: se, swEditOpen: !!s.swEdit, pr: pr, printOpen: s.netPrint,
       showReset: showReset, resetLabel: s.screen === 'net' ? (s.netConfirm ? 'Confirmer : tout vider ?' : 'Vider le mémo') : 'Nouvelle feuille',
       doReset: function () {
-        if (s.screen === 'net') { if (!s.netConfirm) { self.setState({ netConfirm: true }); return; } setNet({ event: s.net.event, zones: s.net.zones, switches: s.net.switches, devices: [] }); return; }
+        if (s.screen === 'net') { if (!s.netConfirm) { self.setState({ netConfirm: true }); return; } setNet({ event: s.net.event, zones: [], switches: [], devices: [] }); self.setState({ netZone: 'all' }); return; }
         if (s.screen === 'power') self.setState({ kit: [] });
         else self.setState({ groups: [] });
       },
@@ -2091,6 +2190,6 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () { navigator.serviceWorker.register('./sw.js').catch(function () {}); });
 }
 </script>
-<!-- NTOOL version 20261017-175726 -->
+<!-- NTOOL version 20261017-181356 -->
 </body>
 </html>
