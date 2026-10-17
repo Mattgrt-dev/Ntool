@@ -404,7 +404,7 @@ input{font-family:'JetBrains Mono',monospace}
     </sc-if>
     <sc-if value="{{ct.showN}}" hint-placeholder-val="{{ true }}">
     <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">MACHINES</span>
-      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{ct.nMinus}}" aria-label="Une machine de moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px">−</button><span style="flex-grow: 1; text-align: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 20px">{{ct.n}}</span><button type="button" onClick="{{ct.nPlus}}" aria-label="Une machine de plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px">+</button></div>
+      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{ct.nMinus}}" aria-label="Une machine de moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="numeric" aria-label="Nombre de machines" value="{{ct.nTxt}}" onChange="{{ct.setN}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box"><button type="button" onClick="{{ct.nPlus}}" aria-label="Une machine de plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
     </div>
     </sc-if>
   </section>
@@ -422,7 +422,7 @@ input{font-family:'JetBrains Mono',monospace}
       <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{ct.dMinus}}" aria-label="Diamètre moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="decimal" aria-label="Diamètre en mètres" value="{{ct.dTxt}}" onChange="{{ct.setD}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box"><button type="button" onClick="{{ct.dPlus}}" aria-label="Diamètre plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
     </div>
     <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">MACHINES</span>
-      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{ct.ncMinus}}" aria-label="Une machine de moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><span style="flex-grow: 1; text-align: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 20px">{{ct.nc}}</span><button type="button" onClick="{{ct.ncPlus}}" aria-label="Une machine de plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
+      <div style="display: flex; align-items: center; gap: 4px"><button type="button" onClick="{{ct.ncMinus}}" aria-label="Une machine de moins" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">−</button><input type="text" inputmode="numeric" aria-label="Nombre de machines sur le cercle" value="{{ct.ncTxt}}" onChange="{{ct.setNc}}" style="min-width: 0; flex-grow: 1; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 18px; font-weight: 700; text-align: center; box-sizing: border-box"><button type="button" onClick="{{ct.ncPlus}}" aria-label="Une machine de plus" style="width: 40px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px; flex-shrink: 0">+</button></div>
     </div>
   </section>
   <section style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #9AA1AC">DÉPART</span>
@@ -1697,7 +1697,7 @@ class Component extends DCLogic {
       offMinus: function () { var v = Math.max(0, Math.round((self.state.cot.off || 0) - 5)); setCot({ off: v, offTxt: String(v) }); },
       setOff: function (e) { var t = e.target.value, v = num(t); setCot(v !== null && v >= 0 ? { off: v, offTxt: t } : { offTxt: t }); },
       caption: fix ? nM + ' machines à ' + f2(eV) + ' m d’entraxe, centrées : ' + (nM - 1) + ' × ' + f2(eV) + ' m + 2 × ' + f2(offM) + ' m de marge = ' + f2(L) + ' m.' : (ext ? nM + ' machines, la première à ' + f2(offM) + ' m et la dernière à ' + f2(L - offM) + ' m : ' : nM + ' machines, ' + nSeg + ' espaces égaux bouts compris : ') + nSeg + ' × ' + f2(gapV) + ' m' + (offM > 0 ? ' + 2 × ' + f2(offM) + ' m d’offset' : '') + ' = ' + f2(L) + ' m.' + (showLbl ? '' : ' Cotes masquées sur le schéma (trop serrées), voir les positions.'),
-      modes: [ { id: 'pts', label: 'Entre deux points', sub: 'Espaces égaux, bouts compris' }, { id: 'ext', label: 'Entre deux extrémités', sub: 'Une machine à chaque bout' }, { id: 'fix', label: 'Entraxe imposé', sub: 'Combien tiennent, centrées' }, { id: 'circle', label: 'Cercle', sub: 'Pont circulaire' } ].map(function (m) { var on = m.id === c0.mode; return { label: m.label, sub: m.sub, on: on, style: chipStyle(on), pick: function () { setCot({ mode: m.id, n: m.id === 'ext' ? Math.max(2, self.state.cot.n) : self.state.cot.n }); } }; }),
+      modes: [ { id: 'pts', label: 'Entre deux points', sub: 'Espaces égaux, bouts compris' }, { id: 'ext', label: 'Entre deux extrémités', sub: 'Une machine à chaque bout' }, { id: 'fix', label: 'Entraxe imposé', sub: 'Combien tiennent, centrées' }, { id: 'circle', label: 'Cercle', sub: 'Pont circulaire' } ].map(function (m) { var on = m.id === c0.mode; return { label: m.label, sub: m.sub, on: on, style: chipStyle(on), pick: function () { setCot({ mode: m.id, n: m.id === 'ext' ? Math.max(2, self.state.cot.n) : self.state.cot.n, nTxt: null }); } }; }),
       machines: posV.map(function (x) { return { x: L > 0 ? x / L * 100 : 0 }; }),
       segs: segList.map(function (g, i) { var isOff = offM > 0 && (i === 0 || i === segList.length - 1), w = L > 0 ? g[1] / L * 100 : 0; return { x: L > 0 ? g[0] / L * 100 : 0, w: w, label: f2(g[1]), labelStyle: (showLbl && w >= 9 ? '' : 'visibility: hidden') + (isOff ? '; color: #FFB020' : '') }; }),
       axeOn: axe, boutOn: !axe,
@@ -1713,8 +1713,10 @@ class Component extends DCLogic {
       eMinus: function () { var v = Math.max(0.05, Math.round(((self.state.cot.e || 0) - 0.25) * 100) / 100); setCot({ e: v, eTxt: String(v).replace('.', ',') }); },
       setE: function (e) { var t = e.target.value, v = num(t); setCot(v && v > 0 ? { e: v, eTxt: t } : { eTxt: t }); },
       parChips: [{ id: 'auto', label: 'Au plus' }, { id: 'pair', label: 'Nombre pair' }, { id: 'impair', label: 'Impair (une au centre)' }].map(function (x) { var on = (c0.par || 'auto') === x.id; return { label: x.label, on: on, style: chipStyle(on), pick: function () { setCot({ par: x.id }); } }; }),
-      nPlus: function () { setCot({ n: Math.min(40, self.state.cot.n + 1) }); },
-      nMinus: function () { setCot({ n: Math.max(ext ? 2 : 1, self.state.cot.n - 1) }); },
+      nPlus: function () { setCot({ n: Math.min(40, self.state.cot.n + 1), nTxt: null }); },
+      nMinus: function () { setCot({ n: Math.max(ext ? 2 : 1, self.state.cot.n - 1), nTxt: null }); },
+      nTxt: c0.nTxt != null ? c0.nTxt : String(c0.n),
+      setN: function (e) { var t = e.target.value.replace(/[^0-9]/g, '').slice(0, 2), v = parseInt(t, 10); setCot(v >= (ext ? 2 : 1) && v <= 40 ? { n: v, nTxt: t } : { nTxt: t }); },
       lPlus: function () { var v = Math.round((self.state.cot.L + 0.5) * 100) / 100; setCot({ L: v, lTxt: String(v).replace('.', ',') }); },
       lMinus: function () { var v = Math.max(0.5, Math.round((self.state.cot.L - 0.5) * 100) / 100); setCot({ L: v, lTxt: String(v).replace('.', ',') }); },
       setL: function (e) { var t = e.target.value, v = num(t); setCot(v && v > 0 ? { L: v, lTxt: t } : { lTxt: t }); }
@@ -1729,8 +1731,10 @@ class Component extends DCLogic {
       ct.dPlus = function () { var v = Math.round(((self.state.cot.D || 0) + 0.5) * 100) / 100; setCot({ D: v, dTxt: String(v).replace('.', ',') }); };
       ct.dMinus = function () { var v = Math.max(0.5, Math.round(((self.state.cot.D || 0) - 0.5) * 100) / 100); setCot({ D: v, dTxt: String(v).replace('.', ',') }); };
       ct.setD = function (e) { var t = e.target.value, v = num(t); setCot(v && v > 0 ? { D: v, dTxt: t } : { dTxt: t }); };
-      ct.ncPlus = function () { setCot({ nc: Math.min(48, (self.state.cot.nc || 2) + 1) }); };
-      ct.ncMinus = function () { setCot({ nc: Math.max(2, (self.state.cot.nc || 2) - 1) }); };
+      ct.ncPlus = function () { setCot({ nc: Math.min(48, (self.state.cot.nc || 2) + 1), ncTxt: null }); };
+      ct.ncMinus = function () { setCot({ nc: Math.max(2, (self.state.cot.nc || 2) - 1), ncTxt: null }); };
+      ct.ncTxt = c0.ncTxt != null ? c0.ncTxt : String(nc);
+      ct.setNc = function (e) { var t = e.target.value.replace(/[^0-9]/g, '').slice(0, 2), v = parseInt(t, 10); setCot(v >= 2 && v <= 48 ? { nc: v, ncTxt: t } : { ncTxt: t }); };
       ct.startChips = [{ id: 'top', label: 'Machine en haut (0°)' }, { id: 'half', label: 'Écart centré en haut' }].map(function (x) { var on = (c0.start || 'top') === x.id; return { label: x.label, on: on, style: chipStyle(on), pick: function () { setCot({ start: x.id }); } }; });
       var pts = [];
       for (var i = 0; i < nc; i++) {
@@ -2087,6 +2091,6 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () { navigator.serviceWorker.register('./sw.js').catch(function () {}); });
 }
 </script>
-<!-- NTOOL version 20261017-175544 -->
+<!-- NTOOL version 20261017-175726 -->
 </body>
 </html>
