@@ -147,6 +147,10 @@ input{font-family:'JetBrains Mono',monospace}
       </div>
     </sc-for>
     <button type="button" onClick="{{openPickPower}}" style="height: 48px; border-radius: 14px; border: 1px dashed #3A3F48; background: transparent; color: #7CC4FF; font-size: 15px; font-weight: 600">+ Ajouter un projecteur</button>
+    <sc-if value="{{pwFromPatch.show}}" hint-placeholder-val="{{ true }}">
+      <button type="button" onClick="{{pwFromPatch.go}}" style="min-height: 54px; flex-shrink: 0; padding: 8px 12px; border-radius: 14px; border: 1px dashed #4A5260; background: #7CC4FF0D; color: #7CC4FF; font-size: 15px; font-weight: 600">{{pwFromPatch.label}}</button>
+      <sc-if value="{{pwFromPatch.hasNote}}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; color: #9AA1AC; margin-top: -4px">{{pwFromPatch.note}}</span></sc-if>
+    </sc-if>
   </section>
 
   <section style="display: flex; flex-direction: column; gap: 8px">
@@ -1629,7 +1633,7 @@ class Component extends DCLogic {
     super(props);
     this.state = {
       screen: 'home', picker: null, pickBrand: 'all', pickSrc: 'all', pickQuery: '', edit: null, rev: 0,
-      kit: initialPower().kit,
+      kit: initialPower().kit, pwImportArm: false,
       source: '32T', multi: 'soca', sameType: true, marge: 80,
       dmxTab: 'patch',
       groups: [{ fid: 'iforte', mode: 0, qty: 4 }, { fid: 'esprite', mode: 0, qty: 6 }, { fid: 'aura', mode: 1, qty: 8 }],
@@ -2542,7 +2546,7 @@ class Component extends DCLogic {
         else self.setState({ groups: [] });
       },
       fixtureCount: FX_ORDER.filter(function (k) { return !FX[k].missing; }).length, trussCount: TRUSS_ORDER.length,
-      goPower: set({ screen: 'power' }), goDmx: set({ screen: 'dmx' }), goRigg: set({ screen: 'rigg' }), goAutre: set({ screen: 'autre' }), goBase: set({ screen: 'base' }),
+      goPower: set({ screen: 'power', pwImportArm: false }), goDmx: set({ screen: 'dmx' }), goRigg: set({ screen: 'rigg' }), goAutre: set({ screen: 'autre' }), goBase: set({ screen: 'base' }),
       pw: pw, dx: dx, rg: rg,
       toggleSame: set({ sameType: !s.sameType }), toggleRound: set({ round: !s.round }),
       tabQuick: set({ dmxTab: 'quick' }), tabPatch: set({ dmxTab: 'patch' }),
@@ -2584,6 +2588,20 @@ class Component extends DCLogic {
       setLoad: function (e) { var v = Math.max(0, parseInt(e.target.value, 10) || 0); self.setState({ rigg: Object.assign({}, s.rigg, { load: v }) }); },
       spanMinus: function () { self.setState({ rigg: Object.assign({}, s.rigg, { span: Math.max(1, s.rigg.span - 0.5) }) }); },
       spanPlus: function () { self.setState({ rigg: Object.assign({}, s.rigg, { span: Math.min(maxSpan, s.rigg.span + 0.5) }) }); },
+      pwFromPatch: (function () {
+        var cnt = {}, ord = [], nOut = 0, nTot = 0;
+        s.groups.forEach(function (g) { var f = FX[g.fid]; if (!f) return; if (f.dmxOnly) { nOut += g.qty; return; } if (!cnt[g.fid]) { cnt[g.fid] = 0; ord.push(g.fid); } cnt[g.fid] += g.qty; nTot += g.qty; });
+        var armed = s.pwImportArm;
+        return {
+          show: nTot > 0,
+          label: armed ? 'Remplacer la feuille Power par le patch ?' : 'Reprendre le patch DMX (' + nTot + ' machine' + (nTot > 1 ? 's' : '') + ')',
+          hasNote: nOut > 0 || armed, note: (armed ? 'Touche encore pour confirmer : la feuille Power actuelle sera remplacée. ' : '') + (nOut > 0 ? nOut + ' machine' + (nOut > 1 ? 's' : '') + ' sur batterie (DMX seulement) ignorée' + (nOut > 1 ? 's' : '') + '.' : ''),
+          go: function () {
+            if (self.state.kit.length && !self.state.pwImportArm) { self.setState({ pwImportArm: true }); return; }
+            self.setState({ kit: ord.map(function (fid) { return { fid: fid, qty: cnt[fid], per: null }; }), pwImportArm: false });
+          }
+        };
+      })(),
       loadFromKit: function () { self.setState({ rigg: Object.assign({}, s.rigg, { load: Math.round(totalKg) }) }); }
     };
   }
@@ -2647,6 +2665,6 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () { navigator.serviceWorker.register('./sw.js').catch(function () {}); });
 }
 </script>
-<!-- NTOOL version 20261017-202523 -->
+<!-- NTOOL version 20261019-123749 -->
 </body>
 </html>

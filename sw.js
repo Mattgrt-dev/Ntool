@@ -1,5 +1,5 @@
-/* NTOOL : hors ligne + mise à jour automatique. Version 20261017-202523 */
-var CACHE = 'ntool-20261017-202523';
+/* NTOOL : hors ligne + mise à jour automatique. Version 20261019-123749 */
+var CACHE = 'ntool-20261019-123749';
 var SHELL = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(SHELL); }));
