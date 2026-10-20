@@ -691,15 +691,15 @@ input{font-family:'JetBrains Mono',monospace}
   <sc-if value="{{ct.isLine}}" hint-placeholder-val="{{ true }}">
   <section style="border-radius: 14px; background: #131518; border: 1px solid #2C3038; padding: 18px 18px 14px; display: flex; flex-direction: column; gap: 6px">
     <sc-if value="{{ct.axeOn}}" hint-placeholder-val="{{ false }}">
-      <div style="position: relative; height: 14px"><span style="position: absolute; left: 50%; transform: translateX(-50%); font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700; color: #FFB020; white-space: nowrap">AXE 0</span></div>
+      <div style="position: relative; height: 14px"><span style="position: absolute; left: 0; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700; color: #C3A6FF">◀ −</span><span style="position: absolute; left: 50%; transform: translateX(-50%); font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700; color: #FFB020; white-space: nowrap">AXE 0</span><span style="position: absolute; right: 0; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700; color: #4FD6C2">+ ▶</span></div>
     </sc-if>
     <div style="position: relative; height: 46px">
-      <sc-if value="{{ct.axeOn}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; left: 50%; top: -4px; height: 92px; border-left: 1.5px dashed #FFB020; z-index: 1"></span></sc-if>
+      <sc-if value="{{ct.axeOn}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; left: 0; width: 50%; top: -2px; height: 44px; background: #C3A6FF14; border-radius: 6px 0 0 6px"></span><span style="position: absolute; left: 50%; right: 0; top: -2px; height: 44px; background: #4FD6C214; border-radius: 0 6px 6px 0"></span><span style="position: absolute; left: 50%; top: -4px; height: 92px; border-left: 1.5px dashed #FFB020; z-index: 1"></span></sc-if>
       <div style="position: absolute; left: 0; right: 0; top: 4px; height: 14px; border-top: 2px solid #9AA1AC; border-bottom: 2px solid #9AA1AC; background: repeating-linear-gradient(60deg, transparent 0 7px, #5A616C 7px 8.5px)"></div>
       <sc-for list="{{ct.machines}}" as="mc" hint-placeholder-count="4">
         <div style="position: absolute; top: 18px; left: {{mc.x}}%; width: 18px; margin-left: -9px; display: flex; flex-direction: column; align-items: center">
-          <span style="width: 2px; height: 5px; background: #7CC4FF"></span>
-          <span style="width: 16px; height: 16px; border-radius: 4px 4px 8px 8px; background: #7CC4FF"></span>
+          <span style="width: 2px; height: 5px; background: {{mc.col}}"></span>
+          <span style="width: 16px; height: 16px; border-radius: 4px 4px 8px 8px; background: {{mc.col}}"></span>
         </div>
       </sc-for>
     </div>
@@ -734,10 +734,14 @@ input{font-family:'JetBrains Mono',monospace}
       <button type="button" onClick="{{ct.refAxe}}" aria-pressed="{{ct.axeOn}}" style="height: 40px; border-radius: 9px; border: none; font-size: 14px; font-weight: 600; {{ct.axeStyle}}">Depuis l'axe</button>
     </div>
     <div style="font-size: 12px; color: #9AA1AC">{{ct.refNote}}</div>
+    <sc-if value="{{ct.legend}}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; gap: 6px; flex-wrap: wrap"><span style="font-size: 12px; font-weight: 700; border-radius: 6px; padding: 3px 8px; background: #C3A6FF1F; color: #C3A6FF; border: 1px solid #C3A6FF66">− gauche</span><span style="font-size: 12px; font-weight: 700; border-radius: 6px; padding: 3px 8px; background: #FFB0201F; color: #FFB020; border: 1px solid #FFB02066">0 axe</span><span style="font-size: 12px; font-weight: 700; border-radius: 6px; padding: 3px 8px; background: #4FD6C21F; color: #4FD6C2; border: 1px solid #4FD6C266">+ droite</span></div>
+    </sc-if>
     <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
       <sc-for list="{{ct.pos}}" as="ps" hint-placeholder-count="4">
-        <div style="border-radius: 12px; background: #17191D; border: 1px solid #2C3038; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px">
+        <div style="border-radius: 12px; padding: 8px 10px 8px 12px; display: flex; flex-direction: column; gap: 2px; {{ps.card}}">
           <span style="font-size: 11px; color: #9AA1AC">Machine {{ps.n}}</span>
+          <sc-if value="{{ps.sideOn}}" hint-placeholder-val="{{ false }}"><span style="font-size: 10px; font-weight: 700; letter-spacing: 0.5px; color: {{ps.color}}">{{ps.side}}</span></sc-if>
           <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 18px; color: {{ps.color}}">{{ps.m}}<span style="font-size: 12px; color: #9AA1AC"> m</span></span>
         </div>
       </sc-for>
@@ -1983,6 +1987,9 @@ class Component extends DCLogic {
     /* au cm près ; un demi-centimètre exact (marges centrées) s'affiche au mm pour que les cotes s'additionnent juste */
     var f2 = function (x) { var c = Math.abs(x * 100), fr = c - Math.floor(c); return Math.abs(fr - 0.5) < 1e-6 ? fmt(x, 3) : fmt(x, 2); };
     var showLbl = segList.length <= 10, axe = c0.ref === 'axe';
+    /* repères côté axe : − à gauche (violet), + à droite (turquoise), 0 sur l'axe (ambre) */
+    var NEG = '#C3A6FF', POS = '#4FD6C2', ZER = '#FFB020';
+    var sideCol = function (d) { return Math.abs(d) < 1e-9 ? ZER : (d < 0 ? NEG : POS); };
     var sgn = function (d) { return Math.abs(d) < 1e-9 ? '0,00' : (d > 0 ? '+' : '−') + f2(Math.abs(d)); };
     var ct = {
       n: nM, lTxt: c0.lTxt, gap: fix ? String(nM) : f2(gapV), gapUnit: fix ? ' machines' : ' m', total: f2(L),
@@ -1996,15 +2003,18 @@ class Component extends DCLogic {
       setOff: function (e) { var t = e.target.value, v = num(t); setCot(v !== null && v >= 0 ? { off: v, offTxt: t } : { offTxt: t }); },
       caption: fix ? nM + ' machines à ' + f2(eV) + ' m d’entraxe, centrées : ' + (nM - 1) + ' × ' + f2(eV) + ' m + 2 × ' + f2(offM) + ' m de marge = ' + f2(L) + ' m.' : (ext ? nM + ' machines, la première à ' + f2(offM) + ' m et la dernière à ' + f2(L - offM) + ' m : ' : nM + ' machines, ' + nSeg + ' espaces égaux bouts compris : ') + nSeg + ' × ' + f2(gapV) + ' m' + (offM > 0 ? ' + 2 × ' + f2(offM) + ' m d’offset' : '') + ' = ' + f2(L) + ' m.' + (showLbl ? '' : ' Cotes masquées sur le schéma (trop serrées), voir les positions.'),
       modes: [ { id: 'pts', label: 'Entre deux points', sub: 'Espaces égaux, bouts compris' }, { id: 'ext', label: 'Entre deux extrémités', sub: 'Une machine à chaque bout' }, { id: 'fix', label: 'Entraxe imposé', sub: 'Combien tiennent, centrées' }, { id: 'circle', label: 'Cercle', sub: 'Pont circulaire' } ].map(function (m) { var on = m.id === c0.mode; return { label: m.label, sub: m.sub, on: on, style: chipStyle(on), pick: function () { setCot({ mode: m.id, n: m.id === 'ext' ? Math.max(2, self.state.cot.n) : self.state.cot.n, nTxt: null }); } }; }),
-      machines: posV.map(function (x) { return { x: L > 0 ? x / L * 100 : 0 }; }),
+      machines: posV.map(function (x) { return { x: L > 0 ? x / L * 100 : 0, col: axe ? sideCol(x - L / 2) : '#7CC4FF' }; }),
       segs: segList.map(function (g, i) { var isOff = offM > 0 && (i === 0 || i === segList.length - 1), w = L > 0 ? g[1] / L * 100 : 0; return { x: L > 0 ? g[0] / L * 100 : 0, w: w, label: f2(g[1]), labelStyle: (showLbl && w >= 9 ? '' : 'visibility: hidden') + (isOff ? '; color: #FFB020' : '') }; }),
       axeOn: axe, boutOn: !axe,
       boutStyle: !axe ? 'background: #2C3038; color: #EEF0F3' : 'background: transparent; color: #9AA1AC',
       axeStyle: axe ? 'background: #2C3038; color: #EEF0F3' : 'background: transparent; color: #9AA1AC',
       refBout: function () { setCot({ ref: 'bout' }); }, refAxe: function () { setCot({ ref: 'axe' }); },
       refNote: axe ? 'Axe = milieu de la longueur (' + f2(L / 2) + ' m du bout). Négatif à gauche, positif à droite.' : 'Distance mesurée depuis le bout gauche du pont.',
-      axLabels: posV.map(function (x) { var d = x - L / 2; return { x: L > 0 ? x / L * 100 : 0, label: sgn(d), color: Math.abs(d) < 1e-9 ? '#FFB020' : '#C5CAD2', style: nM <= 8 ? '' : 'visibility: hidden' }; }),
-      pos: posV.map(function (x, i) { var d = x - L / 2; return { n: i + 1, m: axe ? sgn(d) : f2(x), color: axe && Math.abs(d) < 1e-9 ? '#FFB020' : '#EEF0F3' }; }),
+      axLabels: posV.map(function (x) { var d = x - L / 2; return { x: L > 0 ? x / L * 100 : 0, label: sgn(d), color: sideCol(d), style: nM <= 8 ? '' : 'visibility: hidden' }; }),
+      pos: posV.map(function (x, i) { var d = x - L / 2, c = sideCol(d), side = Math.abs(d) < 1e-9 ? 'SUR L’AXE' : (d < 0 ? '◀ CÔTÉ −' : 'CÔTÉ + ▶');
+        return { n: i + 1, m: axe ? sgn(d) : f2(x), color: axe ? c : '#EEF0F3', side: axe ? side : '', sideOn: axe,
+          card: axe ? 'background: ' + c + '14; border: 1px solid ' + c + '66; box-shadow: inset 4px 0 0 ' + c : 'background: #17191D; border: 1px solid #2C3038' }; }),
+      legend: axe,
       isLine: !circ, isFix: fix, isCircle: circ, showN: !fix && !circ,
       eTxt: c0.eTxt,
       ePlus: cmStep('e', 'eTxt', 5, 1), eMinus: cmStep('e', 'eTxt', -5, 1), setE: cmSet('e', 'eTxt'),
@@ -2665,6 +2675,6 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () { navigator.serviceWorker.register('./sw.js').catch(function () {}); });
 }
 </script>
-<!-- NTOOL version 20261019-123749 -->
+<!-- NTOOL version 20261020-202402 -->
 </body>
 </html>
