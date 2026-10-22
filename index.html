@@ -129,6 +129,11 @@ input{font-family:'JetBrains Mono',monospace}
           <span style="width: 36px; text-align: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 20px">{{it.qty}}</span>
           <button type="button" onClick="{{it.plus}}" aria-label="Ajouter un" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 22px">+</button>
         </div>
+        <span style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px">
+            <span title="Source lumineuse" style="display: inline-flex; align-items: center; gap: 4px; border-radius: 7px; padding: 3px 7px; background: #FFE7A012; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; {{it.sp.lsStyle}}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FFD866" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Source lumineuse" role="img"><path d="M9 18h6M10 21h4"></path><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"></path></svg>{{it.sp.lsTxt}}<sc-if value="{{it.sp.lsExt}}" hint-placeholder-val="{{ false }}"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFC75A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-label="Valeur d’une source externe" role="img"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"></path></svg></sc-if></span>
+            <span title="Consommation totale" style="display: inline-flex; align-items: center; gap: 4px; border-radius: 7px; padding: 3px 7px; background: #7CC4FF12; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #C5E4FF"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7CC4FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Consommation totale" role="img"><path d="M8 3h8l-1 4H9z"></path><path d="M12 7v3"></path><path d="M7 10h10l2 9H5z"></path><path d="M9 19v2M15 19v2"></path></svg>{{it.sp.pTxt}}</span>
+            <span title="Poids" style="display: inline-flex; align-items: center; gap: 4px; border-radius: 7px; padding: 3px 7px; background: #2C3038; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #C5CAD2"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C5CAD2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Poids" role="img"><circle cx="12" cy="6" r="2.5"></circle><path d="M6.5 9h11l2.5 12H4z"></path></svg>{{it.sp.kgTxt}}</span>
+          </span>
         <div style="display: flex; gap: 6px; flex-wrap: wrap; font-size: 12px">
           <span style="background: #20232A; border-radius: 8px; padding: 5px 8px; font-family: 'JetBrains Mono', monospace">{{it.unitA}} A / u</span>
           <span style="background: #20232A; border-radius: 8px; padding: 5px 8px">cos φ {{it.pf}}</span>
@@ -272,6 +277,11 @@ input{font-family:'JetBrains Mono',monospace}
           <span style="width: 28px; text-align: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 18px">{{g.qty}}</span>
           <button type="button" onClick="{{g.plus}}" aria-label="Plus" style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; font-size: 20px">+</button>
         </div>
+        <span style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px">
+            <span title="Source lumineuse" style="display: inline-flex; align-items: center; gap: 4px; border-radius: 7px; padding: 3px 7px; background: #FFE7A012; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; {{g.sp.lsStyle}}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FFD866" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Source lumineuse" role="img"><path d="M9 18h6M10 21h4"></path><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"></path></svg>{{g.sp.lsTxt}}<sc-if value="{{g.sp.lsExt}}" hint-placeholder-val="{{ false }}"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFC75A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-label="Valeur d’une source externe" role="img"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"></path></svg></sc-if></span>
+            <span title="Consommation totale" style="display: inline-flex; align-items: center; gap: 4px; border-radius: 7px; padding: 3px 7px; background: #7CC4FF12; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #C5E4FF"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7CC4FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Consommation totale" role="img"><path d="M8 3h8l-1 4H9z"></path><path d="M12 7v3"></path><path d="M7 10h10l2 9H5z"></path><path d="M9 19v2M15 19v2"></path></svg>{{g.sp.pTxt}}</span>
+            <span title="Poids" style="display: inline-flex; align-items: center; gap: 4px; border-radius: 7px; padding: 3px 7px; background: #2C3038; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #C5CAD2"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C5CAD2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Poids" role="img"><circle cx="12" cy="6" r="2.5"></circle><path d="M6.5 9h11l2.5 12H4z"></path></svg>{{g.sp.kgTxt}}</span>
+          </span>
         <div style="display: flex; flex-wrap: wrap; gap: 6px">
           <sc-for list="{{g.modes}}" as="md" hint-placeholder-count="2">
             <button type="button" onClick="{{md.pick}}" aria-pressed="{{md.on}}" style="height: 34px; padding: 0 10px; border-radius: 9px; font-size: 12px; font-weight: 600; {{md.style}}">{{md.label}}</button>
@@ -1114,8 +1124,9 @@ input{font-family:'JetBrains Mono',monospace}
           </sc-for>
         </div>
       </div>
-      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
         <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #9AA1AC">Puissance max (W)<input type="text" inputmode="decimal" value="{{ed.p}}" onChange="{{edP}}" style="height: 44px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-size: 16px; text-align: center; box-sizing: border-box; width: 100%"></label>
+        <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #9AA1AC">Source lumineuse (W)<input type="text" inputmode="decimal" value="{{ed.ls}}" onChange="{{edLs}}" style="height: 44px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-size: 16px; text-align: center; box-sizing: border-box; width: 100%"></label>
         <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #9AA1AC">Poids (kg)<input type="text" inputmode="decimal" value="{{ed.kg}}" onChange="{{edKg}}" style="height: 44px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-size: 16px; text-align: center; box-sizing: border-box; width: 100%"></label>
         <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #9AA1AC">cos φ<input type="text" inputmode="decimal" placeholder="0,85" value="{{ed.pf}}" onChange="{{edPf}}" style="height: 44px; border-radius: 10px; border: 1px solid #2C3038; background: #0D0E10; color: #EEF0F3; font-size: 16px; text-align: center; box-sizing: border-box; width: 100%"></label>
       </div>
@@ -1161,7 +1172,11 @@ input{font-family:'JetBrains Mono',monospace}
     <div class="scroll" style="overflow-y: auto; display: flex; flex-direction: column; gap: 6px; flex-grow: 1; min-height: 0">
       <sc-for list="{{pickList}}" as="f" hint-placeholder-count="4">
         <button type="button" onClick="{{f.pick}}" style="border-radius: 12px; border: 1px solid #2C3038; background: #20232A; color: #EEF0F3; padding: 10px 12px; display: flex; align-items: center; gap: 10px; text-align: left; flex-shrink: 0; {{f.style}}">
-          <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 12px; color: #9AA1AC">{{f.brand}}</span><span style="font-weight: 600">{{f.name}}<sc-if value="{{f.ext}}" hint-placeholder-val="{{ false }}"><span role="img" aria-label="Données d’une source externe" style="display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 50%; background: #FFB0202E; margin-left: 6px; vertical-align: -2px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFC75A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"></path></svg></span></sc-if></span></span>
+          <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 12px; color: #9AA1AC">{{f.brand}}</span><span style="font-weight: 600">{{f.name}}<sc-if value="{{f.ext}}" hint-placeholder-val="{{ false }}"><span role="img" aria-label="Données d’une source externe" style="display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 50%; background: #FFB0202E; margin-left: 6px; vertical-align: -2px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFC75A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"></path></svg></span></sc-if></span><sc-if value="{{f.hasSpec}}" hint-placeholder-val="{{ true }}"><span style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px">
+            <span title="Source lumineuse" style="display: inline-flex; align-items: center; gap: 4px; border-radius: 7px; padding: 3px 7px; background: #FFE7A012; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; {{f.sp.lsStyle}}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FFD866" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Source lumineuse" role="img"><path d="M9 18h6M10 21h4"></path><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"></path></svg>{{f.sp.lsTxt}}<sc-if value="{{f.sp.lsExt}}" hint-placeholder-val="{{ false }}"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFC75A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-label="Valeur d’une source externe" role="img"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"></path></svg></sc-if></span>
+            <span title="Consommation totale" style="display: inline-flex; align-items: center; gap: 4px; border-radius: 7px; padding: 3px 7px; background: #7CC4FF12; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #C5E4FF"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7CC4FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Consommation totale" role="img"><path d="M8 3h8l-1 4H9z"></path><path d="M12 7v3"></path><path d="M7 10h10l2 9H5z"></path><path d="M9 19v2M15 19v2"></path></svg>{{f.sp.pTxt}}</span>
+            <span title="Poids" style="display: inline-flex; align-items: center; gap: 4px; border-radius: 7px; padding: 3px 7px; background: #2C3038; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #C5CAD2"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C5CAD2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Poids" role="img"><circle cx="12" cy="6" r="2.5"></circle><path d="M6.5 9h11l2.5 12H4z"></path></svg>{{f.sp.kgTxt}}</span>
+          </span></sc-if></span>
           <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #9AA1AC; text-align: right">{{f.meta}}</span>
         </button>
       </sc-for>
@@ -1208,10 +1223,11 @@ input{font-family:'JetBrains Mono',monospace}
     'Réponds avec un seul objet JSON de cette forme :\n' +
     '{"brand": "marque", "name": "modèle (sans la marque)", "source": "led" | "dis" | "trad" | "eff", ' +
     '"maxPower": nombre ou null, "powerUnit": "W" | "VA", "powerFactor": nombre entre 0 et 1 ou null, ' +
-    '"weightKg": nombre ou null, "modes": [{"name": "nom du mode", "channels": nombre}], "notes": "courte remarque en français ou chaîne vide"}\n' +
+    '"lightSourceW": nombre ou null, "weightKg": nombre ou null, "modes": [{"name": "nom du mode", "channels": nombre}], "notes": "courte remarque en français ou chaîne vide"}\n' +
     'Règles : source = "led" pour une source LED, "dis" pour une lampe à décharge (HMI, MSD, MSR, Sirius, Platinum…), "trad" pour halogène/tungstène, "eff" pour une machine à effet (brouillard, fumée). ' +
     'maxPower = consommation maximale de l’appareil complet (pas la puissance de la LED seule) ; si plusieurs tensions, prends la valeur à 230 V ; si seule une puissance apparente en VA est donnée, mets-la avec powerUnit "VA". ' +
     'weightKg = poids de l’appareil seul en kg (convertis les lbs). ' +
+    'lightSourceW = puissance de la source lumineuse seule en W (moteur LED, lampe ou laser ; si plusieurs LED, nombre × puissance unitaire), null si absente. ' +
     'modes = chaque mode/personnalité DMX avec son nombre exact de canaux, dans l’ordre du document ; garde les noms du constructeur. ' +
     'Si une valeur n’apparaît pas, mets null (ou [] pour modes) et dis-le dans notes.';
   window.__ntoolImport = async function (file) {
@@ -1264,7 +1280,7 @@ input{font-family:'JetBrains Mono',monospace}
       brand: String((res && res.brand) || '').slice(0, 40), name: String((res && res.name) || '').slice(0, 60),
       src: ['led', 'dis', 'trad', 'eff'].indexOf(res && res.source) >= 0 ? res.source : 'led',
       p: num(res && res.maxPower), va: (res && res.powerUnit) === 'VA', pf: pf && pf <= 1 ? pf : null,
-      kg: num(res && res.weightKg), modes: modes, notes: String((res && res.notes) || '').slice(0, 300)
+      kg: num(res && res.weightKg), ls: num(res && res.lightSourceW), modes: modes, notes: String((res && res.notes) || '').slice(0, 300)
     };
   };
 })();
@@ -1530,6 +1546,26 @@ var FX = {
   s60c:       { brand: 'ARRI', src: 'led', range: '', ip: false, name: 'SkyPanel S60-C', p: 400, pf: PF_DEFAULT, pfKnown: false, kg: 10.6, modes: [['P01 CCT & RGBW 8 bit', 12], ['P02 CCT 8 bit', 7], ['P03 CCT & HSI 8 bit', 10], ['P04 RGBW 8 bit', 9], ['P05 HSI 8 bit', 6], ['P06 CCT & RGBW 16 bit', 20], ['P07 CCT 16 bit', 10], ['P08 CCT & HSI 16 bit', 16], ['P09 RGBW 16 bit', 14], ['P10 HSI 16 bit', 10]], ext: 'modes DMX (Open Fixture Library)' },
   aura:       { brand: 'Martin', src: 'led', range: '', ip: false, name: 'MAC Aura XB', p: 400, pf: 0.95, pfKnown: true, kg: 6.5, modes: [['Basic', 14], ['Extended', 25]] }
 };
+/* Source lumineuse (fiches constructeur ; e: true = source non constructeur, revendeur) : [watts totaux, libellé] */
+var LS = {
+  ibolt: [500, 'Laser 500 W'], iesprite: [650, 'LED 650 W'], iforte: [1000, 'LED 1000 W'], ledbeam150: [280, '7 × 40 W'],
+  megapointe: [470, 'Lampe 470 W'], pointe: [280, 'Lampe 280 W'], forte: [1000, 'LED 1000 W'], bmflblade: [1700, 'Lampe 1700 W'],
+  spiider: [780, '18 × 40 + 60 W'], tetra2: [720, '18 × 40 W'], ledbeam350: [480, '12 × 40 W'], patt2013: [null, 'Halogène'], esprite: [650, 'LED 650 W'],
+  proteus: [950, 'LED 950 W'], phybrid: [470, 'Lampe 470 W', true], pexcal: [550, 'Lampe 550 W'], picassofc: [620, 'LED 620 W'],
+  paladinp: [750, '50 × 15 W', true], klpanel: [295, 'LED 295 W'], klfresnel8: [350, 'LED 350 W'], klfresnel6: [150, 'LED 150 W'],
+  peclypse: [960, '96 × 10 W'], dtw350ip: [350, '2 × 175 W'], dartz360: [50, 'LED 50 W', true],
+  aura: [285, '19 × 15 W', true], auraxip: [468, '7 × 60 + 12 × 4 W', true], qwash: [750, '50 × 15 W'], qprofile: [475, 'LED 475 W'], viper: [1000, 'Lampe 1000 W'],
+  hybeyek25: [1480, '37 × 40 W'], mythos: [470, 'Lampe 470 W', true], sharpy: [189, 'Lampe 189 W'], stormycc: [1008, '144 × 7 W'],
+  me2wpe: [null, 'Pas de source'], atme: [null, 'Pas de source']
+};
+Object.keys(LS).forEach(function (k) { if (FX[k]) FX[k].ls = { w: LS[k][0], t: LS[k][1], e: !!LS[k][2] }; });
+/* fiche visible : source lumineuse, conso totale, poids */
+function specOf(f) {
+  var ls = f.ls;
+  return { lsTxt: ls ? ls.t : '?', lsExt: !!(ls && ls.e), lsOff: !!(ls && ls.w === null && f.src === 'eff'),
+    pTxt: f.p ? f.p + (f.va ? ' VA' : ' W') : '? W', kgTxt: f.kg ? String(f.kg).replace('.', ',') + ' kg' : '? kg',
+    lsStyle: ls ? 'color: #FFE7A0' : 'color: #6B727D' };
+}
 var FX_ORDER = ['ibolt', 'iesprite', 'arianne6', 'iforte', 'ledbeam150', 'ledbeam200', 'megapointe', 'pointe', 'forte', 'bmflblade', 'spiider', 'tetra2', 'ledbeam350', 'patt2013', 'esprite', 'proteus', 'phybrid', 'pexcal', 'picassofc', 'paladinp', 'klpanel', 'klfresnel8', 'klfresnel6', 'peclypse', 'dtw350ip', 'dartz360', 'aura', 'auraxip', 'qwash', 'qprofile', 'viper', 'titan', 'helios', 'hyperion', 'ax9', 'ax5', 'ax2_50', 'ax2_100', 'quikpunch', 's60c', 'hybeyek25', 'mythos', 'sharpy', 'stormycc', 'me2wpe', 'atme', 'wellfit'];
 var SOURCES = [
   { id: '16M', label: 'PC16\nmono', short: 'PC16 mono', cal: 16, ph: 1 },
@@ -1749,7 +1785,7 @@ class Component extends DCLogic {
         var f = FX[k.fid], I = f.p / (230 * f.pf), adv = Math.max(1, Math.floor(R.lim / I)), per = k.per || adv;
         var load = per * I, lv = self.level(load, 16, s.marge);
         return {
-          brand: f.range ? f.brand + ' · ' + f.range : f.brand, name: f.name, ext: !!f.ext, extTxt: f.ext ? 'Source externe : ' + f.ext : '', qty: k.qty, unitA: fmt(I, 2),
+          brand: f.range ? f.brand + ' · ' + f.range : f.brand, name: f.name, ext: !!f.ext, extTxt: f.ext ? 'Source externe : ' + f.ext : '', qty: k.qty, sp: specOf(f), unitA: fmt(I, 2),
           pf: f.va ? 'inclus (fiche en VA)' : fmt(f.pf, 2) + (f.pfKnown ? '' : ' (estimé)'),
           adv: Math.max(0, Math.floor(R.lim / I)), full: Math.floor(16 / I),
           showPer: s.sameType, per: per,
@@ -1805,7 +1841,7 @@ class Component extends DCLogic {
         var f = FX[g.fid];
         var upd = function (patch) { return function () { self.setState({ groups: s.groups.map(function (x, j) { return j === gi ? Object.assign({}, x, patch) : x; }) }); }; };
         return {
-          brand: f.range ? f.brand + ' · ' + f.range : f.brand, name: f.name, ext: !!f.ext, extTxt: f.ext ? 'Source externe : ' + f.ext : '', qty: g.qty,
+          brand: f.range ? f.brand + ' · ' + f.range : f.brand, name: f.name, ext: !!f.ext, extTxt: f.ext ? 'Source externe : ' + f.ext : '', qty: g.qty, sp: specOf(f),
           idRange: ((gi + 1) * 100 + 1) + '–' + ((gi + 1) * 100 + g.qty),
           plus: upd({ qty: g.qty + 1 }),
           minus: g.qty <= 1 ? function () { self.setState({ groups: s.groups.filter(function (x, j) { return j !== gi; }) }); } : upd({ qty: g.qty - 1 }),
@@ -1878,14 +1914,14 @@ class Component extends DCLogic {
     });
     var pickList = filtered.map(function (fid) {
       var f = FX[fid], line = f.range ? f.brand + ' · ' + f.range : f.brand;
-      if (f.missing) return { brand: line, name: f.name, ext: !!f.ext, extTxt: f.ext ? 'Source externe : ' + f.ext : '', meta: 'données manquantes', style: 'opacity: 0.5', pick: function () {} };
-      if (f.dmxOnly) return { brand: line + ' · ' + SRC_LABEL[f.src], name: f.name, ext: !!f.ext, extTxt: f.ext ? 'Source externe : ' + f.ext : '', style: '', meta: 'DMX uniquement', pick: function () {
+      if (f.missing) return { brand: line, name: f.name, ext: !!f.ext, extTxt: f.ext ? 'Source externe : ' + f.ext : '', meta: 'données manquantes', style: 'opacity: 0.5', hasSpec: false, sp: specOf(f), pick: function () {} };
+      if (f.dmxOnly) return { brand: line + ' · ' + SRC_LABEL[f.src], name: f.name, ext: !!f.ext, extTxt: f.ext ? 'Source externe : ' + f.ext : '', style: '', meta: 'DMX uniquement', hasSpec: false, sp: specOf(f), pick: function () {
         if (s.picker === 'dmx') self.setState({ groups: s.groups.concat([{ fid: fid, mode: 0, qty: 1 }]), picker: null });
         else self.setState({ quick: Object.assign({}, s.quick, { fid: fid, mode: 0 }), picker: null });
       } };
-      if (s.picker !== 'power' && !f.modes.length) return { brand: line + ' · ' + SRC_LABEL[f.src], name: f.name, ext: !!f.ext, extTxt: f.ext ? 'Source externe : ' + f.ext : '', meta: 'modes DMX manquants', style: 'opacity: 0.5', pick: function () {} };
+      if (s.picker !== 'power' && !f.modes.length) return { brand: line + ' · ' + SRC_LABEL[f.src], name: f.name, ext: !!f.ext, extTxt: f.ext ? 'Source externe : ' + f.ext : '', meta: 'modes DMX manquants', style: 'opacity: 0.5', hasSpec: true, sp: specOf(f), pick: function () {} };
       return {
-        brand: line + ' · ' + SRC_LABEL[f.src], name: f.name, ext: !!f.ext, extTxt: f.ext ? 'Source externe : ' + f.ext : '', style: '', meta: f.p + (f.va ? ' VA · ' : ' W · ') + String(f.kg).replace('.', ',') + ' kg' + (f.check ? ' · à vérifier' : ''),
+        brand: line + ' · ' + SRC_LABEL[f.src], name: f.name, ext: !!f.ext, extTxt: f.ext ? 'Source externe : ' + f.ext : '', style: '', meta: f.check ? 'à vérifier' : '', hasSpec: true, sp: specOf(f),
         pick: function () {
           if (s.picker === 'power') {
             var ex = s.kit.findIndex(function (k) { return k.fid === fid; });
@@ -1916,8 +1952,8 @@ class Component extends DCLogic {
       var f = FX[fid], st = f.missing ? 'missing' : (!f.modes.length ? 'modes' : (f.check || f.kgCheck ? 'check' : (f.manual ? 'manual' : 'ext')));
       return {
         brand: f.range ? f.brand + ' · ' + f.range : f.brand, name: f.name, ext: !!f.ext, extTxt: f.ext ? 'Source externe : ' + f.ext : '', status: STAT[st].t, badge: STAT[st].b,
-        meta: (f.p ? f.p + (f.va ? ' VA' : ' W') : '? W') + ' · ' + (f.kg ? String(f.kg).replace('.', ',') + ' kg' : '? kg') + ' · cos φ ' + fmt(f.pf, 2) + ' · ' + (f.modes.length ? f.modes.map(function (m) { return m[1]; }).join('/') + ' ch' : '? ch'),
-        edit: function () { self.setState({ edit: { fid: fid, va: !!f.va, brand: f.brand, name: f.name, ext: !!f.ext, extTxt: f.ext ? 'Source externe : ' + f.ext : '', src: f.src, p: f.p ? String(f.p) : '', kg: f.kg ? String(f.kg).replace('.', ',') : '', pf: f.pfKnown ? String(f.pf).replace('.', ',') : '', modes: f.modes.length ? f.modes.map(function (m) { return { name: m[0], ch: String(m[1]) }; }) : [{ name: 'Mode 1', ch: '' }], err: '' } }); }
+        meta: (f.p ? f.p + (f.va ? ' VA' : ' W') : '? W') + ' · ' + (f.kg ? String(f.kg).replace('.', ',') + ' kg' : '? kg') + ' · ' + (f.modes.length ? f.modes.map(function (m) { return m[1]; }).join('/') + ' ch' : '? ch'),
+        edit: function () { self.setState({ edit: { fid: fid, va: !!f.va, brand: f.brand, name: f.name, ext: !!f.ext, extTxt: f.ext ? 'Source externe : ' + f.ext : '', src: f.src, p: f.p ? String(f.p) : '', ls: f.ls && f.ls.w ? String(f.ls.w) : '', kg: f.kg ? String(f.kg).replace('.', ',') : '', pf: f.pfKnown ? String(f.pf).replace('.', ',') : '', modes: f.modes.length ? f.modes.map(function (m) { return { name: m[0], ch: String(m[1]) }; }) : [{ name: 'Mode 1', ch: '' }], err: '' } }); }
       };
     });
     var nMissing = baseItems.filter(function (k) { return FX[k].missing || !FX[k].modes.length; }).length;
@@ -1945,6 +1981,7 @@ class Component extends DCLogic {
             if (r.src) patch.src = r.src;
             if (r.p) patch.p = String(r.p);
             if (r.kg) patch.kg = String(r.kg).replace('.', ',');
+            if (r.ls) patch.ls = String(r.ls);
             patch.va = !!r.va;
             patch.pf = r.va ? '1' : (r.pf ? String(r.pf).replace('.', ',') : '');
             if (r.modes && r.modes.length) patch.modes = r.modes.map(function (m, i) { return { name: m.name || 'Mode ' + (i + 1), ch: String(m.ch || '') }; });
@@ -2570,9 +2607,9 @@ class Component extends DCLogic {
       baseSummary: nMissing + ' manquant' + (nMissing > 1 ? 's' : '') + ' · ' + nCheck + ' à vérifier · ' + baseItems.length + ' fiches à revoir',
       editOpen: !!E, ed: ed || { title: '', brand: '', name: '', p: '', kg: '', pf: '', modes: [], srcs: [], err: '' },
       baseEmpty: baseList.length === 0,
-      edP: setE('p'), edKg: setE('kg'), edPf: setE('pf'), edBrand: setE('brand'), edName: setE('name'),
+      edP: setE('p'), edLs: setE('ls'), edKg: setE('kg'), edPf: setE('pf'), edBrand: setE('brand'), edName: setE('name'),
       edAddMode: function () { var E3 = self.state.edit; self.setState({ edit: Object.assign({}, E3, { modes: E3.modes.concat([{ name: 'Mode ' + (E3.modes.length + 1), ch: '' }]) }) }); },
-      newFixture: set({ edit: { fid: null, brand: '', name: '', src: 'led', p: '', kg: '', pf: '', modes: [{ name: 'Mode 1', ch: '' }], err: '' } }),
+      newFixture: set({ edit: { fid: null, brand: '', name: '', src: 'led', p: '', ls: '', kg: '', pf: '', modes: [{ name: 'Mode 1', ch: '' }], err: '' } }),
       closeEdit: set({ edit: null }),
       saveEdit: function () {
         var E2 = self.state.edit;
@@ -2591,6 +2628,9 @@ class Component extends DCLogic {
         var f = FX[fid];
         f.brand = E2.brand.trim(); f.name = E2.name.trim(); f.src = E2.src;
         f.p = p; f.kg = kg; f.pf = pf === null ? PF_DEFAULT : pf; f.pfKnown = pf !== null; f.modes = modes; f.va = !!E2.va;
+        var lsW = num(E2.ls || '');
+        if (lsW && lsW > 0) { if (!(f.ls && f.ls.w === lsW)) f.ls = { w: lsW, t: (f.src === 'dis' ? 'Lampe ' : (f.src === 'trad' ? 'Lampe ' : 'LED ')) + lsW + ' W', e: false }; }
+        else if (!(f.ls && f.ls.w === null)) f.ls = null;
         f.missing = false; f.check = false; f.kgCheck = false; f.manual = true; f.ext = '';
         self.setState({ edit: null, rev: self.state.rev + 1 });
       },
@@ -2675,6 +2715,6 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () { navigator.serviceWorker.register('./sw.js').catch(function () {}); });
 }
 </script>
-<!-- NTOOL version 20261020-202402 -->
+<!-- NTOOL version 20261022-080123 -->
 </body>
 </html>
