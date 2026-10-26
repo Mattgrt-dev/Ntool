@@ -1516,7 +1516,7 @@ var FX = {
   phybrid:    { brand: 'Elation', src: 'dis', range: 'IP65', ip: true, name: 'Proteus Hybrid', p: 700, pf: PF_DEFAULT, pfKnown: false, kg: 38, modes: [['Mode A', 24], ['Mode B', 26], ['Mode C', 37]] },
   pexcal:     { brand: 'Elation', src: 'dis', range: 'IP65', ip: true, name: 'Proteus Excalibur', p: 800, pf: PF_DEFAULT, pfKnown: false, kg: 49, modes: [['Mode unique', 26]] },
   picassofc:  { brand: 'Elation', src: 'led', range: '', ip: false, name: 'Artiste Picasso FC', p: 1000, pf: PF_DEFAULT, pfKnown: false, kg: 38.1, modes: [['Mode A', 36], ['Mode B', 62]] },
-  paladinp:   { brand: 'Elation', src: 'led', range: 'IP65', ip: true, name: 'Paladin Panel', p: 800, pf: PF_DEFAULT, pfKnown: false, kg: 15, modes: [] },
+  paladinp:   { brand: 'Elation', src: 'led', range: 'IP65', ip: true, name: 'Paladin Panel', p: 800, pf: PF_DEFAULT, pfKnown: false, kg: 15, modes: [['RGB', 3], ['8 bit', 4], ['16 bit', 8], ['16 bit Dim', 10], ['Extended', 16], ['Cells', 80], ['Cells Dim', 82], ['Ext-Cells', 88]] },
   klpanel:    { brand: 'Elation', src: 'led', range: '', ip: false, name: 'KL Panel', p: 295, pf: PF_DEFAULT, pfKnown: false, kg: 13, modes: [] },
   klfresnel8: { brand: 'Elation', src: 'led', range: '', ip: false, name: 'KL Fresnel 8', p: 430, pf: PF_DEFAULT, pfKnown: false, kg: 12.7, modes: [['Mode 1', 2], ['Mode 2', 3], ['Mode 3', 3], ['Mode 4', 6], ['Mode 5', 7]] },
   klfresnel6: { brand: 'Elation', src: 'led', range: '', ip: false, name: 'KL Fresnel 6', p: 180, pf: PF_DEFAULT, pfKnown: false, kg: 8.4, modes: [] },
@@ -2715,6 +2715,6 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () { navigator.serviceWorker.register('./sw.js').catch(function () {}); });
 }
 </script>
-<!-- NTOOL version 20261022-080123 -->
+<!-- NTOOL version 20261026-084350 -->
 </body>
 </html>
