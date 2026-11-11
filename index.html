@@ -169,6 +169,12 @@ input{font-family:'JetBrains Mono',monospace}
       <span style="width: 40px; height: 24px; border-radius: 12px; position: relative; flex-shrink: 0; {{pw.sameTrack}}"><span style="position: absolute; top: 3px; width: 18px; height: 18px; border-radius: 50%; background: #0D0E10; {{pw.sameKnob}}"></span></span>
       Un seul type de projecteur par circuit
     </button>
+    <sc-if value="{{pw.balShow}}" hint-placeholder-val="{{ true }}">
+    <button type="button" onClick="{{toggleBal}}" aria-pressed="{{pw.balOn}}" style="min-height: 48px; border-radius: 12px; border: 1px solid #2C3038; background: #17191D; color: #EEF0F3; display: flex; align-items: center; gap: 12px; padding: 6px 14px; text-align: left; font-size: 14px">
+      <span style="width: 40px; height: 24px; border-radius: 12px; position: relative; flex-shrink: 0; {{pw.balTrack}}"><span style="position: absolute; top: 3px; width: 18px; height: 18px; border-radius: 50%; background: #0D0E10; {{pw.balKnob}}"></span></span>
+      <span style="display: flex; flex-direction: column; gap: 2px"><span>Toujours équilibrer les phases</span><span style="font-size: 12px; color: #9AA1AC">Répartit les machines à égalité sur L1, L2, L3, quitte à ajouter des circuits</span></span>
+    </button>
+    </sc-if>
     <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #9AA1AC">Seuil conseillé
       <sc-for list="{{pw.marges}}" as="mg" hint-placeholder-count="4">
         <button type="button" onClick="{{mg.pick}}" aria-pressed="{{mg.on}}" style="height: 36px; min-width: 52px; border-radius: 10px; font-size: 13px; font-weight: 600; font-family: 'JetBrains Mono', monospace; {{mg.style}}">{{mg.label}}</button>
@@ -1674,7 +1680,7 @@ class Component extends DCLogic {
     this.state = {
       screen: 'home', picker: null, pickBrand: 'all', pickSrc: 'all', pickQuery: '', edit: null, rev: 0,
       kit: initialPower().kit, pwImportArm: false,
-      source: '32T', multi: 'soca', sameType: true, marge: 80,
+      source: '32T', multi: 'soca', sameType: true, balancePh: true, marge: 80,
       dmxTab: 'patch',
       groups: [{ fid: 'iforte', mode: 0, qty: 4 }, { fid: 'esprite', mode: 0, qty: 6 }, { fid: 'aura', mode: 1, qty: 8 }],
       round: true,
@@ -1698,8 +1704,36 @@ class Component extends DCLogic {
       var f = FX[k.fid], I = f.p / (U * f.pf);
       return { fid: k.fid, qty: k.qty, per: k.per, f: f, I: I, full: Math.floor(16 / I), adv: Math.floor(lim / I) };
     });
+    var src = SOURCES.find(function (s) { return s.id === sourceId; });
+    var circuits = this.buildCircuits(types, st.sameType, lim), loads;
+    if (src.ph === 3 && st.balancePh) {
+      /* équilibrage : chaque machine va sur la phase la moins chargée, puis on fait les circuits phase par phase */
+      var units = [], cnt = [{}, {}, {}], acc = [0, 0, 0];
+      types.forEach(function (t) { for (var i = 0; i < t.qty; i++) units.push(t); });
+      units.sort(function (a, b) { return b.I - a.I; });
+      units.forEach(function (t) { var m = 0; acc.forEach(function (l, i) { if (l < acc[m] - 1e-9) m = i; }); acc[m] += t.I; cnt[m][t.fid] = (cnt[m][t.fid] || 0) + 1; });
+      circuits = []; loads = [0, 0, 0];
+      for (var ph = 0; ph < 3; ph++) {
+        var phTypes = types.filter(function (t) { return cnt[ph][t.fid]; }).map(function (t) { return Object.assign({}, t, { qty: cnt[ph][t.fid] }); });
+        this.buildCircuits(phTypes, st.sameType, lim).forEach(function (c) { c.ph = ph; loads[ph] += c.I; circuits.push(c); });
+      }
+    } else {
+      loads = src.ph === 1 ? [0] : [0, 0, 0];
+      circuits.slice().sort(function (a, b) { return b.I - a.I; }).forEach(function (c) {
+        var m = 0; loads.forEach(function (l, i) { if (l < loads[m]) m = i; });
+        c.ph = m; loads[m] += c.I;
+      });
+    }
+    var self = this, maxL = Math.max.apply(null, loads);
+    var phaseStatus = this.level(maxL, src.cal, st.marge);
+    var circStatus = 'ok';
+    circuits.forEach(function (c) { c.lv = self.level(c.I, 16, st.marge); circStatus = worst(circStatus, c.lv); });
+    return { types: types, circuits: circuits, loads: loads, src: src, plim: src.cal * st.marge / 100, maxL: maxL, phaseStatus: phaseStatus, circStatus: circStatus, status: worst(phaseStatus, circStatus), lim: lim };
+  }
+
+  buildCircuits(types, sameType, lim) {
     var circuits = [];
-    if (st.sameType) {
+    if (sameType) {
       types.forEach(function (t) {
         var n = t.per || Math.max(1, t.adv), k = Math.ceil(t.qty / n), base = Math.floor(t.qty / k), extra = t.qty % k;
         for (var i = 0; i < k; i++) {
@@ -1720,17 +1754,7 @@ class Component extends DCLogic {
         c.I += t.I;
       });
     }
-    var src = SOURCES.find(function (s) { return s.id === sourceId; });
-    var loads = src.ph === 1 ? [0] : [0, 0, 0];
-    circuits.slice().sort(function (a, b) { return b.I - a.I; }).forEach(function (c) {
-      var m = 0; loads.forEach(function (l, i) { if (l < loads[m]) m = i; });
-      c.ph = m; loads[m] += c.I;
-    });
-    var self = this, maxL = Math.max.apply(null, loads);
-    var phaseStatus = this.level(maxL, src.cal, st.marge);
-    var circStatus = 'ok';
-    circuits.forEach(function (c) { c.lv = self.level(c.I, 16, st.marge); circStatus = worst(circStatus, c.lv); });
-    return { types: types, circuits: circuits, loads: loads, src: src, plim: src.cal * st.marge / 100, maxL: maxL, phaseStatus: phaseStatus, circStatus: circStatus, status: worst(phaseStatus, circStatus), lim: lim };
+    return circuits;
   }
 
   renderVals() {
@@ -1777,6 +1801,9 @@ class Component extends DCLogic {
       multis: MULTIS.map(function (m) { var on = m.id === s.multi; return { label: m.label, on: on, style: chipStyle(on), pick: set({ multi: m.id }) }; }),
       marges: [70, 80, 90, 100].map(function (v) { var on = v === s.marge; return { label: v + ' %', on: on, style: chipStyle(on), pick: set({ marge: v }) }; }),
       margeTxt: s.marge + ' %',
+      balOn: s.balancePh, balShow: R.src.ph === 3,
+      balTrack: s.balancePh ? 'background: #7CC4FF' : 'background: #3A3F48',
+      balKnob: s.balancePh ? 'left: 19px' : 'left: 3px',
       sameOn: s.sameType,
       sameTrack: s.sameType ? 'background: #7CC4FF' : 'background: #3A3F48',
       sameKnob: s.sameType ? 'left: 19px' : 'left: 3px',
@@ -2595,7 +2622,7 @@ class Component extends DCLogic {
       fixtureCount: FX_ORDER.filter(function (k) { return !FX[k].missing; }).length, trussCount: TRUSS_ORDER.length,
       goPower: set({ screen: 'power', pwImportArm: false }), goDmx: set({ screen: 'dmx' }), goRigg: set({ screen: 'rigg' }), goAutre: set({ screen: 'autre' }), goBase: set({ screen: 'base' }),
       pw: pw, dx: dx, rg: rg,
-      toggleSame: set({ sameType: !s.sameType }), toggleRound: set({ round: !s.round }),
+      toggleSame: set({ sameType: !s.sameType }), toggleBal: set({ balancePh: !s.balancePh }), toggleRound: set({ round: !s.round }),
       tabQuick: set({ dmxTab: 'quick' }), tabPatch: set({ dmxTab: 'patch' }),
       openPickPower: set({ picker: 'power' }), openPickDmx: set({ picker: 'dmx' }), openPickQuick: set({ picker: 'quick' }), closePicker: set({ picker: null }),
       pickerOpen: !!s.picker, pickList: pickList, pickQuery: s.pickQuery || '',
@@ -2715,6 +2742,6 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () { navigator.serviceWorker.register('./sw.js').catch(function () {}); });
 }
 </script>
-<!-- NTOOL version 20261026-084704 -->
+<!-- NTOOL version 20261111-103053 -->
 </body>
 </html>
